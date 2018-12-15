@@ -3,10 +3,9 @@ spring:
     config:
       profile: dev
       label: master
-#      uri: http://localhost:10020/
-      name: didispace
+      name: game
       discovery:
-        serviceId: game-config #基于服务注册发现的方式查找
+        serviceId: GAME-CONFIG
         enabled: true
       username: user
       password: 123456
