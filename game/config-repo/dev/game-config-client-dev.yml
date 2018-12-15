@@ -1,4 +1,25 @@
-management:
+spring:
+  cloud:
+    config:
+      profile: prod #dev开发环境配置文件，test测试环境配置文件，pro正式环境文件
+      label: master #git仓库对应的分支名称 config-label-test
+#      uri: http://localhost:7001/ #config-server
+      name: didispace
+      discovery:
+        serviceId: config-server-git #基于服务注册发现的方式查找
+        enabled: true
+      username: user
+      password: 123456
+  rabbitmq: # 2、spring-cloud整合RabbitMQ 消息总线 配置RabbitMQ的链接信息
+    host: localhost
+    port: 5672
+    username: springCloud
+    password: 123456
+eureka:
+  client:
+      serviceUrl:
+        defaultZone: http://peer1:8762/eureka/,http://peer2:8763/eureka/
+management: #配置暴露监控节点地址
   endpoints:
     web:
       exposure:
