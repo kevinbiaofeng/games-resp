@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetLotteryDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetLotteryDetail">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="AWARDNAME" jdbcType="VARCHAR" property="awardname" />
+    <result column="NUMBER" jdbcType="VARCHAR" property="number" />
+    <result column="AWARDCOUNT" jdbcType="NUMERIC" property="awardcount" />
+    <result column="SERIALNUMBER" jdbcType="VARCHAR" property="serialnumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AWARDNAME, `NUMBER`, AWARDCOUNT, SERIALNUMBER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_LOTTERY_DETAIL
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_LOTTERY_DETAIL
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetLotteryDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_LOTTERY_DETAIL (AWARDNAME, `NUMBER`, AWARDCOUNT, 
+      SERIALNUMBER)
+    values (#{awardname,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{awardcount,jdbcType=NUMERIC}, 
+      #{serialnumber,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_LOTTERY_DETAIL (AWARDNAME, `NUMBER`, AWARDCOUNT, 
+	      SERIALNUMBER)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.awardname,jdbcType=VARCHAR}, #{item.number,jdbcType=VARCHAR}, #{item.awardcount,jdbcType=NUMERIC}, 
+      		  #{item.serialnumber,jdbcType=VARCHAR}
+      		 )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetLotteryDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_LOTTERY_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="awardname != null">
+        AWARDNAME,
+      </if>
+      <if test="number != null">
+        `NUMBER`,
+      </if>
+      <if test="awardcount != null">
+        AWARDCOUNT,
+      </if>
+      <if test="serialnumber != null">
+        SERIALNUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="awardname != null">
+        #{awardname,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="awardcount != null">
+        #{awardcount,jdbcType=NUMERIC},
+      </if>
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetLotteryDetail">
+    update FONTANA_BET_LOTTERY_DETAIL
+    <set>
+      <if test="awardname != null">
+        AWARDNAME = #{awardname,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `NUMBER` = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="awardcount != null">
+        AWARDCOUNT = #{awardcount,jdbcType=NUMERIC},
+      </if>
+      <if test="serialnumber != null">
+        SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetLotteryDetail">
+    update FONTANA_BET_LOTTERY_DETAIL
+    set AWARDNAME = #{awardname,jdbcType=VARCHAR},
+      `NUMBER` = #{number,jdbcType=VARCHAR},
+      AWARDCOUNT = #{awardcount,jdbcType=NUMERIC},
+      SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

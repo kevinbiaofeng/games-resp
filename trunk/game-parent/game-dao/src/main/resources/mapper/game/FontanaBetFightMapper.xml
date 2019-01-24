@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetFightMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetFight">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="FID" jdbcType="NUMERIC" property="fid" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="GAMEID" jdbcType="VARCHAR" property="gameid" />
+    <result column="USERHANDCARD" jdbcType="VARCHAR" property="userhandcard" />
+    <result column="SEAT0HANDCARD" jdbcType="VARCHAR" property="seat0handcard" />
+    <result column="SEAT1HANDCARD" jdbcType="VARCHAR" property="seat1handcard" />
+    <result column="BOTTOMCARD" jdbcType="VARCHAR" property="bottomcard" />
+    <result column="ISLORD" jdbcType="NUMERIC" property="islord" />
+    <result column="GAMESCORE" jdbcType="NUMERIC" property="gamescore" />
+    <result column="MULTIPLEBOMB" jdbcType="NUMERIC" property="multiplebomb" />
+    <result column="MULTIPLESPRING" jdbcType="NUMERIC" property="multiplespring" />
+    <result column="MULTIPLETASK" jdbcType="NUMERIC" property="multipletask" />
+    <result column="MULTIPLEMULTIPLE" jdbcType="NUMERIC" property="multiplemultiple" />
+    <result column="OPENCARDMULTIPLE" jdbcType="NUMERIC" property="opencardmultiple" />
+    <result column="RESULT" jdbcType="NUMERIC" property="result" />
+    <result column="SERVICEMONEY" jdbcType="NUMERIC" property="servicemoney" />
+    <result column="COMMRATIO" jdbcType="VARCHAR" property="commratio" />
+    <result column="ROOMID" jdbcType="NUMERIC" property="roomid" />
+    <result column="CNNAME" jdbcType="VARCHAR" property="cnname" />
+    <result column="ROOMSRCORE" jdbcType="NUMERIC" property="roomsrcore" />
+    <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+    <result column="RATE" jdbcType="NUMERIC" property="rate" />
+    <result column="USERID" jdbcType="NUMERIC" property="userid" />
+    <result column="USERESULT" jdbcType="NUMERIC" property="useresult" />
+    <result column="USER_DISACOUNT" jdbcType="NUMERIC" property="userDisacount" />
+    <result column="USER_TAKE" jdbcType="NUMERIC" property="userTake" />
+    <result column="USER_AMOUNT" jdbcType="NUMERIC" property="userAmount" />
+    <result column="SUBAGENTID" jdbcType="NUMERIC" property="subagentid" />
+    <result column="SUBAGENTNAME" jdbcType="VARCHAR" property="subagentname" />
+    <result column="SUBAGENT_PER" jdbcType="NUMERIC" property="subagentPer" />
+    <result column="SUBAGENT_PART" jdbcType="NUMERIC" property="subagentPart" />
+    <result column="SUBAGENT_DISACOUNT" jdbcType="NUMERIC" property="subagentDisacount" />
+    <result column="SUBAGENT_TAKE" jdbcType="NUMERIC" property="subagentTake" />
+    <result column="SUBAGENT_GIVE" jdbcType="NUMERIC" property="subagentGive" />
+    <result column="SUBAGENT_AMOUNT" jdbcType="NUMERIC" property="subagentAmount" />
+    <result column="AGENTID" jdbcType="NUMERIC" property="agentid" />
+    <result column="AGENTNAME" jdbcType="VARCHAR" property="agentname" />
+    <result column="AGENT_PER" jdbcType="NUMERIC" property="agentPer" />
+    <result column="AGENT_PART" jdbcType="NUMERIC" property="agentPart" />
+    <result column="AGENT_DISACOUNT" jdbcType="NUMERIC" property="agentDisacount" />
+    <result column="AGENT_TAKE" jdbcType="NUMERIC" property="agentTake" />
+    <result column="AGENT_GIVE" jdbcType="NUMERIC" property="agentGive" />
+    <result column="AGENT_AMOUNT" jdbcType="NUMERIC" property="agentAmount" />
+    <result column="GENGERALID" jdbcType="NUMERIC" property="gengeralid" />
+    <result column="GENGERALNAME" jdbcType="VARCHAR" property="gengeralname" />
+    <result column="GENGERAL_PER" jdbcType="NUMERIC" property="gengeralPer" />
+    <result column="GENGERAL_PART" jdbcType="NUMERIC" property="gengeralPart" />
+    <result column="GENGERAL_DISACOUNT" jdbcType="NUMERIC" property="gengeralDisacount" />
+    <result column="GENGERAL_TAKE" jdbcType="NUMERIC" property="gengeralTake" />
+    <result column="GENGERAL_GIVE" jdbcType="NUMERIC" property="gengeralGive" />
+    <result column="GENGERAL_AMOUNT" jdbcType="NUMERIC" property="gengeralAmount" />
+    <result column="PARTNERID" jdbcType="NUMERIC" property="partnerid" />
+    <result column="PARTNERNAME" jdbcType="VARCHAR" property="partnername" />
+    <result column="PARTNER_PER" jdbcType="NUMERIC" property="partnerPer" />
+    <result column="PARTNER_PART" jdbcType="NUMERIC" property="partnerPart" />
+    <result column="PARTNER_DISACOUNT" jdbcType="NUMERIC" property="partnerDisacount" />
+    <result column="PARTNER_TAKE" jdbcType="NUMERIC" property="partnerTake" />
+    <result column="PARTNER_GIVE" jdbcType="NUMERIC" property="partnerGive" />
+    <result column="PARTNER_AMOUNT" jdbcType="NUMERIC" property="partnerAmount" />
+    <result column="COMPANYID" jdbcType="NUMERIC" property="companyid" />
+    <result column="COMPANYNAME" jdbcType="VARCHAR" property="companyname" />
+    <result column="COMPANY_PER" jdbcType="NUMERIC" property="companyPer" />
+    <result column="COMPANY_PART" jdbcType="NUMERIC" property="companyPart" />
+    <result column="COMPANY_DISACOUNT" jdbcType="NUMERIC" property="companyDisacount" />
+    <result column="COMPANY_TAKE" jdbcType="NUMERIC" property="companyTake" />
+    <result column="COMPANY_GIVE" jdbcType="NUMERIC" property="companyGive" />
+    <result column="COMPANY_AMOUNT" jdbcType="NUMERIC" property="companyAmount" />
+    <result column="PLATFORM_PER" jdbcType="NUMERIC" property="platformPer" />
+    <result column="PLATFORM_PART" jdbcType="NUMERIC" property="platformPart" />
+    <result column="PLATFORM_GIVE" jdbcType="NUMERIC" property="platformGive" />
+    <result column="PLATFORM_AMOUNT" jdbcType="NUMERIC" property="platformAmount" />
+    <result column="BETTIME" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="STATUS" jdbcType="NUMERIC" property="status" />
+    <result column="TAKEOUTLOG" jdbcType="VARCHAR" property="takeoutlog" />
+    <result column="BUREAUNO" jdbcType="VARCHAR" property="bureauno" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, FID, USERNAME, CREATETIME, GAMEID, USERHANDCARD, SEAT0HANDCARD, SEAT1HANDCARD, 
+    BOTTOMCARD, ISLORD, GAMESCORE, MULTIPLEBOMB, MULTIPLESPRING, MULTIPLETASK, MULTIPLEMULTIPLE, 
+    OPENCARDMULTIPLE, `RESULT`, SERVICEMONEY, COMMRATIO, ROOMID, CNNAME, ROOMSRCORE, 
+    CURRENCY, RATE, USERID, USERESULT, USER_DISACOUNT, USER_TAKE, USER_AMOUNT, SUBAGENTID, 
+    SUBAGENTNAME, SUBAGENT_PER, SUBAGENT_PART, SUBAGENT_DISACOUNT, SUBAGENT_TAKE, SUBAGENT_GIVE, 
+    SUBAGENT_AMOUNT, AGENTID, AGENTNAME, AGENT_PER, AGENT_PART, AGENT_DISACOUNT, AGENT_TAKE, 
+    AGENT_GIVE, AGENT_AMOUNT, GENGERALID, GENGERALNAME, GENGERAL_PER, GENGERAL_PART, 
+    GENGERAL_DISACOUNT, GENGERAL_TAKE, GENGERAL_GIVE, GENGERAL_AMOUNT, PARTNERID, PARTNERNAME, 
+    PARTNER_PER, PARTNER_PART, PARTNER_DISACOUNT, PARTNER_TAKE, PARTNER_GIVE, PARTNER_AMOUNT, 
+    COMPANYID, COMPANYNAME, COMPANY_PER, COMPANY_PART, COMPANY_DISACOUNT, COMPANY_TAKE, 
+    COMPANY_GIVE, COMPANY_AMOUNT, PLATFORM_PER, PLATFORM_PART, PLATFORM_GIVE, PLATFORM_AMOUNT, 
+    BETTIME, GROUPFOR, `STATUS`, TAKEOUTLOG, BUREAUNO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_FIGHT
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_FIGHT
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetFight">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHT (PARENTID, FID, USERNAME, 
+      CREATETIME, GAMEID, USERHANDCARD, 
+      SEAT0HANDCARD, SEAT1HANDCARD, BOTTOMCARD, 
+      ISLORD, GAMESCORE, MULTIPLEBOMB, 
+      MULTIPLESPRING, MULTIPLETASK, MULTIPLEMULTIPLE, 
+      OPENCARDMULTIPLE, `RESULT`, SERVICEMONEY, 
+      COMMRATIO, ROOMID, CNNAME, 
+      ROOMSRCORE, CURRENCY, RATE, 
+      USERID, USERESULT, USER_DISACOUNT, 
+      USER_TAKE, USER_AMOUNT, SUBAGENTID, 
+      SUBAGENTNAME, SUBAGENT_PER, SUBAGENT_PART, 
+      SUBAGENT_DISACOUNT, SUBAGENT_TAKE, SUBAGENT_GIVE, 
+      SUBAGENT_AMOUNT, AGENTID, AGENTNAME, 
+      AGENT_PER, AGENT_PART, AGENT_DISACOUNT, 
+      AGENT_TAKE, AGENT_GIVE, AGENT_AMOUNT, 
+      GENGERALID, GENGERALNAME, GENGERAL_PER, 
+      GENGERAL_PART, GENGERAL_DISACOUNT, GENGERAL_TAKE, 
+      GENGERAL_GIVE, GENGERAL_AMOUNT, PARTNERID, 
+      PARTNERNAME, PARTNER_PER, PARTNER_PART, 
+      PARTNER_DISACOUNT, PARTNER_TAKE, PARTNER_GIVE, 
+      PARTNER_AMOUNT, COMPANYID, COMPANYNAME, 
+      COMPANY_PER, COMPANY_PART, COMPANY_DISACOUNT, 
+      COMPANY_TAKE, COMPANY_GIVE, COMPANY_AMOUNT, 
+      PLATFORM_PER, PLATFORM_PART, PLATFORM_GIVE, 
+      PLATFORM_AMOUNT, BETTIME, GROUPFOR, 
+      `STATUS`, TAKEOUTLOG, BUREAUNO
+      )
+    values (#{parentid,jdbcType=NUMERIC}, #{fid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{gameid,jdbcType=VARCHAR}, #{userhandcard,jdbcType=VARCHAR}, 
+      #{seat0handcard,jdbcType=VARCHAR}, #{seat1handcard,jdbcType=VARCHAR}, #{bottomcard,jdbcType=VARCHAR}, 
+      #{islord,jdbcType=NUMERIC}, #{gamescore,jdbcType=NUMERIC}, #{multiplebomb,jdbcType=NUMERIC}, 
+      #{multiplespring,jdbcType=NUMERIC}, #{multipletask,jdbcType=NUMERIC}, #{multiplemultiple,jdbcType=NUMERIC}, 
+      #{opencardmultiple,jdbcType=NUMERIC}, #{result,jdbcType=NUMERIC}, #{servicemoney,jdbcType=NUMERIC}, 
+      #{commratio,jdbcType=VARCHAR}, #{roomid,jdbcType=NUMERIC}, #{cnname,jdbcType=VARCHAR}, 
+      #{roomsrcore,jdbcType=NUMERIC}, #{currency,jdbcType=VARCHAR}, #{rate,jdbcType=NUMERIC}, 
+      #{userid,jdbcType=NUMERIC}, #{useresult,jdbcType=NUMERIC}, #{userDisacount,jdbcType=NUMERIC}, 
+      #{userTake,jdbcType=NUMERIC}, #{userAmount,jdbcType=NUMERIC}, #{subagentid,jdbcType=NUMERIC}, 
+      #{subagentname,jdbcType=VARCHAR}, #{subagentPer,jdbcType=NUMERIC}, #{subagentPart,jdbcType=NUMERIC}, 
+      #{subagentDisacount,jdbcType=NUMERIC}, #{subagentTake,jdbcType=NUMERIC}, #{subagentGive,jdbcType=NUMERIC}, 
+      #{subagentAmount,jdbcType=NUMERIC}, #{agentid,jdbcType=NUMERIC}, #{agentname,jdbcType=VARCHAR}, 
+      #{agentPer,jdbcType=NUMERIC}, #{agentPart,jdbcType=NUMERIC}, #{agentDisacount,jdbcType=NUMERIC}, 
+      #{agentTake,jdbcType=NUMERIC}, #{agentGive,jdbcType=NUMERIC}, #{agentAmount,jdbcType=NUMERIC}, 
+      #{gengeralid,jdbcType=NUMERIC}, #{gengeralname,jdbcType=VARCHAR}, #{gengeralPer,jdbcType=NUMERIC}, 
+      #{gengeralPart,jdbcType=NUMERIC}, #{gengeralDisacount,jdbcType=NUMERIC}, #{gengeralTake,jdbcType=NUMERIC}, 
+      #{gengeralGive,jdbcType=NUMERIC}, #{gengeralAmount,jdbcType=NUMERIC}, #{partnerid,jdbcType=NUMERIC}, 
+      #{partnername,jdbcType=VARCHAR}, #{partnerPer,jdbcType=NUMERIC}, #{partnerPart,jdbcType=NUMERIC}, 
+      #{partnerDisacount,jdbcType=NUMERIC}, #{partnerTake,jdbcType=NUMERIC}, #{partnerGive,jdbcType=NUMERIC}, 
+      #{partnerAmount,jdbcType=NUMERIC}, #{companyid,jdbcType=NUMERIC}, #{companyname,jdbcType=VARCHAR}, 
+      #{companyPer,jdbcType=NUMERIC}, #{companyPart,jdbcType=NUMERIC}, #{companyDisacount,jdbcType=NUMERIC}, 
+      #{companyTake,jdbcType=NUMERIC}, #{companyGive,jdbcType=NUMERIC}, #{companyAmount,jdbcType=NUMERIC}, 
+      #{platformPer,jdbcType=NUMERIC}, #{platformPart,jdbcType=NUMERIC}, #{platformGive,jdbcType=NUMERIC}, 
+      #{platformAmount,jdbcType=NUMERIC}, #{bettime,jdbcType=TIMESTAMP}, #{groupfor,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=NUMERIC}, #{takeoutlog,jdbcType=VARCHAR}, #{bureauno,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_FIGHT (PARENTID, FID, USERNAME, 
+	      CREATETIME, GAMEID, USERHANDCARD, 
+	      SEAT0HANDCARD, SEAT1HANDCARD, BOTTOMCARD, 
+	      ISLORD, GAMESCORE, MULTIPLEBOMB, 
+	      MULTIPLESPRING, MULTIPLETASK, MULTIPLEMULTIPLE, 
+	      OPENCARDMULTIPLE, `RESULT`, SERVICEMONEY, 
+	      COMMRATIO, ROOMID, CNNAME, 
+	      ROOMSRCORE, CURRENCY, RATE, 
+	      USERID, USERESULT, USER_DISACOUNT, 
+	      USER_TAKE, USER_AMOUNT, SUBAGENTID, 
+	      SUBAGENTNAME, SUBAGENT_PER, SUBAGENT_PART, 
+	      SUBAGENT_DISACOUNT, SUBAGENT_TAKE, SUBAGENT_GIVE, 
+	      SUBAGENT_AMOUNT, AGENTID, AGENTNAME, 
+	      AGENT_PER, AGENT_PART, AGENT_DISACOUNT, 
+	      AGENT_TAKE, AGENT_GIVE, AGENT_AMOUNT, 
+	      GENGERALID, GENGERALNAME, GENGERAL_PER, 
+	      GENGERAL_PART, GENGERAL_DISACOUNT, GENGERAL_TAKE, 
+	      GENGERAL_GIVE, GENGERAL_AMOUNT, PARTNERID, 
+	      PARTNERNAME, PARTNER_PER, PARTNER_PART, 
+	      PARTNER_DISACOUNT, PARTNER_TAKE, PARTNER_GIVE, 
+	      PARTNER_AMOUNT, COMPANYID, COMPANYNAME, 
+	      COMPANY_PER, COMPANY_PART, COMPANY_DISACOUNT, 
+	      COMPANY_TAKE, COMPANY_GIVE, COMPANY_AMOUNT, 
+	      PLATFORM_PER, PLATFORM_PART, PLATFORM_GIVE, 
+	      PLATFORM_AMOUNT, BETTIME, GROUPFOR, 
+	      `STATUS`, TAKEOUTLOG, BUREAUNO
+	      )
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.parentid,jdbcType=NUMERIC}, #{item.fid,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, 
+		      #{item.createtime,jdbcType=TIMESTAMP}, #{item.gameid,jdbcType=VARCHAR}, #{item.userhandcard,jdbcType=VARCHAR}, 
+		      #{item.seat0handcard,jdbcType=VARCHAR}, #{item.seat1handcard,jdbcType=VARCHAR}, #{item.bottomcard,jdbcType=VARCHAR}, 
+		      #{item.islord,jdbcType=NUMERIC}, #{item.gamescore,jdbcType=NUMERIC}, #{item.multiplebomb,jdbcType=NUMERIC}, 
+		      #{item.multiplespring,jdbcType=NUMERIC}, #{item.multipletask,jdbcType=NUMERIC}, #{item.multiplemultiple,jdbcType=NUMERIC}, 
+		      #{item.opencardmultiple,jdbcType=NUMERIC}, #{item.result,jdbcType=NUMERIC}, #{item.servicemoney,jdbcType=NUMERIC}, 
+		      #{item.commratio,jdbcType=VARCHAR}, #{item.roomid,jdbcType=NUMERIC}, #{item.cnname,jdbcType=VARCHAR}, 
+		      #{item.roomsrcore,jdbcType=NUMERIC}, #{item.currency,jdbcType=VARCHAR}, #{item.rate,jdbcType=NUMERIC}, 
+		      #{item.userid,jdbcType=NUMERIC}, #{item.useresult,jdbcType=NUMERIC}, #{item.userDisacount,jdbcType=NUMERIC}, 
+		      #{item.userTake,jdbcType=NUMERIC}, #{item.userAmount,jdbcType=NUMERIC}, #{item.subagentid,jdbcType=NUMERIC}, 
+		      #{item.subagentname,jdbcType=VARCHAR}, #{item.subagentPer,jdbcType=NUMERIC}, #{item.subagentPart,jdbcType=NUMERIC}, 
+		      #{item.subagentDisacount,jdbcType=NUMERIC}, #{item.subagentTake,jdbcType=NUMERIC}, #{item.subagentGive,jdbcType=NUMERIC}, 
+		      #{item.subagentAmount,jdbcType=NUMERIC}, #{item.agentid,jdbcType=NUMERIC}, #{item.agentname,jdbcType=VARCHAR}, 
+		      #{item.agentPer,jdbcType=NUMERIC}, #{item.agentPart,jdbcType=NUMERIC}, #{item.agentDisacount,jdbcType=NUMERIC}, 
+		      #{item.agentTake,jdbcType=NUMERIC}, #{item.agentGive,jdbcType=NUMERIC}, #{item.agentAmount,jdbcType=NUMERIC}, 
+		      #{item.gengeralid,jdbcType=NUMERIC}, #{item.gengeralname,jdbcType=VARCHAR}, #{item.gengeralPer,jdbcType=NUMERIC}, 
+		      #{item.gengeralPart,jdbcType=NUMERIC}, #{item.gengeralDisacount,jdbcType=NUMERIC}, #{item.gengeralTake,jdbcType=NUMERIC}, 
+		      #{item.gengeralGive,jdbcType=NUMERIC}, #{item.gengeralAmount,jdbcType=NUMERIC}, #{item.partnerid,jdbcType=NUMERIC}, 
+		      #{item.partnername,jdbcType=VARCHAR}, #{item.partnerPer,jdbcType=NUMERIC}, #{item.partnerPart,jdbcType=NUMERIC}, 
+		      #{item.partnerDisacount,jdbcType=NUMERIC}, #{item.partnerTake,jdbcType=NUMERIC}, #{item.partnerGive,jdbcType=NUMERIC}, 
+		      #{item.partnerAmount,jdbcType=NUMERIC}, #{item.companyid,jdbcType=NUMERIC}, #{item.companyname,jdbcType=VARCHAR}, 
+		      #{item.companyPer,jdbcType=NUMERIC}, #{item.companyPart,jdbcType=NUMERIC}, #{item.companyDisacount,jdbcType=NUMERIC}, 
+		      #{item.companyTake,jdbcType=NUMERIC}, #{item.companyGive,jdbcType=NUMERIC}, #{item.companyAmount,jdbcType=NUMERIC}, 
+		      #{item.platformPer,jdbcType=NUMERIC}, #{item.platformPart,jdbcType=NUMERIC}, #{item.platformGive,jdbcType=NUMERIC}, 
+		      #{item.platformAmount,jdbcType=NUMERIC}, #{item.bettime,jdbcType=TIMESTAMP}, #{item.groupfor,jdbcType=TIMESTAMP}, 
+		      #{item.status,jdbcType=NUMERIC}, #{item.takeoutlog,jdbcType=VARCHAR}, #{item.bureauno,jdbcType=VARCHAR}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetFight">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="id != null">
+        FID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="gameid != null">
+        GAMEID,
+      </if>
+      <if test="userhandcard != null">
+        USERHANDCARD,
+      </if>
+      <if test="seat0handcard != null">
+        SEAT0HANDCARD,
+      </if>
+      <if test="seat1handcard != null">
+        SEAT1HANDCARD,
+      </if>
+      <if test="bottomcard != null">
+        BOTTOMCARD,
+      </if>
+      <if test="islord != null">
+        ISLORD,
+      </if>
+      <if test="gamescore != null">
+        GAMESCORE,
+      </if>
+      <if test="multiplebomb != null">
+        MULTIPLEBOMB,
+      </if>
+      <if test="multiplespring != null">
+        MULTIPLESPRING,
+      </if>
+      <if test="multipletask != null">
+        MULTIPLETASK,
+      </if>
+      <if test="multiplemultiple != null">
+        MULTIPLEMULTIPLE,
+      </if>
+      <if test="opencardmultiple != null">
+        OPENCARDMULTIPLE,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="servicemoney != null">
+        SERVICEMONEY,
+      </if>
+      <if test="commratio != null">
+        COMMRATIO,
+      </if>
+      <if test="roomid != null">
+        ROOMID,
+      </if>
+      <if test="cnname != null">
+        CNNAME,
+      </if>
+      <if test="roomsrcore != null">
+        ROOMSRCORE,
+      </if>
+      <if test="currency != null">
+        CURRENCY,
+      </if>
+      <if test="rate != null">
+        RATE,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="useresult != null">
+        USERESULT,
+      </if>
+      <if test="userDisacount != null">
+        USER_DISACOUNT,
+      </if>
+      <if test="userTake != null">
+        USER_TAKE,
+      </if>
+      <if test="userAmount != null">
+        USER_AMOUNT,
+      </if>
+      <if test="subagentid != null">
+        SUBAGENTID,
+      </if>
+      <if test="subagentname != null">
+        SUBAGENTNAME,
+      </if>
+      <if test="subagentPer != null">
+        SUBAGENT_PER,
+      </if>
+      <if test="subagentPart != null">
+        SUBAGENT_PART,
+      </if>
+      <if test="subagentDisacount != null">
+        SUBAGENT_DISACOUNT,
+      </if>
+      <if test="subagentTake != null">
+        SUBAGENT_TAKE,
+      </if>
+      <if test="subagentGive != null">
+        SUBAGENT_GIVE,
+      </if>
+      <if test="subagentAmount != null">
+        SUBAGENT_AMOUNT,
+      </if>
+      <if test="agentid != null">
+        AGENTID,
+      </if>
+      <if test="agentname != null">
+        AGENTNAME,
+      </if>
+      <if test="agentPer != null">
+        AGENT_PER,
+      </if>
+      <if test="agentPart != null">
+        AGENT_PART,
+      </if>
+      <if test="agentDisacount != null">
+        AGENT_DISACOUNT,
+      </if>
+      <if test="agentTake != null">
+        AGENT_TAKE,
+      </if>
+      <if test="agentGive != null">
+        AGENT_GIVE,
+      </if>
+      <if test="agentAmount != null">
+        AGENT_AMOUNT,
+      </if>
+      <if test="gengeralid != null">
+        GENGERALID,
+      </if>
+      <if test="gengeralname != null">
+        GENGERALNAME,
+      </if>
+      <if test="gengeralPer != null">
+        GENGERAL_PER,
+      </if>
+      <if test="gengeralPart != null">
+        GENGERAL_PART,
+      </if>
+      <if test="gengeralDisacount != null">
+        GENGERAL_DISACOUNT,
+      </if>
+      <if test="gengeralTake != null">
+        GENGERAL_TAKE,
+      </if>
+      <if test="gengeralGive != null">
+        GENGERAL_GIVE,
+      </if>
+      <if test="gengeralAmount != null">
+        GENGERAL_AMOUNT,
+      </if>
+      <if test="partnerid != null">
+        PARTNERID,
+      </if>
+      <if test="partnername != null">
+        PARTNERNAME,
+      </if>
+      <if test="partnerPer != null">
+        PARTNER_PER,
+      </if>
+      <if test="partnerPart != null">
+        PARTNER_PART,
+      </if>
+      <if test="partnerDisacount != null">
+        PARTNER_DISACOUNT,
+      </if>
+      <if test="partnerTake != null">
+        PARTNER_TAKE,
+      </if>
+      <if test="partnerGive != null">
+        PARTNER_GIVE,
+      </if>
+      <if test="partnerAmount != null">
+        PARTNER_AMOUNT,
+      </if>
+      <if test="companyid != null">
+        COMPANYID,
+      </if>
+      <if test="companyname != null">
+        COMPANYNAME,
+      </if>
+      <if test="companyPer != null">
+        COMPANY_PER,
+      </if>
+      <if test="companyPart != null">
+        COMPANY_PART,
+      </if>
+      <if test="companyDisacount != null">
+        COMPANY_DISACOUNT,
+      </if>
+      <if test="companyTake != null">
+        COMPANY_TAKE,
+      </if>
+      <if test="companyGive != null">
+        COMPANY_GIVE,
+      </if>
+      <if test="companyAmount != null">
+        COMPANY_AMOUNT,
+      </if>
+      <if test="platformPer != null">
+        PLATFORM_PER,
+      </if>
+      <if test="platformPart != null">
+        PLATFORM_PART,
+      </if>
+      <if test="platformGive != null">
+        PLATFORM_GIVE,
+      </if>
+      <if test="platformAmount != null">
+        PLATFORM_AMOUNT,
+      </if>
+      <if test="bettime != null">
+        BETTIME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="status != null">
+        `STATUS`,
+      </if>
+      <if test="takeoutlog != null">
+        TAKEOUTLOG,
+      </if>
+      <if test="bureauno != null">
+        BUREAUNO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameid != null">
+        #{gameid,jdbcType=VARCHAR},
+      </if>
+      <if test="userhandcard != null">
+        #{userhandcard,jdbcType=VARCHAR},
+      </if>
+      <if test="seat0handcard != null">
+        #{seat0handcard,jdbcType=VARCHAR},
+      </if>
+      <if test="seat1handcard != null">
+        #{seat1handcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bottomcard != null">
+        #{bottomcard,jdbcType=VARCHAR},
+      </if>
+      <if test="islord != null">
+        #{islord,jdbcType=NUMERIC},
+      </if>
+      <if test="gamescore != null">
+        #{gamescore,jdbcType=NUMERIC},
+      </if>
+      <if test="multiplebomb != null">
+        #{multiplebomb,jdbcType=NUMERIC},
+      </if>
+      <if test="multiplespring != null">
+        #{multiplespring,jdbcType=NUMERIC},
+      </if>
+      <if test="multipletask != null">
+        #{multipletask,jdbcType=NUMERIC},
+      </if>
+      <if test="multiplemultiple != null">
+        #{multiplemultiple,jdbcType=NUMERIC},
+      </if>
+      <if test="opencardmultiple != null">
+        #{opencardmultiple,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="servicemoney != null">
+        #{servicemoney,jdbcType=NUMERIC},
+      </if>
+      <if test="commratio != null">
+        #{commratio,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        #{roomid,jdbcType=NUMERIC},
+      </if>
+      <if test="cnname != null">
+        #{cnname,jdbcType=VARCHAR},
+      </if>
+      <if test="roomsrcore != null">
+        #{roomsrcore,jdbcType=NUMERIC},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=NUMERIC},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="useresult != null">
+        #{useresult,jdbcType=NUMERIC},
+      </if>
+      <if test="userDisacount != null">
+        #{userDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="userTake != null">
+        #{userTake,jdbcType=NUMERIC},
+      </if>
+      <if test="userAmount != null">
+        #{userAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentid != null">
+        #{subagentid,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentname != null">
+        #{subagentname,jdbcType=VARCHAR},
+      </if>
+      <if test="subagentPer != null">
+        #{subagentPer,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentPart != null">
+        #{subagentPart,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentDisacount != null">
+        #{subagentDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentTake != null">
+        #{subagentTake,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentGive != null">
+        #{subagentGive,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentAmount != null">
+        #{subagentAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="agentid != null">
+        #{agentid,jdbcType=NUMERIC},
+      </if>
+      <if test="agentname != null">
+        #{agentname,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPer != null">
+        #{agentPer,jdbcType=NUMERIC},
+      </if>
+      <if test="agentPart != null">
+        #{agentPart,jdbcType=NUMERIC},
+      </if>
+      <if test="agentDisacount != null">
+        #{agentDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="agentTake != null">
+        #{agentTake,jdbcType=NUMERIC},
+      </if>
+      <if test="agentGive != null">
+        #{agentGive,jdbcType=NUMERIC},
+      </if>
+      <if test="agentAmount != null">
+        #{agentAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralid != null">
+        #{gengeralid,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralname != null">
+        #{gengeralname,jdbcType=VARCHAR},
+      </if>
+      <if test="gengeralPer != null">
+        #{gengeralPer,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralPart != null">
+        #{gengeralPart,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralDisacount != null">
+        #{gengeralDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralTake != null">
+        #{gengeralTake,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralGive != null">
+        #{gengeralGive,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralAmount != null">
+        #{gengeralAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerid != null">
+        #{partnerid,jdbcType=NUMERIC},
+      </if>
+      <if test="partnername != null">
+        #{partnername,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerPer != null">
+        #{partnerPer,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerPart != null">
+        #{partnerPart,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerDisacount != null">
+        #{partnerDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerTake != null">
+        #{partnerTake,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerGive != null">
+        #{partnerGive,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerAmount != null">
+        #{partnerAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=NUMERIC},
+      </if>
+      <if test="companyname != null">
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPer != null">
+        #{companyPer,jdbcType=NUMERIC},
+      </if>
+      <if test="companyPart != null">
+        #{companyPart,jdbcType=NUMERIC},
+      </if>
+      <if test="companyDisacount != null">
+        #{companyDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="companyTake != null">
+        #{companyTake,jdbcType=NUMERIC},
+      </if>
+      <if test="companyGive != null">
+        #{companyGive,jdbcType=NUMERIC},
+      </if>
+      <if test="companyAmount != null">
+        #{companyAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="platformPer != null">
+        #{platformPer,jdbcType=NUMERIC},
+      </if>
+      <if test="platformPart != null">
+        #{platformPart,jdbcType=NUMERIC},
+      </if>
+      <if test="platformGive != null">
+        #{platformGive,jdbcType=NUMERIC},
+      </if>
+      <if test="platformAmount != null">
+        #{platformAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=NUMERIC},
+      </if>
+      <if test="takeoutlog != null">
+        #{takeoutlog,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauno != null">
+        #{bureauno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetFight">
+    update FONTANA_BET_FIGHT
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="id != null">
+        FID = #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameid != null">
+        GAMEID = #{gameid,jdbcType=VARCHAR},
+      </if>
+      <if test="userhandcard != null">
+        USERHANDCARD = #{userhandcard,jdbcType=VARCHAR},
+      </if>
+      <if test="seat0handcard != null">
+        SEAT0HANDCARD = #{seat0handcard,jdbcType=VARCHAR},
+      </if>
+      <if test="seat1handcard != null">
+        SEAT1HANDCARD = #{seat1handcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bottomcard != null">
+        BOTTOMCARD = #{bottomcard,jdbcType=VARCHAR},
+      </if>
+      <if test="islord != null">
+        ISLORD = #{islord,jdbcType=NUMERIC},
+      </if>
+      <if test="gamescore != null">
+        GAMESCORE = #{gamescore,jdbcType=NUMERIC},
+      </if>
+      <if test="multiplebomb != null">
+        MULTIPLEBOMB = #{multiplebomb,jdbcType=NUMERIC},
+      </if>
+      <if test="multiplespring != null">
+        MULTIPLESPRING = #{multiplespring,jdbcType=NUMERIC},
+      </if>
+      <if test="multipletask != null">
+        MULTIPLETASK = #{multipletask,jdbcType=NUMERIC},
+      </if>
+      <if test="multiplemultiple != null">
+        MULTIPLEMULTIPLE = #{multiplemultiple,jdbcType=NUMERIC},
+      </if>
+      <if test="opencardmultiple != null">
+        OPENCARDMULTIPLE = #{opencardmultiple,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="servicemoney != null">
+        SERVICEMONEY = #{servicemoney,jdbcType=NUMERIC},
+      </if>
+      <if test="commratio != null">
+        COMMRATIO = #{commratio,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        ROOMID = #{roomid,jdbcType=NUMERIC},
+      </if>
+      <if test="cnname != null">
+        CNNAME = #{cnname,jdbcType=VARCHAR},
+      </if>
+      <if test="roomsrcore != null">
+        ROOMSRCORE = #{roomsrcore,jdbcType=NUMERIC},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        RATE = #{rate,jdbcType=NUMERIC},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="useresult != null">
+        USERESULT = #{useresult,jdbcType=NUMERIC},
+      </if>
+      <if test="userDisacount != null">
+        USER_DISACOUNT = #{userDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="userTake != null">
+        USER_TAKE = #{userTake,jdbcType=NUMERIC},
+      </if>
+      <if test="userAmount != null">
+        USER_AMOUNT = #{userAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentid != null">
+        SUBAGENTID = #{subagentid,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentname != null">
+        SUBAGENTNAME = #{subagentname,jdbcType=VARCHAR},
+      </if>
+      <if test="subagentPer != null">
+        SUBAGENT_PER = #{subagentPer,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentPart != null">
+        SUBAGENT_PART = #{subagentPart,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentDisacount != null">
+        SUBAGENT_DISACOUNT = #{subagentDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentTake != null">
+        SUBAGENT_TAKE = #{subagentTake,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentGive != null">
+        SUBAGENT_GIVE = #{subagentGive,jdbcType=NUMERIC},
+      </if>
+      <if test="subagentAmount != null">
+        SUBAGENT_AMOUNT = #{subagentAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="agentid != null">
+        AGENTID = #{agentid,jdbcType=NUMERIC},
+      </if>
+      <if test="agentname != null">
+        AGENTNAME = #{agentname,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPer != null">
+        AGENT_PER = #{agentPer,jdbcType=NUMERIC},
+      </if>
+      <if test="agentPart != null">
+        AGENT_PART = #{agentPart,jdbcType=NUMERIC},
+      </if>
+      <if test="agentDisacount != null">
+        AGENT_DISACOUNT = #{agentDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="agentTake != null">
+        AGENT_TAKE = #{agentTake,jdbcType=NUMERIC},
+      </if>
+      <if test="agentGive != null">
+        AGENT_GIVE = #{agentGive,jdbcType=NUMERIC},
+      </if>
+      <if test="agentAmount != null">
+        AGENT_AMOUNT = #{agentAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralid != null">
+        GENGERALID = #{gengeralid,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralname != null">
+        GENGERALNAME = #{gengeralname,jdbcType=VARCHAR},
+      </if>
+      <if test="gengeralPer != null">
+        GENGERAL_PER = #{gengeralPer,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralPart != null">
+        GENGERAL_PART = #{gengeralPart,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralDisacount != null">
+        GENGERAL_DISACOUNT = #{gengeralDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralTake != null">
+        GENGERAL_TAKE = #{gengeralTake,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralGive != null">
+        GENGERAL_GIVE = #{gengeralGive,jdbcType=NUMERIC},
+      </if>
+      <if test="gengeralAmount != null">
+        GENGERAL_AMOUNT = #{gengeralAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerid != null">
+        PARTNERID = #{partnerid,jdbcType=NUMERIC},
+      </if>
+      <if test="partnername != null">
+        PARTNERNAME = #{partnername,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerPer != null">
+        PARTNER_PER = #{partnerPer,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerPart != null">
+        PARTNER_PART = #{partnerPart,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerDisacount != null">
+        PARTNER_DISACOUNT = #{partnerDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerTake != null">
+        PARTNER_TAKE = #{partnerTake,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerGive != null">
+        PARTNER_GIVE = #{partnerGive,jdbcType=NUMERIC},
+      </if>
+      <if test="partnerAmount != null">
+        PARTNER_AMOUNT = #{partnerAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="companyid != null">
+        COMPANYID = #{companyid,jdbcType=NUMERIC},
+      </if>
+      <if test="companyname != null">
+        COMPANYNAME = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPer != null">
+        COMPANY_PER = #{companyPer,jdbcType=NUMERIC},
+      </if>
+      <if test="companyPart != null">
+        COMPANY_PART = #{companyPart,jdbcType=NUMERIC},
+      </if>
+      <if test="companyDisacount != null">
+        COMPANY_DISACOUNT = #{companyDisacount,jdbcType=NUMERIC},
+      </if>
+      <if test="companyTake != null">
+        COMPANY_TAKE = #{companyTake,jdbcType=NUMERIC},
+      </if>
+      <if test="companyGive != null">
+        COMPANY_GIVE = #{companyGive,jdbcType=NUMERIC},
+      </if>
+      <if test="companyAmount != null">
+        COMPANY_AMOUNT = #{companyAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="platformPer != null">
+        PLATFORM_PER = #{platformPer,jdbcType=NUMERIC},
+      </if>
+      <if test="platformPart != null">
+        PLATFORM_PART = #{platformPart,jdbcType=NUMERIC},
+      </if>
+      <if test="platformGive != null">
+        PLATFORM_GIVE = #{platformGive,jdbcType=NUMERIC},
+      </if>
+      <if test="platformAmount != null">
+        PLATFORM_AMOUNT = #{platformAmount,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        `STATUS` = #{status,jdbcType=NUMERIC},
+      </if>
+      <if test="takeoutlog != null">
+        TAKEOUTLOG = #{takeoutlog,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauno != null">
+        BUREAUNO = #{bureauno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetFight">
+    update FONTANA_BET_FIGHT
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      FID = #{id,jdbcType=NUMERIC},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      GAMEID = #{gameid,jdbcType=VARCHAR},
+      USERHANDCARD = #{userhandcard,jdbcType=VARCHAR},
+      SEAT0HANDCARD = #{seat0handcard,jdbcType=VARCHAR},
+      SEAT1HANDCARD = #{seat1handcard,jdbcType=VARCHAR},
+      BOTTOMCARD = #{bottomcard,jdbcType=VARCHAR},
+      ISLORD = #{islord,jdbcType=NUMERIC},
+      GAMESCORE = #{gamescore,jdbcType=NUMERIC},
+      MULTIPLEBOMB = #{multiplebomb,jdbcType=NUMERIC},
+      MULTIPLESPRING = #{multiplespring,jdbcType=NUMERIC},
+      MULTIPLETASK = #{multipletask,jdbcType=NUMERIC},
+      MULTIPLEMULTIPLE = #{multiplemultiple,jdbcType=NUMERIC},
+      OPENCARDMULTIPLE = #{opencardmultiple,jdbcType=NUMERIC},
+      `RESULT` = #{result,jdbcType=NUMERIC},
+      SERVICEMONEY = #{servicemoney,jdbcType=NUMERIC},
+      COMMRATIO = #{commratio,jdbcType=VARCHAR},
+      ROOMID = #{roomid,jdbcType=NUMERIC},
+      CNNAME = #{cnname,jdbcType=VARCHAR},
+      ROOMSRCORE = #{roomsrcore,jdbcType=NUMERIC},
+      CURRENCY = #{currency,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=NUMERIC},
+      USERID = #{userid,jdbcType=NUMERIC},
+      USERESULT = #{useresult,jdbcType=NUMERIC},
+      USER_DISACOUNT = #{userDisacount,jdbcType=NUMERIC},
+      USER_TAKE = #{userTake,jdbcType=NUMERIC},
+      USER_AMOUNT = #{userAmount,jdbcType=NUMERIC},
+      SUBAGENTID = #{subagentid,jdbcType=NUMERIC},
+      SUBAGENTNAME = #{subagentname,jdbcType=VARCHAR},
+      SUBAGENT_PER = #{subagentPer,jdbcType=NUMERIC},
+      SUBAGENT_PART = #{subagentPart,jdbcType=NUMERIC},
+      SUBAGENT_DISACOUNT = #{subagentDisacount,jdbcType=NUMERIC},
+      SUBAGENT_TAKE = #{subagentTake,jdbcType=NUMERIC},
+      SUBAGENT_GIVE = #{subagentGive,jdbcType=NUMERIC},
+      SUBAGENT_AMOUNT = #{subagentAmount,jdbcType=NUMERIC},
+      AGENTID = #{agentid,jdbcType=NUMERIC},
+      AGENTNAME = #{agentname,jdbcType=VARCHAR},
+      AGENT_PER = #{agentPer,jdbcType=NUMERIC},
+      AGENT_PART = #{agentPart,jdbcType=NUMERIC},
+      AGENT_DISACOUNT = #{agentDisacount,jdbcType=NUMERIC},
+      AGENT_TAKE = #{agentTake,jdbcType=NUMERIC},
+      AGENT_GIVE = #{agentGive,jdbcType=NUMERIC},
+      AGENT_AMOUNT = #{agentAmount,jdbcType=NUMERIC},
+      GENGERALID = #{gengeralid,jdbcType=NUMERIC},
+      GENGERALNAME = #{gengeralname,jdbcType=VARCHAR},
+      GENGERAL_PER = #{gengeralPer,jdbcType=NUMERIC},
+      GENGERAL_PART = #{gengeralPart,jdbcType=NUMERIC},
+      GENGERAL_DISACOUNT = #{gengeralDisacount,jdbcType=NUMERIC},
+      GENGERAL_TAKE = #{gengeralTake,jdbcType=NUMERIC},
+      GENGERAL_GIVE = #{gengeralGive,jdbcType=NUMERIC},
+      GENGERAL_AMOUNT = #{gengeralAmount,jdbcType=NUMERIC},
+      PARTNERID = #{partnerid,jdbcType=NUMERIC},
+      PARTNERNAME = #{partnername,jdbcType=VARCHAR},
+      PARTNER_PER = #{partnerPer,jdbcType=NUMERIC},
+      PARTNER_PART = #{partnerPart,jdbcType=NUMERIC},
+      PARTNER_DISACOUNT = #{partnerDisacount,jdbcType=NUMERIC},
+      PARTNER_TAKE = #{partnerTake,jdbcType=NUMERIC},
+      PARTNER_GIVE = #{partnerGive,jdbcType=NUMERIC},
+      PARTNER_AMOUNT = #{partnerAmount,jdbcType=NUMERIC},
+      COMPANYID = #{companyid,jdbcType=NUMERIC},
+      COMPANYNAME = #{companyname,jdbcType=VARCHAR},
+      COMPANY_PER = #{companyPer,jdbcType=NUMERIC},
+      COMPANY_PART = #{companyPart,jdbcType=NUMERIC},
+      COMPANY_DISACOUNT = #{companyDisacount,jdbcType=NUMERIC},
+      COMPANY_TAKE = #{companyTake,jdbcType=NUMERIC},
+      COMPANY_GIVE = #{companyGive,jdbcType=NUMERIC},
+      COMPANY_AMOUNT = #{companyAmount,jdbcType=NUMERIC},
+      PLATFORM_PER = #{platformPer,jdbcType=NUMERIC},
+      PLATFORM_PART = #{platformPart,jdbcType=NUMERIC},
+      PLATFORM_GIVE = #{platformGive,jdbcType=NUMERIC},
+      PLATFORM_AMOUNT = #{platformAmount,jdbcType=NUMERIC},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      `STATUS` = #{status,jdbcType=NUMERIC},
+      TAKEOUTLOG = #{takeoutlog,jdbcType=VARCHAR},
+      BUREAUNO = #{bureauno,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

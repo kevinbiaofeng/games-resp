@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetAgbmMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetAgbm">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="UID" jdbcType="NUMERIC" property="uid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="DATATYPE" jdbcType="VARCHAR" property="datatype" />
+    <result column="BILLNO" jdbcType="VARCHAR" property="billno" />
+    <result column="PLAYERNAME" jdbcType="VARCHAR" property="playername" />
+    <result column="AGENTCODE" jdbcType="VARCHAR" property="agentcode" />
+    <result column="GAMECODE" jdbcType="VARCHAR" property="gamecode" />
+    <result column="NETAMOUNT" jdbcType="NUMERIC" property="netamount" />
+    <result column="BETTIME" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="GAMETYPE" jdbcType="VARCHAR" property="gametype" />
+    <result column="BETAMOUNT" jdbcType="NUMERIC" property="betamount" />
+    <result column="VALIDBETAMOUNT" jdbcType="NUMERIC" property="validbetamount" />
+    <result column="FLAG" jdbcType="VARCHAR" property="lag" />
+    <result column="PLAYTYPE" jdbcType="VARCHAR" property="playtype" />
+    <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+    <result column="TABLECODE" jdbcType="VARCHAR" property="tablecode" />
+    <result column="LOGINIP" jdbcType="VARCHAR" property="loginip" />
+    <result column="RECALCUTIME" jdbcType="TIMESTAMP" property="recalcutime" />
+    <result column="PLATFORMTYPE" jdbcType="VARCHAR" property="platformtype" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ROUND" jdbcType="VARCHAR" property="round" />
+    <result column="SLOTTYPE" jdbcType="VARCHAR" property="slottype" />
+    <result column="RESULT" jdbcType="VARCHAR" property="result" />
+    <result column="MAINBILLNO" jdbcType="VARCHAR" property="mainbillno" />
+    <result column="BEFORECREDIT" jdbcType="NUMERIC" property="beforecredit" />
+    <result column="DEVICETYPE" jdbcType="VARCHAR" property="devicetype" />
+    <result column="BETAMOUNTBASE" jdbcType="NUMERIC" property="betamountbase" />
+    <result column="BETAMOUNTBONUS" jdbcType="NUMERIC" property="betamountbonus" />
+    <result column="NETAMOUNTBASE" jdbcType="NUMERIC" property="netamountbase" />
+    <result column="NETAMOUNTBONUS" jdbcType="NUMERIC" property="netamountbonus" />
+    <result column="MULTIPLE" jdbcType="NUMERIC" property="multiple" />
+    <result column="BEGINTIME" jdbcType="TIMESTAMP" property="begintime" />
+    <result column="CLOSETIME" jdbcType="TIMESTAMP" property="closetime" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="DEALER" jdbcType="VARCHAR" property="dealer" />
+    <result column="SHOECODE" jdbcType="VARCHAR" property="shoecode" />
+    <result column="BANKERPOINT" jdbcType="VARCHAR" property="bankerpoint" />
+    <result column="PLAYERPOINT" jdbcType="VARCHAR" property="playerpoint" />
+    <result column="CARDNUM" jdbcType="NUMERIC" property="cardnum" />
+    <result column="PAIR" jdbcType="NUMERIC" property="pair" />
+    <result column="DRAGONPOINT" jdbcType="VARCHAR" property="dragonpoint" />
+    <result column="TIGERPOINT" jdbcType="VARCHAR" property="tigerpoint" />
+    <result column="CARDLIST" jdbcType="VARCHAR" property="cardlist" />
+    <result column="VID" jdbcType="VARCHAR" property="vid" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID, PARENTID, `UID`, CID, DATATYPE, BILLNO, PLAYERNAME, AGENTCODE, GAMECODE, NETAMOUNT, 
+    BETTIME, GAMETYPE, BETAMOUNT, VALIDBETAMOUNT, FLAG, PLAYTYPE, CURRENCY, TABLECODE, 
+    LOGINIP, RECALCUTIME, PLATFORMTYPE, REMARK, ROUND, SLOTTYPE, `RESULT`, MAINBILLNO, 
+    BEFORECREDIT, DEVICETYPE, BETAMOUNTBASE, BETAMOUNTBONUS, NETAMOUNTBASE, NETAMOUNTBONUS, 
+    MULTIPLE, BEGINTIME, CLOSETIME, GROUPFOR, createtime, DEALER, SHOECODE, BANKERPOINT, 
+    PLAYERPOINT, CARDNUM, PAIR, DRAGONPOINT, TIGERPOINT, CARDLIST, VID
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_AGBM
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_AGBM
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetAgbm">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_AGBM (PARENTID, `UID`, CID, 
+      DATATYPE, BILLNO, PLAYERNAME, 
+      AGENTCODE, GAMECODE, NETAMOUNT, 
+      BETTIME, GAMETYPE, BETAMOUNT, 
+      VALIDBETAMOUNT, FLAG, PLAYTYPE, 
+      CURRENCY, TABLECODE, LOGINIP, 
+      RECALCUTIME, PLATFORMTYPE, REMARK, 
+      ROUND, SLOTTYPE, `RESULT`, 
+      MAINBILLNO, BEFORECREDIT, DEVICETYPE, 
+      BETAMOUNTBASE, BETAMOUNTBONUS, NETAMOUNTBASE, 
+      NETAMOUNTBONUS, MULTIPLE, BEGINTIME, 
+      CLOSETIME, GROUPFOR, createtime, 
+      DEALER, SHOECODE, BANKERPOINT, 
+      PLAYERPOINT, CARDNUM, PAIR, 
+      DRAGONPOINT, TIGERPOINT, CARDLIST, 
+      VID)
+    values (#{parentid,jdbcType=NUMERIC}, #{uid,jdbcType=NUMERIC}, #{cid,jdbcType=NUMERIC}, 
+      #{datatype,jdbcType=VARCHAR}, #{billno,jdbcType=VARCHAR}, #{playername,jdbcType=VARCHAR}, 
+      #{agentcode,jdbcType=VARCHAR}, #{gamecode,jdbcType=VARCHAR}, #{netamount,jdbcType=NUMERIC}, 
+      #{bettime,jdbcType=TIMESTAMP}, #{gametype,jdbcType=VARCHAR}, #{betamount,jdbcType=NUMERIC}, 
+      #{validbetamount,jdbcType=NUMERIC}, #{lag,jdbcType=VARCHAR}, #{playtype,jdbcType=VARCHAR}, 
+      #{currency,jdbcType=VARCHAR}, #{tablecode,jdbcType=VARCHAR}, #{loginip,jdbcType=VARCHAR}, 
+      #{recalcutime,jdbcType=TIMESTAMP}, #{platformtype,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{round,jdbcType=VARCHAR}, #{slottype,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
+      #{mainbillno,jdbcType=VARCHAR}, #{beforecredit,jdbcType=NUMERIC}, #{devicetype,jdbcType=VARCHAR}, 
+      #{betamountbase,jdbcType=NUMERIC}, #{betamountbonus,jdbcType=NUMERIC}, #{netamountbase,jdbcType=NUMERIC},
+      #{netamountbonus,jdbcType=NUMERIC}, #{multiple,jdbcType=NUMERIC}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{closetime,jdbcType=TIMESTAMP}, #{groupfor,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{dealer,jdbcType=VARCHAR}, #{shoecode,jdbcType=VARCHAR}, #{bankerpoint,jdbcType=VARCHAR}, 
+      #{playerpoint,jdbcType=VARCHAR}, #{cardnum,jdbcType=NUMERIC}, #{pair,jdbcType=NUMERIC}, 
+      #{dragonpoint,jdbcType=VARCHAR}, #{tigerpoint,jdbcType=VARCHAR}, #{cardlist,jdbcType=VARCHAR}, 
+      #{vid,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE INTO FONTANA_BET_AGBM (PARENTID, `UID`, CID, 
+	      DATATYPE, BILLNO, PLAYERNAME, 
+	      AGENTCODE, GAMECODE, NETAMOUNT, 
+	      BETTIME, GAMETYPE, BETAMOUNT, 
+	      VALIDBETAMOUNT, FLAG, PLAYTYPE, 
+	      CURRENCY, TABLECODE, LOGINIP, 
+	      RECALCUTIME, PLATFORMTYPE, REMARK, 
+	      ROUND, SLOTTYPE, `RESULT`, 
+	      MAINBILLNO, BEFORECREDIT, DEVICETYPE, 
+	      BETAMOUNTBASE, BETAMOUNTBONUS, NETAMOUNTBASE, 
+	      NETAMOUNTBONUS, MULTIPLE, BEGINTIME, 
+	      CLOSETIME, GROUPFOR, createtime, 
+	      DEALER, SHOECODE, BANKERPOINT, 
+	      PLAYERPOINT, CARDNUM, PAIR, 
+	      DRAGONPOINT, TIGERPOINT, CARDLIST, 
+	      VID)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	        (
+	       	#{item.parentid,jdbcType=NUMERIC}, #{item.uid,jdbcType=NUMERIC}, #{item.cid,jdbcType=NUMERIC}, 
+	      	#{item.datatype,jdbcType=VARCHAR}, #{item.billno,jdbcType=VARCHAR}, #{item.playername,jdbcType=VARCHAR}, 
+	      	#{item.agentcode,jdbcType=VARCHAR}, #{item.gamecode,jdbcType=VARCHAR}, #{item.netamount,jdbcType=NUMERIC}, 
+	      	#{item.bettime,jdbcType=TIMESTAMP}, #{item.gametype,jdbcType=VARCHAR}, #{item.betamount,jdbcType=NUMERIC}, 
+	      	#{item.validbetamount,jdbcType=NUMERIC}, #{item.lag,jdbcType=VARCHAR}, #{item.playtype,jdbcType=VARCHAR}, 
+	      	#{item.currency,jdbcType=VARCHAR}, #{item.tablecode,jdbcType=VARCHAR}, #{item.loginip,jdbcType=VARCHAR}, 
+	      	#{item.recalcutime,jdbcType=TIMESTAMP}, #{item.platformtype,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
+	      	#{item.round,jdbcType=VARCHAR}, #{item.slottype,jdbcType=VARCHAR}, #{item.result,jdbcType=VARCHAR}, 
+	      	#{item.mainbillno,jdbcType=VARCHAR}, #{item.beforecredit,jdbcType=NUMERIC}, #{item.devicetype,jdbcType=VARCHAR}, 
+	      	#{item.betamountbase,jdbcType=NUMERIC}, #{item.betamountbonus,jdbcType=NUMERIC}, #{item.netamountbase,jdbcType=NUMERIC},
+	      	#{item.netamountbonus,jdbcType=NUMERIC}, #{item.multiple,jdbcType=NUMERIC}, #{item.begintime,jdbcType=TIMESTAMP}, 
+	      	#{item.closetime,jdbcType=TIMESTAMP}, #{item.groupfor,jdbcType=TIMESTAMP}, #{item.createtime,jdbcType=TIMESTAMP}, 
+	      	#{item.dealer,jdbcType=VARCHAR}, #{item.shoecode,jdbcType=VARCHAR}, #{item.bankerpoint,jdbcType=VARCHAR}, 
+	      	#{item.playerpoint,jdbcType=VARCHAR}, #{item.cardnum,jdbcType=NUMERIC}, #{item.pair,jdbcType=NUMERIC}, 
+	      	#{item.dragonpoint,jdbcType=VARCHAR}, #{item.tigerpoint,jdbcType=VARCHAR}, #{item.cardlist,jdbcType=VARCHAR}, 
+	      	#{item.vid,jdbcType=VARCHAR}
+	        )
+	     </foreach>
+    </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetAgbm">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_AGBM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="uid != null">
+        `UID`,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="datatype != null">
+        DATATYPE,
+      </if>
+      <if test="billno != null">
+        BILLNO,
+      </if>
+      <if test="playername != null">
+        PLAYERNAME,
+      </if>
+      <if test="agentcode != null">
+        AGENTCODE,
+      </if>
+      <if test="gamecode != null">
+        GAMECODE,
+      </if>
+      <if test="netamount != null">
+        NETAMOUNT,
+      </if>
+      <if test="bettime != null">
+        BETTIME,
+      </if>
+      <if test="gametype != null">
+        GAMETYPE,
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT,
+      </if>
+      <if test="validbetamount != null">
+        VALIDBETAMOUNT,
+      </if>
+      <if test="lag != null">
+        FLAG,
+      </if>
+      <if test="playtype != null">
+        PLAYTYPE,
+      </if>
+      <if test="currency != null">
+        CURRENCY,
+      </if>
+      <if test="tablecode != null">
+        TABLECODE,
+      </if>
+      <if test="loginip != null">
+        LOGINIP,
+      </if>
+      <if test="recalcutime != null">
+        RECALCUTIME,
+      </if>
+      <if test="platformtype != null">
+        PLATFORMTYPE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="round != null">
+        ROUND,
+      </if>
+      <if test="slottype != null">
+        SLOTTYPE,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="mainbillno != null">
+        MAINBILLNO,
+      </if>
+      <if test="beforecredit != null">
+        BEFORECREDIT,
+      </if>
+      <if test="devicetype != null">
+        DEVICETYPE,
+      </if>
+      <if test="betamountbase != null">
+        BETAMOUNTBASE,
+      </if>
+      <if test="betamountbonus != null">
+        BETAMOUNTBONUS,
+      </if>
+      <if test="netamountbase != null">
+        NETAMOUNTBASE,
+      </if>
+      <if test="netamountbonus != null">
+        NETAMOUNTBONUS,
+      </if>
+      <if test="multiple != null">
+        MULTIPLE,
+      </if>
+      <if test="begintime != null">
+        BEGINTIME,
+      </if>
+      <if test="closetime != null">
+        CLOSETIME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="dealer != null">
+        DEALER,
+      </if>
+      <if test="shoecode != null">
+        SHOECODE,
+      </if>
+      <if test="bankerpoint != null">
+        BANKERPOINT,
+      </if>
+      <if test="playerpoint != null">
+        PLAYERPOINT,
+      </if>
+      <if test="cardnum != null">
+        CARDNUM,
+      </if>
+      <if test="pair != null">
+        PAIR,
+      </if>
+      <if test="dragonpoint != null">
+        DRAGONPOINT,
+      </if>
+      <if test="tigerpoint != null">
+        TIGERPOINT,
+      </if>
+      <if test="cardlist != null">
+        CARDLIST,
+      </if>
+      <if test="vid != null">
+        VID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="datatype != null">
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="playername != null">
+        #{playername,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcode != null">
+        #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecode != null">
+        #{gamecode,jdbcType=VARCHAR},
+      </if>
+      <if test="netamount != null">
+        #{netamount,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gametype != null">
+        #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validbetamount != null">
+        #{validbetamount,jdbcType=NUMERIC},
+      </if>
+      <if test="lag != null">
+        #{lag,jdbcType=VARCHAR},
+      </if>
+      <if test="playtype != null">
+        #{playtype,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="tablecode != null">
+        #{tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginip != null">
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="recalcutime != null">
+        #{recalcutime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformtype != null">
+        #{platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="round != null">
+        #{round,jdbcType=VARCHAR},
+      </if>
+      <if test="slottype != null">
+        #{slottype,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="mainbillno != null">
+        #{mainbillno,jdbcType=VARCHAR},
+      </if>
+      <if test="beforecredit != null">
+        #{beforecredit,jdbcType=NUMERIC},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="betamountbase != null">
+        #{betamountbase,jdbcType=NUMERIC},
+      </if>
+      <if test="betamountbonus != null">
+        #{betamountbonus,jdbcType=NUMERIC},
+      </if>
+      <if test="netamountbase != null">
+        #{netamountbase,jdbcType=NUMERIC},
+      </if>
+      <if test="netamountbonus != null">
+        #{netamountbonus,jdbcType=NUMERIC},
+      </if>
+      <if test="multiple != null">
+        #{multiple,jdbcType=NUMERIC},
+      </if>
+      <if test="begintime != null">
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closetime != null">
+        #{closetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealer != null">
+        #{dealer,jdbcType=VARCHAR},
+      </if>
+      <if test="shoecode != null">
+        #{shoecode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankerpoint != null">
+        #{bankerpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="playerpoint != null">
+        #{playerpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="cardnum != null">
+        #{cardnum,jdbcType=NUMERIC},
+      </if>
+      <if test="pair != null">
+        #{pair,jdbcType=NUMERIC},
+      </if>
+      <if test="dragonpoint != null">
+        #{dragonpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="tigerpoint != null">
+        #{tigerpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="cardlist != null">
+        #{cardlist,jdbcType=VARCHAR},
+      </if>
+      <if test="vid != null">
+        #{vid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetAgbm">
+    update FONTANA_BET_AGBM
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="uid != null">
+        `UID` = #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="datatype != null">
+        DATATYPE = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null">
+        BILLNO = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="playername != null">
+        PLAYERNAME = #{playername,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcode != null">
+        AGENTCODE = #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecode != null">
+        GAMECODE = #{gamecode,jdbcType=VARCHAR},
+      </if>
+      <if test="netamount != null">
+        NETAMOUNT = #{netamount,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gametype != null">
+        GAMETYPE = #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validbetamount != null">
+        VALIDBETAMOUNT = #{validbetamount,jdbcType=NUMERIC},
+      </if>
+      <if test="lag != null">
+        FLAG = #{lag,jdbcType=VARCHAR},
+      </if>
+      <if test="playtype != null">
+        PLAYTYPE = #{playtype,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="tablecode != null">
+        TABLECODE = #{tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginip != null">
+        LOGINIP = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="recalcutime != null">
+        RECALCUTIME = #{recalcutime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformtype != null">
+        PLATFORMTYPE = #{platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="round != null">
+        ROUND = #{round,jdbcType=VARCHAR},
+      </if>
+      <if test="slottype != null">
+        SLOTTYPE = #{slottype,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="mainbillno != null">
+        MAINBILLNO = #{mainbillno,jdbcType=VARCHAR},
+      </if>
+      <if test="beforecredit != null">
+        BEFORECREDIT = #{beforecredit,jdbcType=NUMERIC},
+      </if>
+      <if test="devicetype != null">
+        DEVICETYPE = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="betamountbase != null">
+        BETAMOUNTBASE = #{betamountbase,jdbcType=NUMERIC},
+      </if>
+      <if test="betamountbonus != null">
+        BETAMOUNTBONUS = #{betamountbonus,jdbcType=NUMERIC},
+      </if>
+      <if test="netamountbase != null">
+        NETAMOUNTBASE = #{netamountbase,jdbcType=NUMERIC},
+      </if>
+      <if test="netamountbonus != null">
+        NETAMOUNTBONUS = #{netamountbonus,jdbcType=NUMERIC},
+      </if>
+      <if test="multiple != null">
+        MULTIPLE = #{multiple,jdbcType=NUMERIC},
+      </if>
+      <if test="begintime != null">
+        BEGINTIME = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closetime != null">
+        CLOSETIME = #{closetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealer != null">
+        DEALER = #{dealer,jdbcType=VARCHAR},
+      </if>
+      <if test="shoecode != null">
+        SHOECODE = #{shoecode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankerpoint != null">
+        BANKERPOINT = #{bankerpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="playerpoint != null">
+        PLAYERPOINT = #{playerpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="cardnum != null">
+        CARDNUM = #{cardnum,jdbcType=NUMERIC},
+      </if>
+      <if test="pair != null">
+        PAIR = #{pair,jdbcType=NUMERIC},
+      </if>
+      <if test="dragonpoint != null">
+        DRAGONPOINT = #{dragonpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="tigerpoint != null">
+        TIGERPOINT = #{tigerpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="cardlist != null">
+        CARDLIST = #{cardlist,jdbcType=VARCHAR},
+      </if>
+      <if test="vid != null">
+        VID = #{vid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetAgbm">
+    update FONTANA_BET_AGBM
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      `UID` = #{uid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      DATATYPE = #{datatype,jdbcType=VARCHAR},
+      BILLNO = #{billno,jdbcType=VARCHAR},
+      PLAYERNAME = #{playername,jdbcType=VARCHAR},
+      AGENTCODE = #{agentcode,jdbcType=VARCHAR},
+      GAMECODE = #{gamecode,jdbcType=VARCHAR},
+      NETAMOUNT = #{netamount,jdbcType=NUMERIC},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      GAMETYPE = #{gametype,jdbcType=VARCHAR},
+      BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      VALIDBETAMOUNT = #{validbetamount,jdbcType=NUMERIC},
+      FLAG = #{lag,jdbcType=VARCHAR},
+      PLAYTYPE = #{playtype,jdbcType=VARCHAR},
+      CURRENCY = #{currency,jdbcType=VARCHAR},
+      TABLECODE = #{tablecode,jdbcType=VARCHAR},
+      LOGINIP = #{loginip,jdbcType=VARCHAR},
+      RECALCUTIME = #{recalcutime,jdbcType=TIMESTAMP},
+      PLATFORMTYPE = #{platformtype,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ROUND = #{round,jdbcType=VARCHAR},
+      SLOTTYPE = #{slottype,jdbcType=VARCHAR},
+      `RESULT` = #{result,jdbcType=VARCHAR},
+      MAINBILLNO = #{mainbillno,jdbcType=VARCHAR},
+      BEFORECREDIT = #{beforecredit,jdbcType=NUMERIC},
+      DEVICETYPE = #{devicetype,jdbcType=VARCHAR},
+      BETAMOUNTBASE = #{betamountbase,jdbcType=NUMERIC},
+      BETAMOUNTBONUS = #{betamountbonus,jdbcType=NUMERIC},
+      NETAMOUNTBASE = #{netamountbase,jdbcType=NUMERIC},
+      NETAMOUNTBONUS = #{netamountbonus,jdbcType=NUMERIC},
+      MULTIPLE = #{multiple,jdbcType=NUMERIC},
+      BEGINTIME = #{begintime,jdbcType=TIMESTAMP},
+      CLOSETIME = #{closetime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      DEALER = #{dealer,jdbcType=VARCHAR},
+      SHOECODE = #{shoecode,jdbcType=VARCHAR},
+      BANKERPOINT = #{bankerpoint,jdbcType=VARCHAR},
+      PLAYERPOINT = #{playerpoint,jdbcType=VARCHAR},
+      CARDNUM = #{cardnum,jdbcType=NUMERIC},
+      PAIR = #{pair,jdbcType=NUMERIC},
+      DRAGONPOINT = #{dragonpoint,jdbcType=VARCHAR},
+      TIGERPOINT = #{tigerpoint,jdbcType=VARCHAR},
+      CARDLIST = #{cardlist,jdbcType=VARCHAR},
+      VID = #{vid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

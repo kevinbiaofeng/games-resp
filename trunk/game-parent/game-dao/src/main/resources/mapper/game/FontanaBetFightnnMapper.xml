@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetFightnnMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetFightnn">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PAN_ID" jdbcType="NUMERIC" property="panId" />
+    <result column="TIME_BEGIN" jdbcType="TIMESTAMP" property="timeBegin" />
+    <result column="TIME_END" jdbcType="TIMESTAMP" property="timeEnd" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="ROOMID" jdbcType="VARCHAR" property="roomid" />
+    <result column="TABLEID" jdbcType="VARCHAR" property="tableid" />
+    <result column="SEATID" jdbcType="VARCHAR" property="seatid" />
+    <result column="BET_VALUE" jdbcType="VARCHAR" property="betValue" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="MUTI_BET" jdbcType="VARCHAR" property="mutiBet" />
+    <result column="MULTI" jdbcType="VARCHAR" property="multi" />
+    <result column="CARDTYPE" jdbcType="VARCHAR" property="cardtype" />
+    <result column="CARDS" jdbcType="VARCHAR" property="cards" />
+    <result column="GAMECOIN" jdbcType="VARCHAR" property="gamecoin" />
+    <result column="ROOM_NAME" jdbcType="VARCHAR" property="roomName" />
+    <result column="USERID" jdbcType="NUMERIC" property="userid" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PAN_ID, TIME_BEGIN, TIME_END, USERNAME, ROOMID, TABLEID, SEATID, BET_VALUE, `VALUE`, 
+    MUTI_BET, MULTI, CARDTYPE, CARDS, GAMECOIN, ROOM_NAME, USERID, CREATETIME, CID, GROUPFOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_FIGHTNN
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long">
+    delete from FONTANA_BET_FIGHTNN
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetFightnn">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHTNN (PAN_ID, TIME_BEGIN, TIME_END, 
+      USERNAME, ROOMID, TABLEID, 
+      SEATID, BET_VALUE, `VALUE`, 
+      MUTI_BET, MULTI, CARDTYPE, 
+      CARDS, GAMECOIN, ROOM_NAME, 
+      USERID, CREATETIME, CID, 
+      GROUPFOR)
+    values (#{panId,jdbcType=NUMERIC}, #{timeBegin,jdbcType=TIMESTAMP}, #{timeEnd,jdbcType=TIMESTAMP}, 
+      #{username,jdbcType=VARCHAR}, #{roomid,jdbcType=VARCHAR}, #{tableid,jdbcType=VARCHAR}, 
+      #{seatid,jdbcType=VARCHAR}, #{betValue,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{mutiBet,jdbcType=VARCHAR}, #{multi,jdbcType=VARCHAR}, #{cardtype,jdbcType=VARCHAR}, 
+      #{cards,jdbcType=VARCHAR}, #{gamecoin,jdbcType=VARCHAR}, #{roomName,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=NUMERIC}, #{createtime,jdbcType=TIMESTAMP}, #{cid,jdbcType=NUMERIC}, 
+      #{groupfor,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_FIGHTNN (PAN_ID, TIME_BEGIN, TIME_END, 
+	      USERNAME, ROOMID, TABLEID, 
+	      SEATID, BET_VALUE, `VALUE`, 
+	      MUTI_BET, MULTI, CARDTYPE, 
+	      CARDS, GAMECOIN, ROOM_NAME, 
+	      USERID, CREATETIME, CID, 
+	      GROUPFOR)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.panId,jdbcType=NUMERIC}, #{item.timeBegin,jdbcType=TIMESTAMP}, #{item.timeEnd,jdbcType=TIMESTAMP}, 
+		      #{item.username,jdbcType=VARCHAR}, #{item.roomid,jdbcType=VARCHAR}, #{item.tableid,jdbcType=VARCHAR}, 
+		      #{item.seatid,jdbcType=VARCHAR}, #{item.betValue,jdbcType=VARCHAR}, #{item.value,jdbcType=VARCHAR}, 
+		      #{item.mutiBet,jdbcType=VARCHAR}, #{item.multi,jdbcType=VARCHAR}, #{item.cardtype,jdbcType=VARCHAR}, 
+		      #{item.cards,jdbcType=VARCHAR}, #{item.gamecoin,jdbcType=VARCHAR}, #{item.roomName,jdbcType=VARCHAR}, 
+		      #{item.userid,jdbcType=NUMERIC}, #{item.createtime,jdbcType=TIMESTAMP}, #{item.cid,jdbcType=NUMERIC}, 
+		      #{item.groupfor,jdbcType=TIMESTAMP}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetFightnn">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHTNN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="panId != null">
+        PAN_ID,
+      </if>
+      <if test="timeBegin != null">
+        TIME_BEGIN,
+      </if>
+      <if test="timeEnd != null">
+        TIME_END,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="roomid != null">
+        ROOMID,
+      </if>
+      <if test="tableid != null">
+        TABLEID,
+      </if>
+      <if test="seatid != null">
+        SEATID,
+      </if>
+      <if test="betValue != null">
+        BET_VALUE,
+      </if>
+      <if test="value != null">
+        `VALUE`,
+      </if>
+      <if test="mutiBet != null">
+        MUTI_BET,
+      </if>
+      <if test="multi != null">
+        MULTI,
+      </if>
+      <if test="cardtype != null">
+        CARDTYPE,
+      </if>
+      <if test="cards != null">
+        CARDS,
+      </if>
+      <if test="gamecoin != null">
+        GAMECOIN,
+      </if>
+      <if test="roomName != null">
+        ROOM_NAME,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="panId != null">
+        #{panId,jdbcType=NUMERIC},
+      </if>
+      <if test="timeBegin != null">
+        #{timeBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeEnd != null">
+        #{timeEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        #{roomid,jdbcType=VARCHAR},
+      </if>
+      <if test="tableid != null">
+        #{tableid,jdbcType=VARCHAR},
+      </if>
+      <if test="seatid != null">
+        #{seatid,jdbcType=VARCHAR},
+      </if>
+      <if test="betValue != null">
+        #{betValue,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="mutiBet != null">
+        #{mutiBet,jdbcType=VARCHAR},
+      </if>
+      <if test="multi != null">
+        #{multi,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="cards != null">
+        #{cards,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecoin != null">
+        #{gamecoin,jdbcType=VARCHAR},
+      </if>
+      <if test="roomName != null">
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetFightnn">
+    update FONTANA_BET_FIGHTNN
+    <set>
+      <if test="panId != null">
+        PAN_ID = #{panId,jdbcType=NUMERIC},
+      </if>
+      <if test="timeBegin != null">
+        TIME_BEGIN = #{timeBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeEnd != null">
+        TIME_END = #{timeEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        ROOMID = #{roomid,jdbcType=VARCHAR},
+      </if>
+      <if test="tableid != null">
+        TABLEID = #{tableid,jdbcType=VARCHAR},
+      </if>
+      <if test="seatid != null">
+        SEATID = #{seatid,jdbcType=VARCHAR},
+      </if>
+      <if test="betValue != null">
+        BET_VALUE = #{betValue,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        `VALUE` = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="mutiBet != null">
+        MUTI_BET = #{mutiBet,jdbcType=VARCHAR},
+      </if>
+      <if test="multi != null">
+        MULTI = #{multi,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="cards != null">
+        CARDS = #{cards,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecoin != null">
+        GAMECOIN = #{gamecoin,jdbcType=VARCHAR},
+      </if>
+      <if test="roomName != null">
+        ROOM_NAME = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetFightnn">
+    update FONTANA_BET_FIGHTNN
+    set PAN_ID = #{panId,jdbcType=NUMERIC},
+      TIME_BEGIN = #{timeBegin,jdbcType=TIMESTAMP},
+      TIME_END = #{timeEnd,jdbcType=TIMESTAMP},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      ROOMID = #{roomid,jdbcType=VARCHAR},
+      TABLEID = #{tableid,jdbcType=VARCHAR},
+      SEATID = #{seatid,jdbcType=VARCHAR},
+      BET_VALUE = #{betValue,jdbcType=VARCHAR},
+      `VALUE` = #{value,jdbcType=VARCHAR},
+      MUTI_BET = #{mutiBet,jdbcType=VARCHAR},
+      MULTI = #{multi,jdbcType=VARCHAR},
+      CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      CARDS = #{cards,jdbcType=VARCHAR},
+      GAMECOIN = #{gamecoin,jdbcType=VARCHAR},
+      ROOM_NAME = #{roomName,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=NUMERIC},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      CID = #{cid,jdbcType=NUMERIC},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

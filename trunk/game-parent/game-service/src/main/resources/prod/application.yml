@@ -1,0 +1,5 @@
+server:
+  port: 20030
+spring:
+  application:
+    name: game-service

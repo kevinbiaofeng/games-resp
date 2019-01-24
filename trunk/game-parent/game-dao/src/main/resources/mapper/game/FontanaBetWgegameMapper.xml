@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetWgegameMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetWgegame">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="UID" jdbcType="NUMERIC" property="uid" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="BETNUM" jdbcType="VARCHAR" property="betnum" />
+    <result column="BETAMOUNT" jdbcType="NUMERIC" property="betamount" />
+    <result column="VALIDAMOUNT" jdbcType="NUMERIC" property="validamount" />
+    <result column="VALIDAMOUNTEXCHANGE" jdbcType="NUMERIC" property="validamountexchange" />
+    <result column="RESULT" jdbcType="NUMERIC" property="result" />
+    <result column="TOTALRESULT" jdbcType="NUMERIC" property="totalresult" />
+    <result column="STATE" jdbcType="NUMERIC" property="state" />
+    <result column="BETTIME" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="CTIME" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="GAMENAME" jdbcType="VARCHAR" property="gamename" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, `UID`, USERNAME, PARENTID, CID, BETNUM, BETAMOUNT, VALIDAMOUNT, VALIDAMOUNTEXCHANGE, 
+    `RESULT`, TOTALRESULT, `STATE`, BETTIME, CTIME, GROUPFOR, GAMENAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_WGEGAME
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_WGEGAME
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetWgegame">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_WGEGAME (`UID`, USERNAME, PARENTID, 
+      CID, BETNUM, BETAMOUNT, 
+      VALIDAMOUNT, VALIDAMOUNTEXCHANGE, `RESULT`, 
+      TOTALRESULT, `STATE`, BETTIME, 
+      CTIME, GROUPFOR, GAMENAME
+      )
+    values (#{uid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{parentid,jdbcType=NUMERIC}, 
+      #{cid,jdbcType=NUMERIC}, #{betnum,jdbcType=VARCHAR}, #{betamount,jdbcType=NUMERIC}, 
+      #{validamount,jdbcType=NUMERIC}, #{validamountexchange,jdbcType=NUMERIC}, #{result,jdbcType=NUMERIC}, 
+      #{totalresult,jdbcType=NUMERIC}, #{state,jdbcType=NUMERIC}, #{bettime,jdbcType=TIMESTAMP}, 
+      #{ctime,jdbcType=TIMESTAMP}, #{groupfor,jdbcType=TIMESTAMP}, #{gamename,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_WGEGAME (`UID`, USERNAME, PARENTID, 
+	      CID, BETNUM, BETAMOUNT, 
+	      VALIDAMOUNT, VALIDAMOUNTEXCHANGE, `RESULT`, 
+	      TOTALRESULT, `STATE`, BETTIME, 
+	      CTIME, GROUPFOR, GAMENAME
+	      )
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.uid,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, #{item.parentid,jdbcType=NUMERIC}, 
+		      #{item.cid,jdbcType=NUMERIC}, #{item.betnum,jdbcType=VARCHAR}, #{item.betamount,jdbcType=NUMERIC}, 
+		      #{item.validamount,jdbcType=NUMERIC}, #{item.validamountexchange,jdbcType=NUMERIC}, #{item.result,jdbcType=NUMERIC}, 
+		      #{item.totalresult,jdbcType=NUMERIC}, #{item.state,jdbcType=NUMERIC}, #{item.bettime,jdbcType=TIMESTAMP}, 
+		      #{item.ctime,jdbcType=TIMESTAMP}, #{item.groupfor,jdbcType=TIMESTAMP}, #{item.gamename,jdbcType=VARCHAR}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetWgegame">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_WGEGAME
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        `UID`,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="betnum != null">
+        BETNUM,
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT,
+      </if>
+      <if test="validamount != null">
+        VALIDAMOUNT,
+      </if>
+      <if test="validamountexchange != null">
+        VALIDAMOUNTEXCHANGE,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="totalresult != null">
+        TOTALRESULT,
+      </if>
+      <if test="state != null">
+        `STATE`,
+      </if>
+      <if test="bettime != null">
+        BETTIME,
+      </if>
+      <if test="ctime != null">
+        CTIME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="gamename != null">
+        GAMENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="betnum != null">
+        #{betnum,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamount != null">
+        #{validamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamountexchange != null">
+        #{validamountexchange,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="totalresult != null">
+        #{totalresult,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gamename != null">
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetWgegame">
+    update FONTANA_BET_WGEGAME
+    <set>
+      <if test="uid != null">
+        `UID` = #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="betnum != null">
+        BETNUM = #{betnum,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamount != null">
+        VALIDAMOUNT = #{validamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamountexchange != null">
+        VALIDAMOUNTEXCHANGE = #{validamountexchange,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="totalresult != null">
+        TOTALRESULT = #{totalresult,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null">
+        `STATE` = #{state,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctime != null">
+        CTIME = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gamename != null">
+        GAMENAME = #{gamename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetWgegame">
+    update FONTANA_BET_WGEGAME
+    set `UID` = #{uid,jdbcType=NUMERIC},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      BETNUM = #{betnum,jdbcType=VARCHAR},
+      BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      VALIDAMOUNT = #{validamount,jdbcType=NUMERIC},
+      VALIDAMOUNTEXCHANGE = #{validamountexchange,jdbcType=NUMERIC},
+      `RESULT` = #{result,jdbcType=NUMERIC},
+      TOTALRESULT = #{totalresult,jdbcType=NUMERIC},
+      `STATE` = #{state,jdbcType=NUMERIC},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      CTIME = #{ctime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      GAMENAME = #{gamename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

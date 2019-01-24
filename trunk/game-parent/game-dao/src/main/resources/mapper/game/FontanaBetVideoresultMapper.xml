@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetVideoresultMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetVideoresult">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="INNINGID" jdbcType="NUMERIC" property="inningid" />
+    <result column="TABLEID" jdbcType="NUMERIC" property="tableid" />
+    <result column="SBANKER" jdbcType="NUMERIC" property="sbanker" />
+    <result column="LOBBYTYPE" jdbcType="NUMERIC" property="lobbytype" />
+    <result column="TABLENAME" jdbcType="VARCHAR" property="tablename" />
+    <result column="GAMEID" jdbcType="NUMERIC" property="gameid" />
+    <result column="GAMENAME" jdbcType="VARCHAR" property="gamename" />
+    <result column="SHOEID" jdbcType="NUMERIC" property="shoeid" />
+    <result column="SHOENUM" jdbcType="NUMERIC" property="shoenum" />
+    <result column="GAMBLINGNUM" jdbcType="NUMERIC" property="gamblingnum" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="ADDBETTIME" jdbcType="TIMESTAMP" property="addbettime" />
+    <result column="RESULT" jdbcType="VARCHAR" property="result" />
+    <result column="CARDS" jdbcType="VARCHAR" property="cards" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, INNINGID, TABLEID, SBANKER, LOBBYTYPE, TABLENAME, GAMEID, GAMENAME, 
+    SHOEID, SHOENUM, GAMBLINGNUM, GROUPFOR, STARTTIME, ADDBETTIME, `RESULT`, CARDS, `STATE`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_VIDEORESULT
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_VIDEORESULT
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetVideoresult">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_VIDEORESULT (PARENTID, INNINGID, TABLEID, 
+      SBANKER, LOBBYTYPE, TABLENAME, 
+      GAMEID, GAMENAME, SHOEID, 
+      SHOENUM, GAMBLINGNUM, GROUPFOR, 
+      STARTTIME, ADDBETTIME, `RESULT`, 
+      CARDS, `STATE`)
+    values (#{parentid,jdbcType=NUMERIC}, #{inningid,jdbcType=NUMERIC}, #{tableid,jdbcType=NUMERIC}, 
+      #{sbanker,jdbcType=NUMERIC}, #{lobbytype,jdbcType=NUMERIC}, #{tablename,jdbcType=VARCHAR}, 
+      #{gameid,jdbcType=NUMERIC}, #{gamename,jdbcType=VARCHAR}, #{shoeid,jdbcType=NUMERIC}, 
+      #{shoenum,jdbcType=NUMERIC}, #{gamblingnum,jdbcType=NUMERIC}, #{groupfor,jdbcType=TIMESTAMP}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{addbettime,jdbcType=TIMESTAMP}, #{result,jdbcType=VARCHAR}, 
+      #{cards,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_VIDEORESULT (PARENTID, INNINGID, TABLEID, 
+	      SBANKER, LOBBYTYPE, TABLENAME, 
+	      GAMEID, GAMENAME, SHOEID, 
+	      SHOENUM, GAMBLINGNUM, GROUPFOR, 
+	      STARTTIME, ADDBETTIME, `RESULT`, 
+	      CARDS, `STATE`)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.parentid,jdbcType=NUMERIC}, #{item.inningid,jdbcType=NUMERIC}, #{item.tableid,jdbcType=NUMERIC}, 
+		      #{item.sbanker,jdbcType=NUMERIC}, #{item.lobbytype,jdbcType=NUMERIC}, #{item.tablename,jdbcType=VARCHAR}, 
+		      #{item.gameid,jdbcType=NUMERIC}, #{item.gamename,jdbcType=VARCHAR}, #{item.shoeid,jdbcType=NUMERIC}, 
+		      #{item.shoenum,jdbcType=NUMERIC}, #{item.gamblingnum,jdbcType=NUMERIC}, #{item.groupfor,jdbcType=TIMESTAMP}, 
+		      #{item.starttime,jdbcType=TIMESTAMP}, #{item.addbettime,jdbcType=TIMESTAMP}, #{item.result,jdbcType=VARCHAR}, 
+		      #{item.cards,jdbcType=VARCHAR}, #{item.state,jdbcType=VARCHAR}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetVideoresult">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_VIDEORESULT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="inningid != null">
+        INNINGID,
+      </if>
+      <if test="tableid != null">
+        TABLEID,
+      </if>
+      <if test="sbanker != null">
+        SBANKER,
+      </if>
+      <if test="lobbytype != null">
+        LOBBYTYPE,
+      </if>
+      <if test="tablename != null">
+        TABLENAME,
+      </if>
+      <if test="gameid != null">
+        GAMEID,
+      </if>
+      <if test="gamename != null">
+        GAMENAME,
+      </if>
+      <if test="shoeid != null">
+        SHOEID,
+      </if>
+      <if test="shoenum != null">
+        SHOENUM,
+      </if>
+      <if test="gamblingnum != null">
+        GAMBLINGNUM,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="starttime != null">
+        STARTTIME,
+      </if>
+      <if test="addbettime != null">
+        ADDBETTIME,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="cards != null">
+        CARDS,
+      </if>
+      <if test="state != null">
+        `STATE`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="inningid != null">
+        #{inningid,jdbcType=NUMERIC},
+      </if>
+      <if test="tableid != null">
+        #{tableid,jdbcType=NUMERIC},
+      </if>
+      <if test="sbanker != null">
+        #{sbanker,jdbcType=NUMERIC},
+      </if>
+      <if test="lobbytype != null">
+        #{lobbytype,jdbcType=NUMERIC},
+      </if>
+      <if test="tablename != null">
+        #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="gameid != null">
+        #{gameid,jdbcType=NUMERIC},
+      </if>
+      <if test="gamename != null">
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeid != null">
+        #{shoeid,jdbcType=NUMERIC},
+      </if>
+      <if test="shoenum != null">
+        #{shoenum,jdbcType=NUMERIC},
+      </if>
+      <if test="gamblingnum != null">
+        #{gamblingnum,jdbcType=NUMERIC},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addbettime != null">
+        #{addbettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="cards != null">
+        #{cards,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetVideoresult">
+    update FONTANA_BET_VIDEORESULT
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="inningid != null">
+        INNINGID = #{inningid,jdbcType=NUMERIC},
+      </if>
+      <if test="tableid != null">
+        TABLEID = #{tableid,jdbcType=NUMERIC},
+      </if>
+      <if test="sbanker != null">
+        SBANKER = #{sbanker,jdbcType=NUMERIC},
+      </if>
+      <if test="lobbytype != null">
+        LOBBYTYPE = #{lobbytype,jdbcType=NUMERIC},
+      </if>
+      <if test="tablename != null">
+        TABLENAME = #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="gameid != null">
+        GAMEID = #{gameid,jdbcType=NUMERIC},
+      </if>
+      <if test="gamename != null">
+        GAMENAME = #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeid != null">
+        SHOEID = #{shoeid,jdbcType=NUMERIC},
+      </if>
+      <if test="shoenum != null">
+        SHOENUM = #{shoenum,jdbcType=NUMERIC},
+      </if>
+      <if test="gamblingnum != null">
+        GAMBLINGNUM = #{gamblingnum,jdbcType=NUMERIC},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null">
+        STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addbettime != null">
+        ADDBETTIME = #{addbettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="cards != null">
+        CARDS = #{cards,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `STATE` = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetVideoresult">
+    update FONTANA_BET_VIDEORESULT
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      INNINGID = #{inningid,jdbcType=NUMERIC},
+      TABLEID = #{tableid,jdbcType=NUMERIC},
+      SBANKER = #{sbanker,jdbcType=NUMERIC},
+      LOBBYTYPE = #{lobbytype,jdbcType=NUMERIC},
+      TABLENAME = #{tablename,jdbcType=VARCHAR},
+      GAMEID = #{gameid,jdbcType=NUMERIC},
+      GAMENAME = #{gamename,jdbcType=VARCHAR},
+      SHOEID = #{shoeid,jdbcType=NUMERIC},
+      SHOENUM = #{shoenum,jdbcType=NUMERIC},
+      GAMBLINGNUM = #{gamblingnum,jdbcType=NUMERIC},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      ADDBETTIME = #{addbettime,jdbcType=TIMESTAMP},
+      `RESULT` = #{result,jdbcType=VARCHAR},
+      CARDS = #{cards,jdbcType=VARCHAR},
+      `STATE` = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

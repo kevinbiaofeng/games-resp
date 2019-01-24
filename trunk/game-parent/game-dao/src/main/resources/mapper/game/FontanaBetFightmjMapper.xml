@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetFightmjMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetFightmj">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="UID" jdbcType="NUMERIC" property="uid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="GAMEID" jdbcType="NUMERIC" property="gameid" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="GAMESCORE" jdbcType="NUMERIC" property="gamescore" />
+    <result column="SERVICEMONEY" jdbcType="NUMERIC" property="servicemoney" />
+    <result column="MONEY" jdbcType="NUMERIC" property="money" />
+    <result column="TIMESPEND" jdbcType="VARCHAR" property="timespend" />
+    <result column="NUMERICTIMES" jdbcType="VARCHAR" property="NUMERICtimes" />
+    <result column="ENDNUMERICCOUNT" jdbcType="VARCHAR" property="endNUMERICcount" />
+    <result column="GAMERESULT" jdbcType="NUMERIC" property="gameresult" />
+    <result column="FAN" jdbcType="NUMERIC" property="an" />
+    <result column="STARTFREECOINS" jdbcType="NUMERIC" property="startfreecoins" />
+    <result column="ENDFREECOINS" jdbcType="NUMERIC" property="endfreecoins" />
+    <result column="GAMEENDTIME" jdbcType="TIMESTAMP" property="gameendtime" />
+    <result column="HEFAN" jdbcType="VARCHAR" property="hefan" />
+    <result column="HANDPAI" jdbcType="VARCHAR" property="handpai" />
+    <result column="ROOMID" jdbcType="VARCHAR" property="roomid" />
+    <result column="SEATNO" jdbcType="VARCHAR" property="seatno" />
+    <result column="CHANNEL" jdbcType="VARCHAR" property="channel" />
+    <result column="COMMISSRATE" jdbcType="VARCHAR" property="commissrate" />
+    <result column="ISTRANS" jdbcType="VARCHAR" property="istrans" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="ROOMNAME" jdbcType="VARCHAR" property="roomname" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, `UID`, CID, GAMEID, USERNAME, GAMESCORE, SERVICEMONEY, MONEY, TIMESPEND, 
+    NUMERICTIMES, ENDNUMERICCOUNT, GAMERESULT, FAN, STARTFREECOINS, ENDFREECOINS, GAMEENDTIME, 
+    HEFAN, HANDPAI, ROOMID, SEATNO, CHANNEL, COMMISSRATE, ISTRANS, CREATETIME, ROOMNAME, 
+    GROUPFOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_FIGHTMJ
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_FIGHTMJ
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetFightmj">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHTMJ (PARENTID, `UID`, CID, 
+      GAMEID, USERNAME, GAMESCORE, 
+      SERVICEMONEY, MONEY, TIMESPEND, 
+      NUMERICTIMES, ENDNUMERICCOUNT, GAMERESULT, 
+      FAN, STARTFREECOINS, ENDFREECOINS, 
+      GAMEENDTIME, HEFAN, HANDPAI, 
+      ROOMID, SEATNO, CHANNEL, 
+      COMMISSRATE, ISTRANS, CREATETIME, 
+      ROOMNAME, GROUPFOR)
+    values (#{parentid,jdbcType=NUMERIC}, #{uid,jdbcType=NUMERIC}, #{cid,jdbcType=NUMERIC}, 
+      #{gameid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{gamescore,jdbcType=NUMERIC}, 
+      #{servicemoney,jdbcType=NUMERIC}, #{money,jdbcType=NUMERIC}, #{timespend,jdbcType=VARCHAR}, 
+      #{NUMERICtimes,jdbcType=VARCHAR}, #{endNUMERICcount,jdbcType=VARCHAR}, #{gameresult,jdbcType=NUMERIC}, 
+      #{an,jdbcType=NUMERIC}, #{startfreecoins,jdbcType=NUMERIC}, #{endfreecoins,jdbcType=NUMERIC}, 
+      #{gameendtime,jdbcType=TIMESTAMP}, #{hefan,jdbcType=VARCHAR}, #{handpai,jdbcType=VARCHAR}, 
+      #{roomid,jdbcType=VARCHAR}, #{seatno,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{commissrate,jdbcType=VARCHAR}, #{istrans,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{roomname,jdbcType=VARCHAR}, #{groupfor,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_FIGHTMJ (PARENTID, `UID`, CID, 
+	      GAMEID, USERNAME, GAMESCORE, 
+	      SERVICEMONEY, MONEY, TIMESPEND, 
+	      NUMERICTIMES, ENDNUMERICCOUNT, GAMERESULT, 
+	      FAN, STARTFREECOINS, ENDFREECOINS, 
+	      GAMEENDTIME, HEFAN, HANDPAI, 
+	      ROOMID, SEATNO, CHANNEL, 
+	      COMMISSRATE, ISTRANS, CREATETIME, 
+	      ROOMNAME, GROUPFOR)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.parentid,jdbcType=NUMERIC}, #{item.uid,jdbcType=NUMERIC}, #{item.cid,jdbcType=NUMERIC}, 
+		      #{item.gameid,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, #{item.gamescore,jdbcType=NUMERIC}, 
+		      #{item.servicemoney,jdbcType=NUMERIC}, #{item.money,jdbcType=NUMERIC}, #{item.timespend,jdbcType=VARCHAR}, 
+		      #{item.NUMERICtimes,jdbcType=VARCHAR}, #{item.endNUMERICcount,jdbcType=VARCHAR}, #{item.gameresult,jdbcType=NUMERIC}, 
+		      #{item.an,jdbcType=NUMERIC}, #{item.startfreecoins,jdbcType=NUMERIC}, #{item.endfreecoins,jdbcType=NUMERIC}, 
+		      #{item.gameendtime,jdbcType=TIMESTAMP}, #{item.hefan,jdbcType=VARCHAR}, #{item.handpai,jdbcType=VARCHAR}, 
+		      #{item.roomid,jdbcType=VARCHAR}, #{item.seatno,jdbcType=VARCHAR}, #{item.channel,jdbcType=VARCHAR}, 
+		      #{item.commissrate,jdbcType=VARCHAR}, #{item.istrans,jdbcType=VARCHAR}, #{item.createtime,jdbcType=TIMESTAMP}, 
+		      #{item.roomname,jdbcType=VARCHAR}, #{item.groupfor,jdbcType=TIMESTAMP}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetFightmj">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHTMJ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="uid != null">
+        `UID`,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="gameid != null">
+        GAMEID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="gamescore != null">
+        GAMESCORE,
+      </if>
+      <if test="servicemoney != null">
+        SERVICEMONEY,
+      </if>
+      <if test="money != null">
+        MONEY,
+      </if>
+      <if test="timespend != null">
+        TIMESPEND,
+      </if>
+      <if test="NUMERICtimes != null">
+        NUMERICTIMES,
+      </if>
+      <if test="endNUMERICcount != null">
+        ENDNUMERICCOUNT,
+      </if>
+      <if test="gameresult != null">
+        GAMERESULT,
+      </if>
+      <if test="an != null">
+        FAN,
+      </if>
+      <if test="startfreecoins != null">
+        STARTFREECOINS,
+      </if>
+      <if test="endfreecoins != null">
+        ENDFREECOINS,
+      </if>
+      <if test="gameendtime != null">
+        GAMEENDTIME,
+      </if>
+      <if test="hefan != null">
+        HEFAN,
+      </if>
+      <if test="handpai != null">
+        HANDPAI,
+      </if>
+      <if test="roomid != null">
+        ROOMID,
+      </if>
+      <if test="seatno != null">
+        SEATNO,
+      </if>
+      <if test="channel != null">
+        CHANNEL,
+      </if>
+      <if test="commissrate != null">
+        COMMISSRATE,
+      </if>
+      <if test="istrans != null">
+        ISTRANS,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="roomname != null">
+        ROOMNAME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="gameid != null">
+        #{gameid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gamescore != null">
+        #{gamescore,jdbcType=NUMERIC},
+      </if>
+      <if test="servicemoney != null">
+        #{servicemoney,jdbcType=NUMERIC},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=NUMERIC},
+      </if>
+      <if test="timespend != null">
+        #{timespend,jdbcType=VARCHAR},
+      </if>
+      <if test="NUMERICtimes != null">
+        #{NUMERICtimes,jdbcType=VARCHAR},
+      </if>
+      <if test="endNUMERICcount != null">
+        #{endNUMERICcount,jdbcType=VARCHAR},
+      </if>
+      <if test="gameresult != null">
+        #{gameresult,jdbcType=NUMERIC},
+      </if>
+      <if test="an != null">
+        #{an,jdbcType=NUMERIC},
+      </if>
+      <if test="startfreecoins != null">
+        #{startfreecoins,jdbcType=NUMERIC},
+      </if>
+      <if test="endfreecoins != null">
+        #{endfreecoins,jdbcType=NUMERIC},
+      </if>
+      <if test="gameendtime != null">
+        #{gameendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hefan != null">
+        #{hefan,jdbcType=VARCHAR},
+      </if>
+      <if test="handpai != null">
+        #{handpai,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        #{roomid,jdbcType=VARCHAR},
+      </if>
+      <if test="seatno != null">
+        #{seatno,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="commissrate != null">
+        #{commissrate,jdbcType=VARCHAR},
+      </if>
+      <if test="istrans != null">
+        #{istrans,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomname != null">
+        #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetFightmj">
+    update FONTANA_BET_FIGHTMJ
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="uid != null">
+        `UID` = #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="gameid != null">
+        GAMEID = #{gameid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gamescore != null">
+        GAMESCORE = #{gamescore,jdbcType=NUMERIC},
+      </if>
+      <if test="servicemoney != null">
+        SERVICEMONEY = #{servicemoney,jdbcType=NUMERIC},
+      </if>
+      <if test="money != null">
+        MONEY = #{money,jdbcType=NUMERIC},
+      </if>
+      <if test="timespend != null">
+        TIMESPEND = #{timespend,jdbcType=VARCHAR},
+      </if>
+      <if test="NUMERICtimes != null">
+        NUMERICTIMES = #{NUMERICtimes,jdbcType=VARCHAR},
+      </if>
+      <if test="endNUMERICcount != null">
+        ENDNUMERICCOUNT = #{endNUMERICcount,jdbcType=VARCHAR},
+      </if>
+      <if test="gameresult != null">
+        GAMERESULT = #{gameresult,jdbcType=NUMERIC},
+      </if>
+      <if test="an != null">
+        FAN = #{an,jdbcType=NUMERIC},
+      </if>
+      <if test="startfreecoins != null">
+        STARTFREECOINS = #{startfreecoins,jdbcType=NUMERIC},
+      </if>
+      <if test="endfreecoins != null">
+        ENDFREECOINS = #{endfreecoins,jdbcType=NUMERIC},
+      </if>
+      <if test="gameendtime != null">
+        GAMEENDTIME = #{gameendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hefan != null">
+        HEFAN = #{hefan,jdbcType=VARCHAR},
+      </if>
+      <if test="handpai != null">
+        HANDPAI = #{handpai,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        ROOMID = #{roomid,jdbcType=VARCHAR},
+      </if>
+      <if test="seatno != null">
+        SEATNO = #{seatno,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="commissrate != null">
+        COMMISSRATE = #{commissrate,jdbcType=VARCHAR},
+      </if>
+      <if test="istrans != null">
+        ISTRANS = #{istrans,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomname != null">
+        ROOMNAME = #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetFightmj">
+    update FONTANA_BET_FIGHTMJ
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      `UID` = #{uid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      GAMEID = #{gameid,jdbcType=NUMERIC},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      GAMESCORE = #{gamescore,jdbcType=NUMERIC},
+      SERVICEMONEY = #{servicemoney,jdbcType=NUMERIC},
+      MONEY = #{money,jdbcType=NUMERIC},
+      TIMESPEND = #{timespend,jdbcType=VARCHAR},
+      NUMERICTIMES = #{NUMERICtimes,jdbcType=VARCHAR},
+      ENDNUMERICCOUNT = #{endNUMERICcount,jdbcType=VARCHAR},
+      GAMERESULT = #{gameresult,jdbcType=NUMERIC},
+      FAN = #{an,jdbcType=NUMERIC},
+      STARTFREECOINS = #{startfreecoins,jdbcType=NUMERIC},
+      ENDFREECOINS = #{endfreecoins,jdbcType=NUMERIC},
+      GAMEENDTIME = #{gameendtime,jdbcType=TIMESTAMP},
+      HEFAN = #{hefan,jdbcType=VARCHAR},
+      HANDPAI = #{handpai,jdbcType=VARCHAR},
+      ROOMID = #{roomid,jdbcType=VARCHAR},
+      SEATNO = #{seatno,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      COMMISSRATE = #{commissrate,jdbcType=VARCHAR},
+      ISTRANS = #{istrans,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      ROOMNAME = #{roomname,jdbcType=VARCHAR},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

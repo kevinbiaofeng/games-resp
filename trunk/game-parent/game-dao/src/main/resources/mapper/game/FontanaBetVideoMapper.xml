@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetVideoMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetVideo">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="VID" jdbcType="NUMERIC" property="vid" />
+    <result column="SBANKER" jdbcType="NUMERIC" property="sbanker" />
+    <result column="LOBBYTYPE" jdbcType="NUMERIC" property="lobbytype" />
+    <result column="GAMEID" jdbcType="NUMERIC" property="gameid" />
+    <result column="GAMENAME" jdbcType="VARCHAR" property="gamename" />
+    <result column="CTIME" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="BETTIME" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="TABLEID" jdbcType="NUMERIC" property="tableid" />
+    <result column="TABLENAME" jdbcType="VARCHAR" property="tablename" />
+    <result column="JP" jdbcType="NUMERIC" property="jp" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="SHOEID" jdbcType="NUMERIC" property="shoeid" />
+    <result column="SHOENUM" jdbcType="NUMERIC" property="shoenum" />
+    <result column="INNINGID" jdbcType="NUMERIC" property="inningid" />
+    <result column="INNINGNUM" jdbcType="NUMERIC" property="inningnum" />
+    <result column="BETPOINT" jdbcType="VARCHAR" property="betpoint" />
+    <result column="BETAMOUNT" jdbcType="NUMERIC" property="betamount" />
+    <result column="RESULT" jdbcType="NUMERIC" property="result" />
+    <result column="CARDRESULT" jdbcType="VARCHAR" property="cardresult" />
+    <result column="WINPOINT" jdbcType="VARCHAR" property="winpoint" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="COMMAMOUNT" jdbcType="NUMERIC" property="commamount" />
+    <result column="ENTERTYPE" jdbcType="NUMERIC" property="entertype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, CID, VID, SBANKER, LOBBYTYPE, GAMEID, GAMENAME, CTIME, BETTIME, GROUPFOR, 
+    TABLEID, TABLENAME, JP, USERNAME, SHOEID, SHOENUM, INNINGID, INNINGNUM, BETPOINT, 
+    BETAMOUNT, `RESULT`, CARDRESULT, WINPOINT, `STATUS`, COMMAMOUNT, ENTERTYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_VIDEO
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_VIDEO
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetVideo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_VIDEO (PARENTID, CID, VID, 
+      SBANKER, LOBBYTYPE, GAMEID, 
+      GAMENAME, CTIME, BETTIME, 
+      GROUPFOR, TABLEID, TABLENAME, 
+      JP, USERNAME, SHOEID, 
+      SHOENUM, INNINGID, INNINGNUM, 
+      BETPOINT, BETAMOUNT, `RESULT`, 
+      CARDRESULT, WINPOINT, `STATUS`, 
+      COMMAMOUNT, ENTERTYPE)
+    values (#{parentid,jdbcType=NUMERIC}, #{cid,jdbcType=NUMERIC}, #{vid,jdbcType=NUMERIC}, 
+      #{sbanker,jdbcType=NUMERIC}, #{lobbytype,jdbcType=NUMERIC}, #{gameid,jdbcType=NUMERIC}, 
+      #{gamename,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{bettime,jdbcType=TIMESTAMP}, 
+      #{groupfor,jdbcType=TIMESTAMP}, #{tableid,jdbcType=NUMERIC}, #{tablename,jdbcType=VARCHAR}, 
+      #{jp,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{shoeid,jdbcType=NUMERIC}, 
+      #{shoenum,jdbcType=NUMERIC}, #{inningid,jdbcType=NUMERIC}, #{inningnum,jdbcType=NUMERIC}, 
+      #{betpoint,jdbcType=VARCHAR}, #{betamount,jdbcType=NUMERIC}, #{result,jdbcType=NUMERIC}, 
+      #{cardresult,jdbcType=VARCHAR}, #{winpoint,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{commamount,jdbcType=NUMERIC}, #{entertype,jdbcType=NUMERIC})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_VIDEO (PARENTID, CID, VID, 
+	      SBANKER, LOBBYTYPE, GAMEID, 
+	      GAMENAME, CTIME, BETTIME, 
+	      GROUPFOR, TABLEID, TABLENAME, 
+	      JP, USERNAME, SHOEID, 
+	      SHOENUM, INNINGID, INNINGNUM, 
+	      BETPOINT, BETAMOUNT, `RESULT`, 
+	      CARDRESULT, WINPOINT, `STATUS`, 
+	      COMMAMOUNT, ENTERTYPE)
+	    values  
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.parentid,jdbcType=NUMERIC}, #{item.cid,jdbcType=NUMERIC}, #{item.vid,jdbcType=NUMERIC}, 
+		      #{item.sbanker,jdbcType=NUMERIC}, #{item.lobbytype,jdbcType=NUMERIC}, #{item.gameid,jdbcType=NUMERIC}, 
+		      #{item.gamename,jdbcType=VARCHAR}, #{item.ctime,jdbcType=TIMESTAMP}, #{item.bettime,jdbcType=TIMESTAMP}, 
+		      #{item.groupfor,jdbcType=TIMESTAMP}, #{item.tableid,jdbcType=NUMERIC}, #{item.tablename,jdbcType=VARCHAR}, 
+		      #{item.jp,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, #{item.shoeid,jdbcType=NUMERIC}, 
+		      #{item.shoenum,jdbcType=NUMERIC}, #{item.inningid,jdbcType=NUMERIC}, #{item.inningnum,jdbcType=NUMERIC}, 
+		      #{item.betpoint,jdbcType=VARCHAR}, #{item.betamount,jdbcType=NUMERIC}, #{item.result,jdbcType=NUMERIC}, 
+		      #{item.cardresult,jdbcType=VARCHAR}, #{item.winpoint,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR}, 
+		      #{item.commamount,jdbcType=NUMERIC}, #{item.entertype,jdbcType=NUMERIC}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetVideo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_VIDEO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="vid != null">
+        VID,
+      </if>
+      <if test="sbanker != null">
+        SBANKER,
+      </if>
+      <if test="lobbytype != null">
+        LOBBYTYPE,
+      </if>
+      <if test="gameid != null">
+        GAMEID,
+      </if>
+      <if test="gamename != null">
+        GAMENAME,
+      </if>
+      <if test="ctime != null">
+        CTIME,
+      </if>
+      <if test="bettime != null">
+        BETTIME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="tableid != null">
+        TABLEID,
+      </if>
+      <if test="tablename != null">
+        TABLENAME,
+      </if>
+      <if test="jp != null">
+        JP,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="shoeid != null">
+        SHOEID,
+      </if>
+      <if test="shoenum != null">
+        SHOENUM,
+      </if>
+      <if test="inningid != null">
+        INNINGID,
+      </if>
+      <if test="inningnum != null">
+        INNINGNUM,
+      </if>
+      <if test="betpoint != null">
+        BETPOINT,
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="cardresult != null">
+        CARDRESULT,
+      </if>
+      <if test="winpoint != null">
+        WINPOINT,
+      </if>
+      <if test="status != null">
+        `STATUS`,
+      </if>
+      <if test="commamount != null">
+        COMMAMOUNT,
+      </if>
+      <if test="entertype != null">
+        ENTERTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="vid != null">
+        #{vid,jdbcType=NUMERIC},
+      </if>
+      <if test="sbanker != null">
+        #{sbanker,jdbcType=NUMERIC},
+      </if>
+      <if test="lobbytype != null">
+        #{lobbytype,jdbcType=NUMERIC},
+      </if>
+      <if test="gameid != null">
+        #{gameid,jdbcType=NUMERIC},
+      </if>
+      <if test="gamename != null">
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableid != null">
+        #{tableid,jdbcType=NUMERIC},
+      </if>
+      <if test="tablename != null">
+        #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="jp != null">
+        #{jp,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeid != null">
+        #{shoeid,jdbcType=NUMERIC},
+      </if>
+      <if test="shoenum != null">
+        #{shoenum,jdbcType=NUMERIC},
+      </if>
+      <if test="inningid != null">
+        #{inningid,jdbcType=NUMERIC},
+      </if>
+      <if test="inningnum != null">
+        #{inningnum,jdbcType=NUMERIC},
+      </if>
+      <if test="betpoint != null">
+        #{betpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="cardresult != null">
+        #{cardresult,jdbcType=VARCHAR},
+      </if>
+      <if test="winpoint != null">
+        #{winpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="commamount != null">
+        #{commamount,jdbcType=NUMERIC},
+      </if>
+      <if test="entertype != null">
+        #{entertype,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetVideo">
+    update FONTANA_BET_VIDEO
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="vid != null">
+        VID = #{vid,jdbcType=NUMERIC},
+      </if>
+      <if test="sbanker != null">
+        SBANKER = #{sbanker,jdbcType=NUMERIC},
+      </if>
+      <if test="lobbytype != null">
+        LOBBYTYPE = #{lobbytype,jdbcType=NUMERIC},
+      </if>
+      <if test="gameid != null">
+        GAMEID = #{gameid,jdbcType=NUMERIC},
+      </if>
+      <if test="gamename != null">
+        GAMENAME = #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        CTIME = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bettime != null">
+        BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableid != null">
+        TABLEID = #{tableid,jdbcType=NUMERIC},
+      </if>
+      <if test="tablename != null">
+        TABLENAME = #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="jp != null">
+        JP = #{jp,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeid != null">
+        SHOEID = #{shoeid,jdbcType=NUMERIC},
+      </if>
+      <if test="shoenum != null">
+        SHOENUM = #{shoenum,jdbcType=NUMERIC},
+      </if>
+      <if test="inningid != null">
+        INNINGID = #{inningid,jdbcType=NUMERIC},
+      </if>
+      <if test="inningnum != null">
+        INNINGNUM = #{inningnum,jdbcType=NUMERIC},
+      </if>
+      <if test="betpoint != null">
+        BETPOINT = #{betpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="cardresult != null">
+        CARDRESULT = #{cardresult,jdbcType=VARCHAR},
+      </if>
+      <if test="winpoint != null">
+        WINPOINT = #{winpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `STATUS` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="commamount != null">
+        COMMAMOUNT = #{commamount,jdbcType=NUMERIC},
+      </if>
+      <if test="entertype != null">
+        ENTERTYPE = #{entertype,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetVideo">
+    update FONTANA_BET_VIDEO
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      VID = #{vid,jdbcType=NUMERIC},
+      SBANKER = #{sbanker,jdbcType=NUMERIC},
+      LOBBYTYPE = #{lobbytype,jdbcType=NUMERIC},
+      GAMEID = #{gameid,jdbcType=NUMERIC},
+      GAMENAME = #{gamename,jdbcType=VARCHAR},
+      CTIME = #{ctime,jdbcType=TIMESTAMP},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      TABLEID = #{tableid,jdbcType=NUMERIC},
+      TABLENAME = #{tablename,jdbcType=VARCHAR},
+      JP = #{jp,jdbcType=NUMERIC},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      SHOEID = #{shoeid,jdbcType=NUMERIC},
+      SHOENUM = #{shoenum,jdbcType=NUMERIC},
+      INNINGID = #{inningid,jdbcType=NUMERIC},
+      INNINGNUM = #{inningnum,jdbcType=NUMERIC},
+      BETPOINT = #{betpoint,jdbcType=VARCHAR},
+      BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      `RESULT` = #{result,jdbcType=NUMERIC},
+      CARDRESULT = #{cardresult,jdbcType=VARCHAR},
+      WINPOINT = #{winpoint,jdbcType=VARCHAR},
+      `STATUS` = #{status,jdbcType=VARCHAR},
+      COMMAMOUNT = #{commamount,jdbcType=NUMERIC},
+      ENTERTYPE = #{entertype,jdbcType=NUMERIC}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

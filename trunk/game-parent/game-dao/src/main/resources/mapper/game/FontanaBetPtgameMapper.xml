@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetPtgameMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetPtgame">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="UID" jdbcType="NUMERIC" property="uid" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="BETNUM" jdbcType="NUMERIC" property="betnum" />
+    <result column="GAMETYPE" jdbcType="VARCHAR" property="gametype" />
+    <result column="GAMENAME" jdbcType="VARCHAR" property="gamename" />
+    <result column="BETAMOUNT" jdbcType="NUMERIC" property="betamount" />
+    <result column="VALIDAMOUNT" jdbcType="NUMERIC" property="validamount" />
+    <result column="CURRENTBETAMOUNT" jdbcType="NUMERIC" property="currentbetamount" />
+    <result column="RESULT" jdbcType="NUMERIC" property="result" />
+    <result column="WINDOWCOUNT" jdbcType="NUMERIC" property="windowcount" />
+    <result column="PLAYCOUNT" jdbcType="NUMERIC" property="playcount" />
+    <result column="GAMECODE" jdbcType="NUMERIC" property="gamecode" />
+    <result column="LINKCODE" jdbcType="VARCHAR" property="linkcode" />
+    <result column="GAMERESULT" jdbcType="VARCHAR" property="gameresult" />
+    <result column="BETTIME" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="CTIME" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="BALANCE" jdbcType="NUMERIC" property="balance" />
+    <result column="TOTALBETAMOUNT" jdbcType="NUMERIC" property="totalbetamount" />
+    <result column="TOTALRESULT" jdbcType="NUMERIC" property="totalresult" />
+    <result column="LIVEGAME" jdbcType="VARCHAR" property="livegame" />
+    <result column="RESPONSECOUNT" jdbcType="NUMERIC" property="responsecount" />
+    <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+    <result column="EXCHANGERATE" jdbcType="NUMERIC" property="exchangerate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, `UID`, USERNAME, PARENTID, CID, BETNUM, GAMETYPE, GAMENAME, BETAMOUNT, VALIDAMOUNT, 
+    CURRENTBETAMOUNT, `RESULT`, WINDOWCOUNT, PLAYCOUNT, GAMECODE, LINKCODE, GAMERESULT, 
+    BETTIME, CTIME, GROUPFOR, BALANCE, TOTALBETAMOUNT, TOTALRESULT, LIVEGAME, RESPONSECOUNT, 
+    CURRENCY, EXCHANGERATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_PTGAME
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_PTGAME
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetPtgame">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_PTGAME (`UID`, USERNAME, PARENTID, 
+      CID, BETNUM, GAMETYPE, 
+      GAMENAME, BETAMOUNT, VALIDAMOUNT, 
+      CURRENTBETAMOUNT, `RESULT`, WINDOWCOUNT, 
+      PLAYCOUNT, GAMECODE, LINKCODE, 
+      GAMERESULT, BETTIME, CTIME, 
+      GROUPFOR, BALANCE, TOTALBETAMOUNT, 
+      TOTALRESULT, LIVEGAME, RESPONSECOUNT, 
+      CURRENCY, EXCHANGERATE)
+    values (#{uid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{parentid,jdbcType=NUMERIC}, 
+      #{cid,jdbcType=NUMERIC}, #{betnum,jdbcType=NUMERIC}, #{gametype,jdbcType=VARCHAR}, 
+      #{gamename,jdbcType=VARCHAR}, #{betamount,jdbcType=NUMERIC}, #{validamount,jdbcType=NUMERIC}, 
+      #{currentbetamount,jdbcType=NUMERIC}, #{result,jdbcType=NUMERIC}, #{windowcount,jdbcType=NUMERIC}, 
+      #{playcount,jdbcType=NUMERIC}, #{gamecode,jdbcType=NUMERIC}, #{linkcode,jdbcType=VARCHAR}, 
+      #{gameresult,jdbcType=VARCHAR}, #{bettime,jdbcType=TIMESTAMP}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{groupfor,jdbcType=TIMESTAMP}, #{balance,jdbcType=NUMERIC}, #{totalbetamount,jdbcType=NUMERIC}, 
+      #{totalresult,jdbcType=NUMERIC}, #{livegame,jdbcType=VARCHAR}, #{responsecount,jdbcType=NUMERIC}, 
+      #{currency,jdbcType=VARCHAR}, #{exchangerate,jdbcType=NUMERIC})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_PTGAME (`UID`, USERNAME, PARENTID, 
+	      CID, BETNUM, GAMETYPE, 
+	      GAMENAME, BETAMOUNT, VALIDAMOUNT, 
+	      CURRENTBETAMOUNT, `RESULT`, WINDOWCOUNT, 
+	      PLAYCOUNT, GAMECODE, LINKCODE, 
+	      GAMERESULT, BETTIME, CTIME, 
+	      GROUPFOR, BALANCE, TOTALBETAMOUNT, 
+	      TOTALRESULT, LIVEGAME, RESPONSECOUNT, 
+	      CURRENCY, EXCHANGERATE)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.uid,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, #{item.parentid,jdbcType=NUMERIC}, 
+		      #{item.cid,jdbcType=NUMERIC}, #{item.betnum,jdbcType=NUMERIC}, #{item.gametype,jdbcType=VARCHAR}, 
+		      #{item.gamename,jdbcType=VARCHAR}, #{item.betamount,jdbcType=NUMERIC}, #{item.validamount,jdbcType=NUMERIC}, 
+		      #{item.currentbetamount,jdbcType=NUMERIC}, #{item.result,jdbcType=NUMERIC}, #{item.windowcount,jdbcType=NUMERIC}, 
+		      #{item.playcount,jdbcType=NUMERIC}, #{item.gamecode,jdbcType=NUMERIC}, #{item.linkcode,jdbcType=VARCHAR}, 
+		      #{item.gameresult,jdbcType=VARCHAR}, #{item.bettime,jdbcType=TIMESTAMP}, #{item.ctime,jdbcType=TIMESTAMP}, 
+		      #{item.groupfor,jdbcType=TIMESTAMP}, #{item.balance,jdbcType=NUMERIC}, #{item.totalbetamount,jdbcType=NUMERIC}, 
+		      #{item.totalresult,jdbcType=NUMERIC}, #{item.livegame,jdbcType=VARCHAR}, #{item.responsecount,jdbcType=NUMERIC}, 
+		      #{item.currency,jdbcType=VARCHAR}, #{item.exchangerate,jdbcType=NUMERIC}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetPtgame">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_PTGAME
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        `UID`,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="betnum != null">
+        BETNUM,
+      </if>
+      <if test="gametype != null">
+        GAMETYPE,
+      </if>
+      <if test="gamename != null">
+        GAMENAME,
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT,
+      </if>
+      <if test="validamount != null">
+        VALIDAMOUNT,
+      </if>
+      <if test="currentbetamount != null">
+        CURRENTBETAMOUNT,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="windowcount != null">
+        WINDOWCOUNT,
+      </if>
+      <if test="playcount != null">
+        PLAYCOUNT,
+      </if>
+      <if test="gamecode != null">
+        GAMECODE,
+      </if>
+      <if test="linkcode != null">
+        LINKCODE,
+      </if>
+      <if test="gameresult != null">
+        GAMERESULT,
+      </if>
+      <if test="bettime != null">
+        BETTIME,
+      </if>
+      <if test="ctime != null">
+        CTIME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="balance != null">
+        BALANCE,
+      </if>
+      <if test="totalbetamount != null">
+        TOTALBETAMOUNT,
+      </if>
+      <if test="totalresult != null">
+        TOTALRESULT,
+      </if>
+      <if test="livegame != null">
+        LIVEGAME,
+      </if>
+      <if test="responsecount != null">
+        RESPONSECOUNT,
+      </if>
+      <if test="currency != null">
+        CURRENCY,
+      </if>
+      <if test="exchangerate != null">
+        EXCHANGERATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="betnum != null">
+        #{betnum,jdbcType=NUMERIC},
+      </if>
+      <if test="gametype != null">
+        #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="gamename != null">
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamount != null">
+        #{validamount,jdbcType=NUMERIC},
+      </if>
+      <if test="currentbetamount != null">
+        #{currentbetamount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="windowcount != null">
+        #{windowcount,jdbcType=NUMERIC},
+      </if>
+      <if test="playcount != null">
+        #{playcount,jdbcType=NUMERIC},
+      </if>
+      <if test="gamecode != null">
+        #{gamecode,jdbcType=NUMERIC},
+      </if>
+      <if test="linkcode != null">
+        #{linkcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gameresult != null">
+        #{gameresult,jdbcType=VARCHAR},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=NUMERIC},
+      </if>
+      <if test="totalbetamount != null">
+        #{totalbetamount,jdbcType=NUMERIC},
+      </if>
+      <if test="totalresult != null">
+        #{totalresult,jdbcType=NUMERIC},
+      </if>
+      <if test="livegame != null">
+        #{livegame,jdbcType=VARCHAR},
+      </if>
+      <if test="responsecount != null">
+        #{responsecount,jdbcType=NUMERIC},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangerate != null">
+        #{exchangerate,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetPtgame">
+    update FONTANA_BET_PTGAME
+    <set>
+      <if test="uid != null">
+        `UID` = #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="betnum != null">
+        BETNUM = #{betnum,jdbcType=NUMERIC},
+      </if>
+      <if test="gametype != null">
+        GAMETYPE = #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="gamename != null">
+        GAMENAME = #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="betamount != null">
+        BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamount != null">
+        VALIDAMOUNT = #{validamount,jdbcType=NUMERIC},
+      </if>
+      <if test="currentbetamount != null">
+        CURRENTBETAMOUNT = #{currentbetamount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="windowcount != null">
+        WINDOWCOUNT = #{windowcount,jdbcType=NUMERIC},
+      </if>
+      <if test="playcount != null">
+        PLAYCOUNT = #{playcount,jdbcType=NUMERIC},
+      </if>
+      <if test="gamecode != null">
+        GAMECODE = #{gamecode,jdbcType=NUMERIC},
+      </if>
+      <if test="linkcode != null">
+        LINKCODE = #{linkcode,jdbcType=VARCHAR},
+      </if>
+      <if test="gameresult != null">
+        GAMERESULT = #{gameresult,jdbcType=VARCHAR},
+      </if>
+      <if test="bettime != null">
+        BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctime != null">
+        CTIME = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null">
+        BALANCE = #{balance,jdbcType=NUMERIC},
+      </if>
+      <if test="totalbetamount != null">
+        TOTALBETAMOUNT = #{totalbetamount,jdbcType=NUMERIC},
+      </if>
+      <if test="totalresult != null">
+        TOTALRESULT = #{totalresult,jdbcType=NUMERIC},
+      </if>
+      <if test="livegame != null">
+        LIVEGAME = #{livegame,jdbcType=VARCHAR},
+      </if>
+      <if test="responsecount != null">
+        RESPONSECOUNT = #{responsecount,jdbcType=NUMERIC},
+      </if>
+      <if test="currency != null">
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangerate != null">
+        EXCHANGERATE = #{exchangerate,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetPtgame">
+    update FONTANA_BET_PTGAME
+    set `UID` = #{uid,jdbcType=NUMERIC},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      BETNUM = #{betnum,jdbcType=NUMERIC},
+      GAMETYPE = #{gametype,jdbcType=VARCHAR},
+      GAMENAME = #{gamename,jdbcType=VARCHAR},
+      BETAMOUNT = #{betamount,jdbcType=NUMERIC},
+      VALIDAMOUNT = #{validamount,jdbcType=NUMERIC},
+      CURRENTBETAMOUNT = #{currentbetamount,jdbcType=NUMERIC},
+      `RESULT` = #{result,jdbcType=NUMERIC},
+      WINDOWCOUNT = #{windowcount,jdbcType=NUMERIC},
+      PLAYCOUNT = #{playcount,jdbcType=NUMERIC},
+      GAMECODE = #{gamecode,jdbcType=NUMERIC},
+      LINKCODE = #{linkcode,jdbcType=VARCHAR},
+      GAMERESULT = #{gameresult,jdbcType=VARCHAR},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      CTIME = #{ctime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      BALANCE = #{balance,jdbcType=NUMERIC},
+      TOTALBETAMOUNT = #{totalbetamount,jdbcType=NUMERIC},
+      TOTALRESULT = #{totalresult,jdbcType=NUMERIC},
+      LIVEGAME = #{livegame,jdbcType=VARCHAR},
+      RESPONSECOUNT = #{responsecount,jdbcType=NUMERIC},
+      CURRENCY = #{currency,jdbcType=VARCHAR},
+      EXCHANGERATE = #{exchangerate,jdbcType=NUMERIC}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

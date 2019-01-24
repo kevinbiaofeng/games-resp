@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetSunbetMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetSunbet">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <id column="UGSBETID" jdbcType="VARCHAR" property="ugsbetid" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="TXID" jdbcType="VARCHAR" property="txid" />
+    <result column="BETID" jdbcType="VARCHAR" property="betid" />
+    <result column="BETON" jdbcType="TIMESTAMP" property="beton" />
+    <result column="BETCLOSEDON" jdbcType="TIMESTAMP" property="betclosedon" />
+    <result column="BETUPDATEDON" jdbcType="TIMESTAMP" property="betupdatedon" />
+    <result column="TIMESTAMP" jdbcType="TIMESTAMP" property="timestamp" />
+    <result column="ROUNDID" jdbcType="VARCHAR" property="roundid" />
+    <result column="ROUNDSTATUS" jdbcType="VARCHAR" property="roundstatus" />
+    <result column="USERID" jdbcType="NUMERIC" property="userid" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="RISKAMT" jdbcType="NUMERIC" property="riskamt" />
+    <result column="WINAMT" jdbcType="NUMERIC" property="winamt" />
+    <result column="WINLOSS" jdbcType="NUMERIC" property="winloss" />
+    <result column="BEFOREBAL" jdbcType="NUMERIC" property="beforebal" />
+    <result column="POSTBAL" jdbcType="NUMERIC" property="postbal" />
+    <result column="CUR" jdbcType="VARCHAR" property="cur" />
+    <result column="GAMEPROVIDER" jdbcType="VARCHAR" property="gameprovider" />
+    <result column="GAMENAME" jdbcType="VARCHAR" property="gamename" />
+    <result column="GAMEID" jdbcType="VARCHAR" property="gameid" />
+    <result column="GAMEPLATFORMTYPE" jdbcType="VARCHAR" property="gameplatformtype" />
+    <result column="IPADDRESS" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="BETTYPE" jdbcType="VARCHAR" property="bettype" />
+    <result column="PLAYTYPE" jdbcType="VARCHAR" property="playtype" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="GAMEPLATFORMID" jdbcType="VARCHAR" property="gameplatformid" />
+    <result column="GAMEPLATFORMCHILD" jdbcType="VARCHAR" property="gameplatformchild" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="VALIDBET" jdbcType="NUMERIC" property="validbet" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, UGSBETID, PARENTID, TXID, BETID, BETON, BETCLOSEDON, BETUPDATEDON, `TIMESTAMP`, 
+    ROUNDID, ROUNDSTATUS, USERID, USERNAME, RISKAMT, WINAMT, WINLOSS, BEFOREBAL, POSTBAL, 
+    CUR, GAMEPROVIDER, GAMENAME, GAMEID, GAMEPLATFORMTYPE, IPADDRESS, BETTYPE, PLAYTYPE, 
+    CREATETIME, GAMEPLATFORMID, GAMEPLATFORMCHILD, GROUPFOR, VALIDBET
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_SUNBET
+    where ID = #{id,jdbcType=NUMERIC}
+      and UGSBETID = #{ugsbetid,jdbcType=VARCHAR}
+  </select>
+  <select id="exists" parameterType="String" resultType="java.lang.Integer" >
+    select sum(a) from(
+	    select count(1) as a from FONTANA_BET_SUNBET
+	    where ugsbetid = #{betNum,jdbcType=VARCHAR}
+	    UNION ALL
+	    select count(1) as a from ${bcvalue}.FONTANA_BETS_SUNBET
+	    where ugsbetid = #{betNum,jdbcType=VARCHAR}
+    ) s
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from FONTANA_BET_SUNBET
+    where ID = #{id,jdbcType=NUMERIC}
+      and UGSBETID = #{ugsbetid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetSunbet">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_SUNBET (UGSBETID, PARENTID, TXID, 
+      BETID, BETON, BETCLOSEDON, 
+      BETUPDATEDON, `TIMESTAMP`, ROUNDID, 
+      ROUNDSTATUS, USERID, USERNAME, 
+      RISKAMT, WINAMT, WINLOSS, 
+      BEFOREBAL, POSTBAL, CUR, 
+      GAMEPROVIDER, GAMENAME, GAMEID, 
+      GAMEPLATFORMTYPE, IPADDRESS, BETTYPE, 
+      PLAYTYPE, CREATETIME, GAMEPLATFORMID, 
+      GAMEPLATFORMCHILD, GROUPFOR, VALIDBET
+      )
+    values (#{ugsbetid,jdbcType=VARCHAR}, #{parentid,jdbcType=NUMERIC}, #{txid,jdbcType=VARCHAR}, 
+      #{betid,jdbcType=VARCHAR}, #{beton,jdbcType=TIMESTAMP}, #{betclosedon,jdbcType=TIMESTAMP}, 
+      #{betupdatedon,jdbcType=TIMESTAMP}, #{timestamp,jdbcType=TIMESTAMP}, #{roundid,jdbcType=VARCHAR}, 
+      #{roundstatus,jdbcType=VARCHAR}, #{userid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, 
+      #{riskamt,jdbcType=NUMERIC}, #{winamt,jdbcType=NUMERIC}, #{winloss,jdbcType=NUMERIC}, 
+      #{beforebal,jdbcType=NUMERIC}, #{postbal,jdbcType=NUMERIC}, #{cur,jdbcType=VARCHAR}, 
+      #{gameprovider,jdbcType=VARCHAR}, #{gamename,jdbcType=VARCHAR}, #{gameid,jdbcType=VARCHAR}, 
+      #{gameplatformtype,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR}, #{bettype,jdbcType=VARCHAR}, 
+      #{playtype,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{gameplatformid,jdbcType=VARCHAR}, 
+      #{gameplatformchild,jdbcType=VARCHAR}, #{groupfor,jdbcType=TIMESTAMP}, #{validbet,jdbcType=NUMERIC}
+      )
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_SUNBET (UGSBETID, PARENTID, TXID, 
+		      BETID, BETON, BETCLOSEDON, 
+		      BETUPDATEDON, `TIMESTAMP`, ROUNDID, 
+		      ROUNDSTATUS, USERID, USERNAME, 
+		      RISKAMT, WINAMT, WINLOSS, 
+		      BEFOREBAL, POSTBAL, CUR, 
+		      GAMEPROVIDER, GAMENAME, GAMEID, 
+		      GAMEPLATFORMTYPE, IPADDRESS, BETTYPE, 
+		      PLAYTYPE, CREATETIME, GAMEPLATFORMID, 
+		      GAMEPLATFORMCHILD, GROUPFOR, VALIDBET
+		      )
+		    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.ugsbetid,jdbcType=VARCHAR}, #{item.parentid,jdbcType=NUMERIC}, #{item.txid,jdbcType=VARCHAR}, 
+		      #{item.betid,jdbcType=VARCHAR}, #{item.beton,jdbcType=TIMESTAMP}, #{item.betclosedon,jdbcType=TIMESTAMP}, 
+		      #{item.betupdatedon,jdbcType=TIMESTAMP}, #{item.timestamp,jdbcType=TIMESTAMP}, #{item.roundid,jdbcType=VARCHAR}, 
+		      #{item.roundstatus,jdbcType=VARCHAR}, #{item.userid,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, 
+		      #{item.riskamt,jdbcType=NUMERIC}, #{item.winamt,jdbcType=NUMERIC}, #{item.winloss,jdbcType=NUMERIC}, 
+		      #{item.beforebal,jdbcType=NUMERIC}, #{item.postbal,jdbcType=NUMERIC}, #{item.cur,jdbcType=VARCHAR}, 
+		      #{item.gameprovider,jdbcType=VARCHAR}, #{item.gamename,jdbcType=VARCHAR}, #{item.gameid,jdbcType=VARCHAR}, 
+		      #{item.gameplatformtype,jdbcType=VARCHAR}, #{item.ipaddress,jdbcType=VARCHAR}, #{item.bettype,jdbcType=VARCHAR}, 
+		      #{item.playtype,jdbcType=VARCHAR}, #{item.createtime,jdbcType=TIMESTAMP}, #{item.gameplatformid,jdbcType=VARCHAR}, 
+		      #{item.gameplatformchild,jdbcType=VARCHAR}, #{item.groupfor,jdbcType=TIMESTAMP}, #{item.validbet,jdbcType=NUMERIC}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetSunbet">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_SUNBET
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ugsbetid != null">
+        UGSBETID,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="txid != null">
+        TXID,
+      </if>
+      <if test="betid != null">
+        BETID,
+      </if>
+      <if test="beton != null">
+        BETON,
+      </if>
+      <if test="betclosedon != null">
+        BETCLOSEDON,
+      </if>
+      <if test="betupdatedon != null">
+        BETUPDATEDON,
+      </if>
+      <if test="timestamp != null">
+        `TIMESTAMP`,
+      </if>
+      <if test="roundid != null">
+        ROUNDID,
+      </if>
+      <if test="roundstatus != null">
+        ROUNDSTATUS,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="riskamt != null">
+        RISKAMT,
+      </if>
+      <if test="winamt != null">
+        WINAMT,
+      </if>
+      <if test="winloss != null">
+        WINLOSS,
+      </if>
+      <if test="beforebal != null">
+        BEFOREBAL,
+      </if>
+      <if test="postbal != null">
+        POSTBAL,
+      </if>
+      <if test="cur != null">
+        CUR,
+      </if>
+      <if test="gameprovider != null">
+        GAMEPROVIDER,
+      </if>
+      <if test="gamename != null">
+        GAMENAME,
+      </if>
+      <if test="gameid != null">
+        GAMEID,
+      </if>
+      <if test="gameplatformtype != null">
+        GAMEPLATFORMTYPE,
+      </if>
+      <if test="ipaddress != null">
+        IPADDRESS,
+      </if>
+      <if test="bettype != null">
+        BETTYPE,
+      </if>
+      <if test="playtype != null">
+        PLAYTYPE,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="gameplatformid != null">
+        GAMEPLATFORMID,
+      </if>
+      <if test="gameplatformchild != null">
+        GAMEPLATFORMCHILD,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="validbet != null">
+        VALIDBET,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ugsbetid != null">
+        #{ugsbetid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="txid != null">
+        #{txid,jdbcType=VARCHAR},
+      </if>
+      <if test="betid != null">
+        #{betid,jdbcType=VARCHAR},
+      </if>
+      <if test="beton != null">
+        #{beton,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betclosedon != null">
+        #{betclosedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betupdatedon != null">
+        #{betupdatedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roundid != null">
+        #{roundid,jdbcType=VARCHAR},
+      </if>
+      <if test="roundstatus != null">
+        #{roundstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="riskamt != null">
+        #{riskamt,jdbcType=NUMERIC},
+      </if>
+      <if test="winamt != null">
+        #{winamt,jdbcType=NUMERIC},
+      </if>
+      <if test="winloss != null">
+        #{winloss,jdbcType=NUMERIC},
+      </if>
+      <if test="beforebal != null">
+        #{beforebal,jdbcType=NUMERIC},
+      </if>
+      <if test="postbal != null">
+        #{postbal,jdbcType=NUMERIC},
+      </if>
+      <if test="cur != null">
+        #{cur,jdbcType=VARCHAR},
+      </if>
+      <if test="gameprovider != null">
+        #{gameprovider,jdbcType=VARCHAR},
+      </if>
+      <if test="gamename != null">
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="gameid != null">
+        #{gameid,jdbcType=VARCHAR},
+      </if>
+      <if test="gameplatformtype != null">
+        #{gameplatformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bettype != null">
+        #{bettype,jdbcType=VARCHAR},
+      </if>
+      <if test="playtype != null">
+        #{playtype,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameplatformid != null">
+        #{gameplatformid,jdbcType=VARCHAR},
+      </if>
+      <if test="gameplatformchild != null">
+        #{gameplatformchild,jdbcType=VARCHAR},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validbet != null">
+        #{validbet,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetSunbet">
+    update FONTANA_BET_SUNBET
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="txid != null">
+        TXID = #{txid,jdbcType=VARCHAR},
+      </if>
+      <if test="betid != null">
+        BETID = #{betid,jdbcType=VARCHAR},
+      </if>
+      <if test="beton != null">
+        BETON = #{beton,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betclosedon != null">
+        BETCLOSEDON = #{betclosedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betupdatedon != null">
+        BETUPDATEDON = #{betupdatedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timestamp != null">
+        `TIMESTAMP` = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roundid != null">
+        ROUNDID = #{roundid,jdbcType=VARCHAR},
+      </if>
+      <if test="roundstatus != null">
+        ROUNDSTATUS = #{roundstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="riskamt != null">
+        RISKAMT = #{riskamt,jdbcType=NUMERIC},
+      </if>
+      <if test="winamt != null">
+        WINAMT = #{winamt,jdbcType=NUMERIC},
+      </if>
+      <if test="winloss != null">
+        WINLOSS = #{winloss,jdbcType=NUMERIC},
+      </if>
+      <if test="beforebal != null">
+        BEFOREBAL = #{beforebal,jdbcType=NUMERIC},
+      </if>
+      <if test="postbal != null">
+        POSTBAL = #{postbal,jdbcType=NUMERIC},
+      </if>
+      <if test="cur != null">
+        CUR = #{cur,jdbcType=VARCHAR},
+      </if>
+      <if test="gameprovider != null">
+        GAMEPROVIDER = #{gameprovider,jdbcType=VARCHAR},
+      </if>
+      <if test="gamename != null">
+        GAMENAME = #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="gameid != null">
+        GAMEID = #{gameid,jdbcType=VARCHAR},
+      </if>
+      <if test="gameplatformtype != null">
+        GAMEPLATFORMTYPE = #{gameplatformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bettype != null">
+        BETTYPE = #{bettype,jdbcType=VARCHAR},
+      </if>
+      <if test="playtype != null">
+        PLAYTYPE = #{playtype,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameplatformid != null">
+        GAMEPLATFORMID = #{gameplatformid,jdbcType=VARCHAR},
+      </if>
+      <if test="gameplatformchild != null">
+        GAMEPLATFORMCHILD = #{gameplatformchild,jdbcType=VARCHAR},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validbet != null">
+        VALIDBET = #{validbet,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+      and UGSBETID = #{ugsbetid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetSunbet">
+    update FONTANA_BET_SUNBET
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      TXID = #{txid,jdbcType=VARCHAR},
+      BETID = #{betid,jdbcType=VARCHAR},
+      BETON = #{beton,jdbcType=TIMESTAMP},
+      BETCLOSEDON = #{betclosedon,jdbcType=TIMESTAMP},
+      BETUPDATEDON = #{betupdatedon,jdbcType=TIMESTAMP},
+      `TIMESTAMP` = #{timestamp,jdbcType=TIMESTAMP},
+      ROUNDID = #{roundid,jdbcType=VARCHAR},
+      ROUNDSTATUS = #{roundstatus,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=NUMERIC},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      RISKAMT = #{riskamt,jdbcType=NUMERIC},
+      WINAMT = #{winamt,jdbcType=NUMERIC},
+      WINLOSS = #{winloss,jdbcType=NUMERIC},
+      BEFOREBAL = #{beforebal,jdbcType=NUMERIC},
+      POSTBAL = #{postbal,jdbcType=NUMERIC},
+      CUR = #{cur,jdbcType=VARCHAR},
+      GAMEPROVIDER = #{gameprovider,jdbcType=VARCHAR},
+      GAMENAME = #{gamename,jdbcType=VARCHAR},
+      GAMEID = #{gameid,jdbcType=VARCHAR},
+      GAMEPLATFORMTYPE = #{gameplatformtype,jdbcType=VARCHAR},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      BETTYPE = #{bettype,jdbcType=VARCHAR},
+      PLAYTYPE = #{playtype,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      GAMEPLATFORMID = #{gameplatformid,jdbcType=VARCHAR},
+      GAMEPLATFORMCHILD = #{gameplatformchild,jdbcType=VARCHAR},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      VALIDBET = #{validbet,jdbcType=NUMERIC}
+    where ID = #{id,jdbcType=NUMERIC}
+      and UGSBETID = #{ugsbetid,jdbcType=VARCHAR}
+  </update>
+</mapper>

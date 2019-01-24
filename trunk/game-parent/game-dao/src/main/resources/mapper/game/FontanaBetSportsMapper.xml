@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetSportsMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetSports">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="CURRENCYCODE" jdbcType="VARCHAR" property="currencycode" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="SETTLETIME" jdbcType="TIMESTAMP" property="settletime" />
+    <result column="WAGERSTATUS" jdbcType="NUMERIC" property="wagerstatus" />
+    <result column="ODDS" jdbcType="NUMERIC" property="odds" />
+    <result column="XID" jdbcType="VARCHAR" property="xid" />
+    <result column="AMOUNT" jdbcType="NUMERIC" property="amount" />
+    <result column="RESULT" jdbcType="NUMERIC" property="result" />
+    <result column="IPADDRESS" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="BETTYPE" jdbcType="VARCHAR" property="bettype" />
+    <result column="SELECTION" jdbcType="VARCHAR" property="selection" />
+    <result column="HANDICAP" jdbcType="VARCHAR" property="handicap" />
+    <result column="PERIOD" jdbcType="VARCHAR" property="period" />
+    <result column="GROUP" jdbcType="VARCHAR" property="group" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="TAG" jdbcType="VARCHAR" property="tag" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="RESULTS" jdbcType="VARCHAR" property="results" />
+    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="INSERTTIME" jdbcType="TIMESTAMP" property="inserttime" />
+    <result column="USERID" jdbcType="NUMERIC" property="userid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="VALIDBET" jdbcType="NUMERIC" property="validbet" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERNAME, CURRENCYCODE, CREATETIME, SETTLETIME, WAGERSTATUS, ODDS, XID, AMOUNT, 
+    `RESULT`, IPADDRESS, BETTYPE, SELECTION, HANDICAP, PERIOD, `GROUP`, REMARK, TAG, 
+    `NAME`, RESULTS, STARTTIME, ENDTIME, INSERTTIME, USERID, CID, GROUPFOR, VALIDBET
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_SPORTS
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BET_SPORTS
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetSports">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_SPORTS (USERNAME, CURRENCYCODE, CREATETIME, 
+      SETTLETIME, WAGERSTATUS, ODDS, 
+      XID, AMOUNT, `RESULT`, 
+      IPADDRESS, BETTYPE, SELECTION, 
+      HANDICAP, PERIOD, `GROUP`, 
+      REMARK, TAG, `NAME`, 
+      RESULTS, STARTTIME, ENDTIME, 
+      INSERTTIME, USERID, CID, 
+      GROUPFOR, VALIDBET)
+    values (#{username,jdbcType=VARCHAR}, #{currencycode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{settletime,jdbcType=TIMESTAMP}, #{wagerstatus,jdbcType=NUMERIC}, #{odds,jdbcType=NUMERIC}, 
+      #{xid,jdbcType=VARCHAR}, #{amount,jdbcType=NUMERIC}, #{result,jdbcType=NUMERIC}, 
+      #{ipaddress,jdbcType=VARCHAR}, #{bettype,jdbcType=VARCHAR}, #{selection,jdbcType=VARCHAR}, 
+      #{handicap,jdbcType=VARCHAR}, #{period,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{results,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{inserttime,jdbcType=TIMESTAMP}, #{userid,jdbcType=NUMERIC}, #{cid,jdbcType=NUMERIC}, 
+      #{groupfor,jdbcType=TIMESTAMP}, #{validbet,jdbcType=NUMERIC})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_SPORTS (USERNAME, CURRENCYCODE, CREATETIME, 
+	      SETTLETIME, WAGERSTATUS, ODDS, 
+	      XID, AMOUNT, `RESULT`, 
+	      IPADDRESS, BETTYPE, SELECTION, 
+	      HANDICAP, PERIOD, `GROUP`, 
+	      REMARK, TAG, `NAME`, 
+	      RESULTS, STARTTIME, ENDTIME, 
+	      INSERTTIME, USERID, CID, 
+	      GROUPFOR, VALIDBET)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.username,jdbcType=VARCHAR}, #{item.currencycode,jdbcType=VARCHAR}, #{item.createtime,jdbcType=TIMESTAMP}, 
+		      #{item.settletime,jdbcType=TIMESTAMP}, #{item.wagerstatus,jdbcType=NUMERIC}, #{item.odds,jdbcType=NUMERIC}, 
+		      #{item.xid,jdbcType=VARCHAR}, #{item.amount,jdbcType=NUMERIC}, #{item.result,jdbcType=NUMERIC}, 
+		      #{item.ipaddress,jdbcType=VARCHAR}, #{item.bettype,jdbcType=VARCHAR}, #{item.selection,jdbcType=VARCHAR}, 
+		      #{item.handicap,jdbcType=VARCHAR}, #{item.period,jdbcType=VARCHAR}, #{item.group,jdbcType=VARCHAR}, 
+		      #{item.remark,jdbcType=VARCHAR}, #{item.tag,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, 
+		      #{item.results,jdbcType=VARCHAR}, #{item.starttime,jdbcType=TIMESTAMP}, #{item.endtime,jdbcType=TIMESTAMP}, 
+		      #{item.inserttime,jdbcType=TIMESTAMP}, #{item.userid,jdbcType=NUMERIC}, #{item.cid,jdbcType=NUMERIC}, 
+		      #{item.groupfor,jdbcType=TIMESTAMP}, #{item.validbet,jdbcType=NUMERIC}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetSports">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_SPORTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="currencycode != null">
+        CURRENCYCODE,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="settletime != null">
+        SETTLETIME,
+      </if>
+      <if test="wagerstatus != null">
+        WAGERSTATUS,
+      </if>
+      <if test="odds != null">
+        ODDS,
+      </if>
+      <if test="xid != null">
+        XID,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="result != null">
+        `RESULT`,
+      </if>
+      <if test="ipaddress != null">
+        IPADDRESS,
+      </if>
+      <if test="bettype != null">
+        BETTYPE,
+      </if>
+      <if test="selection != null">
+        SELECTION,
+      </if>
+      <if test="handicap != null">
+        HANDICAP,
+      </if>
+      <if test="period != null">
+        PERIOD,
+      </if>
+      <if test="group != null">
+        `GROUP`,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="tag != null">
+        TAG,
+      </if>
+      <if test="name != null">
+        `NAME`,
+      </if>
+      <if test="results != null">
+        RESULTS,
+      </if>
+      <if test="starttime != null">
+        STARTTIME,
+      </if>
+      <if test="endtime != null">
+        ENDTIME,
+      </if>
+      <if test="inserttime != null">
+        INSERTTIME,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="validbet != null">
+        VALIDBET,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="currencycode != null">
+        #{currencycode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settletime != null">
+        #{settletime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wagerstatus != null">
+        #{wagerstatus,jdbcType=NUMERIC},
+      </if>
+      <if test="odds != null">
+        #{odds,jdbcType=NUMERIC},
+      </if>
+      <if test="xid != null">
+        #{xid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="ipaddress != null">
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bettype != null">
+        #{bettype,jdbcType=VARCHAR},
+      </if>
+      <if test="selection != null">
+        #{selection,jdbcType=VARCHAR},
+      </if>
+      <if test="handicap != null">
+        #{handicap,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="results != null">
+        #{results,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validbet != null">
+        #{validbet,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetSports">
+    update FONTANA_BET_SPORTS
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="currencycode != null">
+        CURRENCYCODE = #{currencycode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settletime != null">
+        SETTLETIME = #{settletime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wagerstatus != null">
+        WAGERSTATUS = #{wagerstatus,jdbcType=NUMERIC},
+      </if>
+      <if test="odds != null">
+        ODDS = #{odds,jdbcType=NUMERIC},
+      </if>
+      <if test="xid != null">
+        XID = #{xid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        `RESULT` = #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="ipaddress != null">
+        IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bettype != null">
+        BETTYPE = #{bettype,jdbcType=VARCHAR},
+      </if>
+      <if test="selection != null">
+        SELECTION = #{selection,jdbcType=VARCHAR},
+      </if>
+      <if test="handicap != null">
+        HANDICAP = #{handicap,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        PERIOD = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        `GROUP` = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        TAG = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="results != null">
+        RESULTS = #{results,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inserttime != null">
+        INSERTTIME = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validbet != null">
+        VALIDBET = #{validbet,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetSports">
+    update FONTANA_BET_SPORTS
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      CURRENCYCODE = #{currencycode,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      SETTLETIME = #{settletime,jdbcType=TIMESTAMP},
+      WAGERSTATUS = #{wagerstatus,jdbcType=NUMERIC},
+      ODDS = #{odds,jdbcType=NUMERIC},
+      XID = #{xid,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=NUMERIC},
+      `RESULT` = #{result,jdbcType=NUMERIC},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      BETTYPE = #{bettype,jdbcType=VARCHAR},
+      SELECTION = #{selection,jdbcType=VARCHAR},
+      HANDICAP = #{handicap,jdbcType=VARCHAR},
+      PERIOD = #{period,jdbcType=VARCHAR},
+      `GROUP` = #{group,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      TAG = #{tag,jdbcType=VARCHAR},
+      `NAME` = #{name,jdbcType=VARCHAR},
+      RESULTS = #{results,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      INSERTTIME = #{inserttime,jdbcType=TIMESTAMP},
+      USERID = #{userid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      VALIDBET = #{validbet,jdbcType=NUMERIC}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

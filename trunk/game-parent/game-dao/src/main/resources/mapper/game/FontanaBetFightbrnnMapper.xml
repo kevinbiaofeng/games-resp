@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetFightbrnnMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetFightbrnn">
+    <id column="id" jdbcType="NUMERIC" property="id" />
+    <result column="pan_id" jdbcType="VARCHAR" property="panId" />
+    <result column="time_begin" jdbcType="TIMESTAMP" property="timeBegin" />
+    <result column="time_end" jdbcType="TIMESTAMP" property="timeEnd" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="roomid" jdbcType="NUMERIC" property="roomid" />
+    <result column="tableid" jdbcType="NUMERIC" property="tableid" />
+    <result column="seated" jdbcType="VARCHAR" property="seated" />
+    <result column="bet_value" jdbcType="VARCHAR" property="betValue" />
+    <result column="win" jdbcType="NUMERIC" property="win" />
+    <result column="value" jdbcType="NUMERIC" property="value" />
+    <result column="zhuangj" jdbcType="VARCHAR" property="zhuangj" />
+    <result column="scards" jdbcType="VARCHAR" property="scards" />
+    <result column="gamecoin" jdbcType="NUMERIC" property="gamecoin" />
+    <result column="fee" jdbcType="NUMERIC" property="fee" />
+    <result column="ip_user" jdbcType="VARCHAR" property="ipUser" />
+    <result column="robot" jdbcType="NUMERIC" property="robot" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="round_guid" jdbcType="VARCHAR" property="roundGuid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="groupfor" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="uid" jdbcType="NUMERIC" property="uid" />
+    <result column="cid" jdbcType="NUMERIC" property="cid" />
+    <result column="pid" jdbcType="NUMERIC" property="pid" />
+    <result column="gid" jdbcType="NUMERIC" property="gid" />
+    <result column="aid" jdbcType="NUMERIC" property="aid" />
+    <result column="sid" jdbcType="NUMERIC" property="sid" />
+    <result column="bet_values" jdbcType="NUMERIC" property="betValues" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pan_id, time_begin, time_end, username, roomid, tableid, seated, bet_value, win, 
+    `value`, zhuangj, scards, gamecoin, fee, ip_user, robot, room_name, round_guid, create_time, 
+    groupfor, `uid`, cid, pid, gid, aid, sid, bet_values
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_FIGHTBRNN
+    where id = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long">
+    delete from FONTANA_BET_FIGHTBRNN
+    where id = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetFightbrnn">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHTBRNN (pan_id, time_begin, time_end, 
+      username, roomid, tableid, 
+      seated, bet_value, win, 
+      `value`, zhuangj, scards, 
+      gamecoin, fee, ip_user, 
+      robot, room_name, round_guid, 
+      create_time, groupfor, `uid`, 
+      cid, pid, gid, aid, 
+      sid, bet_values)
+    values (#{panId,jdbcType=VARCHAR}, #{timeBegin,jdbcType=TIMESTAMP}, #{timeEnd,jdbcType=TIMESTAMP}, 
+      #{username,jdbcType=VARCHAR}, #{roomid,jdbcType=NUMERIC}, #{tableid,jdbcType=NUMERIC}, 
+      #{seated,jdbcType=VARCHAR}, #{betValue,jdbcType=VARCHAR}, #{win,jdbcType=NUMERIC}, 
+      #{value,jdbcType=NUMERIC}, #{zhuangj,jdbcType=VARCHAR}, #{scards,jdbcType=VARCHAR}, 
+      #{gamecoin,jdbcType=NUMERIC}, #{fee,jdbcType=NUMERIC}, #{ipUser,jdbcType=VARCHAR}, 
+      #{robot,jdbcType=NUMERIC}, #{roomName,jdbcType=VARCHAR}, #{roundGuid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{groupfor,jdbcType=TIMESTAMP}, #{uid,jdbcType=NUMERIC}, 
+      #{cid,jdbcType=NUMERIC}, #{pid,jdbcType=NUMERIC}, #{gid,jdbcType=NUMERIC}, #{aid,jdbcType=NUMERIC}, 
+      #{sid,jdbcType=NUMERIC}, #{betValues,jdbcType=NUMERIC})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_FIGHTBRNN (pan_id, time_begin, time_end, 
+	      username, roomid, tableid, 
+	      seated, bet_value, win, 
+	      `value`, zhuangj, scards, 
+	      gamecoin, fee, ip_user, 
+	      robot, room_name, round_guid, 
+	      create_time, groupfor, `uid`, 
+	      cid, pid, gid, aid, 
+	      sid, bet_values)
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.panId,jdbcType=VARCHAR}, #{item.timeBegin,jdbcType=TIMESTAMP}, #{item.timeEnd,jdbcType=TIMESTAMP}, 
+		      #{item.username,jdbcType=VARCHAR}, #{item.roomid,jdbcType=NUMERIC}, #{item.tableid,jdbcType=NUMERIC}, 
+		      #{item.seated,jdbcType=VARCHAR}, #{item.betValue,jdbcType=VARCHAR}, #{item.win,jdbcType=NUMERIC}, 
+		      #{item.value,jdbcType=NUMERIC}, #{item.zhuangj,jdbcType=VARCHAR}, #{item.scards,jdbcType=VARCHAR}, 
+		      #{item.gamecoin,jdbcType=NUMERIC}, #{item.fee,jdbcType=NUMERIC}, #{item.ipUser,jdbcType=VARCHAR}, 
+		      #{item.robot,jdbcType=NUMERIC}, #{item.roomName,jdbcType=VARCHAR}, #{item.roundGuid,jdbcType=VARCHAR}, 
+		      #{item.createTime,jdbcType=TIMESTAMP}, #{item.groupfor,jdbcType=TIMESTAMP}, #{item.uid,jdbcType=NUMERIC}, 
+		      #{item.cid,jdbcType=NUMERIC}, #{item.pid,jdbcType=NUMERIC}, #{item.gid,jdbcType=NUMERIC}, #{item.aid,jdbcType=NUMERIC}, 
+		      #{item.sid,jdbcType=NUMERIC}, #{item.betValues,jdbcType=NUMERIC}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetFightbrnn">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_FIGHTBRNN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="panId != null">
+        pan_id,
+      </if>
+      <if test="timeBegin != null">
+        time_begin,
+      </if>
+      <if test="timeEnd != null">
+        time_end,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="roomid != null">
+        roomid,
+      </if>
+      <if test="tableid != null">
+        tableid,
+      </if>
+      <if test="seated != null">
+        seated,
+      </if>
+      <if test="betValue != null">
+        bet_value,
+      </if>
+      <if test="win != null">
+        win,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+      <if test="zhuangj != null">
+        zhuangj,
+      </if>
+      <if test="scards != null">
+        scards,
+      </if>
+      <if test="gamecoin != null">
+        gamecoin,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="ipUser != null">
+        ip_user,
+      </if>
+      <if test="robot != null">
+        robot,
+      </if>
+      <if test="roomName != null">
+        room_name,
+      </if>
+      <if test="roundGuid != null">
+        round_guid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="groupfor != null">
+        groupfor,
+      </if>
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="betValues != null">
+        bet_values,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="panId != null">
+        #{panId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeBegin != null">
+        #{timeBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeEnd != null">
+        #{timeEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        #{roomid,jdbcType=NUMERIC},
+      </if>
+      <if test="tableid != null">
+        #{tableid,jdbcType=NUMERIC},
+      </if>
+      <if test="seated != null">
+        #{seated,jdbcType=VARCHAR},
+      </if>
+      <if test="betValue != null">
+        #{betValue,jdbcType=VARCHAR},
+      </if>
+      <if test="win != null">
+        #{win,jdbcType=NUMERIC},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=NUMERIC},
+      </if>
+      <if test="zhuangj != null">
+        #{zhuangj,jdbcType=VARCHAR},
+      </if>
+      <if test="scards != null">
+        #{scards,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecoin != null">
+        #{gamecoin,jdbcType=NUMERIC},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=NUMERIC},
+      </if>
+      <if test="ipUser != null">
+        #{ipUser,jdbcType=VARCHAR},
+      </if>
+      <if test="robot != null">
+        #{robot,jdbcType=NUMERIC},
+      </if>
+      <if test="roomName != null">
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roundGuid != null">
+        #{roundGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=NUMERIC},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=NUMERIC},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=NUMERIC},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=NUMERIC},
+      </if>
+      <if test="betValues != null">
+        #{betValues,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetFightbrnn">
+    update FONTANA_BET_FIGHTBRNN
+    <set>
+      <if test="panId != null">
+        pan_id = #{panId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeBegin != null">
+        time_begin = #{timeBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeEnd != null">
+        time_end = #{timeEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        roomid = #{roomid,jdbcType=NUMERIC},
+      </if>
+      <if test="tableid != null">
+        tableid = #{tableid,jdbcType=NUMERIC},
+      </if>
+      <if test="seated != null">
+        seated = #{seated,jdbcType=VARCHAR},
+      </if>
+      <if test="betValue != null">
+        bet_value = #{betValue,jdbcType=VARCHAR},
+      </if>
+      <if test="win != null">
+        win = #{win,jdbcType=NUMERIC},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=NUMERIC},
+      </if>
+      <if test="zhuangj != null">
+        zhuangj = #{zhuangj,jdbcType=VARCHAR},
+      </if>
+      <if test="scards != null">
+        scards = #{scards,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecoin != null">
+        gamecoin = #{gamecoin,jdbcType=NUMERIC},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=NUMERIC},
+      </if>
+      <if test="ipUser != null">
+        ip_user = #{ipUser,jdbcType=VARCHAR},
+      </if>
+      <if test="robot != null">
+        robot = #{robot,jdbcType=NUMERIC},
+      </if>
+      <if test="roomName != null">
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roundGuid != null">
+        round_guid = #{roundGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        groupfor = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=NUMERIC},
+      </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=NUMERIC},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=NUMERIC},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=NUMERIC},
+      </if>
+      <if test="betValues != null">
+        bet_values = #{betValues,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where id = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetFightbrnn">
+    update FONTANA_BET_FIGHTBRNN
+    set pan_id = #{panId,jdbcType=VARCHAR},
+      time_begin = #{timeBegin,jdbcType=TIMESTAMP},
+      time_end = #{timeEnd,jdbcType=TIMESTAMP},
+      username = #{username,jdbcType=VARCHAR},
+      roomid = #{roomid,jdbcType=NUMERIC},
+      tableid = #{tableid,jdbcType=NUMERIC},
+      seated = #{seated,jdbcType=VARCHAR},
+      bet_value = #{betValue,jdbcType=VARCHAR},
+      win = #{win,jdbcType=NUMERIC},
+      `value` = #{value,jdbcType=NUMERIC},
+      zhuangj = #{zhuangj,jdbcType=VARCHAR},
+      scards = #{scards,jdbcType=VARCHAR},
+      gamecoin = #{gamecoin,jdbcType=NUMERIC},
+      fee = #{fee,jdbcType=NUMERIC},
+      ip_user = #{ipUser,jdbcType=VARCHAR},
+      robot = #{robot,jdbcType=NUMERIC},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      round_guid = #{roundGuid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      groupfor = #{groupfor,jdbcType=TIMESTAMP},
+      `uid` = #{uid,jdbcType=NUMERIC},
+      cid = #{cid,jdbcType=NUMERIC},
+      pid = #{pid,jdbcType=NUMERIC},
+      gid = #{gid,jdbcType=NUMERIC},
+      aid = #{aid,jdbcType=NUMERIC},
+      sid = #{sid,jdbcType=NUMERIC},
+      bet_values = #{betValues,jdbcType=NUMERIC}
+    where id = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

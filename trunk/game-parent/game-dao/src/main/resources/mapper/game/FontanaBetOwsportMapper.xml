@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetOwsportMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetOwsport">
+    <id column="id" jdbcType="NUMERIC" property="id" />
+    <result column="betNum" jdbcType="NUMERIC" property="betnum" />
+    <result column="uid" jdbcType="NUMERIC" property="uid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="cid" jdbcType="NUMERIC" property="cid" />
+    <result column="betTime" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="betAmount" jdbcType="NUMERIC" property="betamount" />
+    <result column="validAmount" jdbcType="NUMERIC" property="validamount" />
+    <result column="result" jdbcType="NUMERIC" property="result" />
+    <result column="ticketStatus" jdbcType="VARCHAR" property="ticketstatus" />
+    <result column="groupfor" jdbcType="TIMESTAMP" property="groupfor" />
+    <result column="sportType" jdbcType="VARCHAR" property="sporttype" />
+    <result column="versionKey" jdbcType="NUMERIC" property="versionkey" />
+    <result column="pid" jdbcType="NUMERIC" property="pid" />
+    <result column="gid" jdbcType="NUMERIC" property="gid" />
+    <result column="aid" jdbcType="NUMERIC" property="aid" />
+    <result column="sid" jdbcType="NUMERIC" property="sid" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="matchId" jdbcType="VARCHAR" property="matchid" />
+    <result column="leagueId" jdbcType="VARCHAR" property="leagueid" />
+    <result column="leagueName" jdbcType="VARCHAR" property="leaguename" />
+    <result column="awayId" jdbcType="VARCHAR" property="awayid" />
+    <result column="awayIDName" jdbcType="VARCHAR" property="awayidname" />
+    <result column="homeId" jdbcType="VARCHAR" property="homeid" />
+    <result column="homeIDName" jdbcType="VARCHAR" property="homeidname" />
+    <result column="matchDatetime" jdbcType="VARCHAR" property="matchdatetime" />
+    <result column="betType" jdbcType="VARCHAR" property="bettype" />
+    <result column="parlayRefNo" jdbcType="VARCHAR" property="parlayrefno" />
+    <result column="betTeam" jdbcType="VARCHAR" property="betteam" />
+    <result column="HDP" jdbcType="NUMERIC" property="hdp" />
+    <result column="awayHDP" jdbcType="NUMERIC" property="awayhdp" />
+    <result column="homeHDP" jdbcType="NUMERIC" property="homehdp" />
+    <result column="odds" jdbcType="NUMERIC" property="odds" />
+    <result column="oddsType" jdbcType="SMALLINT" property="oddstype" />
+    <result column="awayScore" jdbcType="VARCHAR" property="awayscore" />
+    <result column="homeScore" jdbcType="VARCHAR" property="homescore" />
+    <result column="isLive" jdbcType="VARCHAR" property="islive" />
+    <result column="isLucky" jdbcType="VARCHAR" property="islucky" />
+    <result column="bet_Tag" jdbcType="VARCHAR" property="betTag" />
+    <result column="lastBallNo" jdbcType="VARCHAR" property="lastballno" />
+    <result column="afterAmount" jdbcType="NUMERIC" property="afteramount" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, betNum, `uid`, username, cid, betTime, betAmount, validAmount, `result`, ticketStatus, 
+    groupfor, sportType, versionKey, pid, gid, aid, sid, `source`, matchId, leagueId, 
+    leagueName, awayId, awayIDName, homeId, homeIDName, matchDatetime, betType, parlayRefNo, 
+    betTeam, HDP, awayHDP, homeHDP, odds, oddsType, awayScore, homeScore, isLive, isLucky, 
+    bet_Tag, lastBallNo, afterAmount, currency
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BET_OWSPORT
+    where id = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long">
+    delete from FONTANA_BET_OWSPORT
+    where id = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetOwsport">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_OWSPORT (betNum, `uid`, username, 
+      cid, betTime, betAmount, 
+      validAmount, `result`, ticketStatus, 
+      groupfor, sportType, versionKey, 
+      pid, gid, aid, sid, 
+      `source`, matchId, leagueId, 
+      leagueName, awayId, awayIDName, 
+      homeId, homeIDName, matchDatetime, 
+      betType, parlayRefNo, betTeam, 
+      HDP, awayHDP, homeHDP, 
+      odds, oddsType, awayScore, 
+      homeScore, isLive, isLucky, 
+      bet_Tag, lastBallNo, afterAmount, 
+      currency)
+    values (#{betnum,jdbcType=NUMERIC}, #{uid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, 
+      #{cid,jdbcType=NUMERIC}, #{bettime,jdbcType=TIMESTAMP}, #{betamount,jdbcType=NUMERIC}, 
+      #{validamount,jdbcType=NUMERIC}, #{result,jdbcType=NUMERIC}, #{ticketstatus,jdbcType=VARCHAR}, 
+      #{groupfor,jdbcType=TIMESTAMP}, #{sporttype,jdbcType=VARCHAR}, #{versionkey,jdbcType=NUMERIC}, 
+      #{pid,jdbcType=NUMERIC}, #{gid,jdbcType=NUMERIC}, #{aid,jdbcType=NUMERIC}, #{sid,jdbcType=NUMERIC}, 
+      #{source,jdbcType=VARCHAR}, #{matchid,jdbcType=VARCHAR}, #{leagueid,jdbcType=VARCHAR}, 
+      #{leaguename,jdbcType=VARCHAR}, #{awayid,jdbcType=VARCHAR}, #{awayidname,jdbcType=VARCHAR}, 
+      #{homeid,jdbcType=VARCHAR}, #{homeidname,jdbcType=VARCHAR}, #{matchdatetime,jdbcType=VARCHAR}, 
+      #{bettype,jdbcType=VARCHAR}, #{parlayrefno,jdbcType=VARCHAR}, #{betteam,jdbcType=VARCHAR}, 
+      #{hdp,jdbcType=NUMERIC}, #{awayhdp,jdbcType=NUMERIC}, #{homehdp,jdbcType=NUMERIC}, 
+      #{odds,jdbcType=NUMERIC}, #{oddstype,jdbcType=SMALLINT}, #{awayscore,jdbcType=VARCHAR}, 
+      #{homescore,jdbcType=VARCHAR}, #{islive,jdbcType=VARCHAR}, #{islucky,jdbcType=VARCHAR}, 
+      #{betTag,jdbcType=VARCHAR}, #{lastballno,jdbcType=VARCHAR}, #{afteramount,jdbcType=NUMERIC}, 
+      #{currency,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_OWSPORT (betNum, `uid`, username, 
+		      cid, betTime, betAmount, 
+		      validAmount, `result`, ticketStatus, 
+		      groupfor, sportType, versionKey, 
+		      pid, gid, aid, sid, 
+		      `source`, matchId, leagueId, 
+		      leagueName, awayId, awayIDName, 
+		      homeId, homeIDName, matchDatetime, 
+		      betType, parlayRefNo, betTeam, 
+		      HDP, awayHDP, homeHDP, 
+		      odds, oddsType, awayScore, 
+		      homeScore, isLive, isLucky, 
+		      bet_Tag, lastBallNo, afterAmount, 
+		      currency)
+		    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.betnum,jdbcType=NUMERIC}, #{item.uid,jdbcType=NUMERIC}, #{item.username,jdbcType=VARCHAR}, 
+		      #{item.cid,jdbcType=NUMERIC}, #{item.bettime,jdbcType=TIMESTAMP}, #{item.betamount,jdbcType=NUMERIC}, 
+		      #{item.validamount,jdbcType=NUMERIC}, #{item.result,jdbcType=NUMERIC}, #{item.ticketstatus,jdbcType=VARCHAR}, 
+		      #{item.groupfor,jdbcType=TIMESTAMP}, #{item.sporttype,jdbcType=VARCHAR}, #{item.versionkey,jdbcType=NUMERIC}, 
+		      #{item.pid,jdbcType=NUMERIC}, #{item.gid,jdbcType=NUMERIC}, #{item.aid,jdbcType=NUMERIC}, #{item.sid,jdbcType=NUMERIC}, 
+		      #{item.source,jdbcType=VARCHAR}, #{item.matchid,jdbcType=VARCHAR}, #{item.leagueid,jdbcType=VARCHAR}, 
+		      #{item.leaguename,jdbcType=VARCHAR}, #{item.awayid,jdbcType=VARCHAR}, #{item.awayidname,jdbcType=VARCHAR}, 
+		      #{item.homeid,jdbcType=VARCHAR}, #{item.homeidname,jdbcType=VARCHAR}, #{item.matchdatetime,jdbcType=VARCHAR}, 
+		      #{item.bettype,jdbcType=VARCHAR}, #{item.parlayrefno,jdbcType=VARCHAR}, #{item.betteam,jdbcType=VARCHAR}, 
+		      #{item.hdp,jdbcType=NUMERIC}, #{item.awayhdp,jdbcType=NUMERIC}, #{item.homehdp,jdbcType=NUMERIC}, 
+		      #{item.odds,jdbcType=NUMERIC}, #{item.oddstype,jdbcType=SMALLINT}, #{item.awayscore,jdbcType=VARCHAR}, 
+		      #{item.homescore,jdbcType=VARCHAR}, #{item.islive,jdbcType=VARCHAR}, #{item.islucky,jdbcType=VARCHAR}, 
+		      #{item.betTag,jdbcType=VARCHAR}, #{item.lastballno,jdbcType=VARCHAR}, #{item.afteramount,jdbcType=NUMERIC}, 
+		      #{item.currency,jdbcType=VARCHAR}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetOwsport">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_OWSPORT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="betnum != null">
+        betNum,
+      </if>
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="bettime != null">
+        betTime,
+      </if>
+      <if test="betamount != null">
+        betAmount,
+      </if>
+      <if test="validamount != null">
+        validAmount,
+      </if>
+      <if test="result != null">
+        `result`,
+      </if>
+      <if test="ticketstatus != null">
+        ticketStatus,
+      </if>
+      <if test="groupfor != null">
+        groupfor,
+      </if>
+      <if test="sporttype != null">
+        sportType,
+      </if>
+      <if test="versionkey != null">
+        versionKey,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="matchid != null">
+        matchId,
+      </if>
+      <if test="leagueid != null">
+        leagueId,
+      </if>
+      <if test="leaguename != null">
+        leagueName,
+      </if>
+      <if test="awayid != null">
+        awayId,
+      </if>
+      <if test="awayidname != null">
+        awayIDName,
+      </if>
+      <if test="homeid != null">
+        homeId,
+      </if>
+      <if test="homeidname != null">
+        homeIDName,
+      </if>
+      <if test="matchdatetime != null">
+        matchDatetime,
+      </if>
+      <if test="bettype != null">
+        betType,
+      </if>
+      <if test="parlayrefno != null">
+        parlayRefNo,
+      </if>
+      <if test="betteam != null">
+        betTeam,
+      </if>
+      <if test="hdp != null">
+        HDP,
+      </if>
+      <if test="awayhdp != null">
+        awayHDP,
+      </if>
+      <if test="homehdp != null">
+        homeHDP,
+      </if>
+      <if test="odds != null">
+        odds,
+      </if>
+      <if test="oddstype != null">
+        oddsType,
+      </if>
+      <if test="awayscore != null">
+        awayScore,
+      </if>
+      <if test="homescore != null">
+        homeScore,
+      </if>
+      <if test="islive != null">
+        isLive,
+      </if>
+      <if test="islucky != null">
+        isLucky,
+      </if>
+      <if test="betTag != null">
+        bet_Tag,
+      </if>
+      <if test="lastballno != null">
+        lastBallNo,
+      </if>
+      <if test="afteramount != null">
+        afterAmount,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="betnum != null">
+        #{betnum,jdbcType=NUMERIC},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betamount != null">
+        #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamount != null">
+        #{validamount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="ticketstatus != null">
+        #{ticketstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sporttype != null">
+        #{sporttype,jdbcType=VARCHAR},
+      </if>
+      <if test="versionkey != null">
+        #{versionkey,jdbcType=NUMERIC},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=NUMERIC},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=NUMERIC},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=NUMERIC},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=NUMERIC},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="matchid != null">
+        #{matchid,jdbcType=VARCHAR},
+      </if>
+      <if test="leagueid != null">
+        #{leagueid,jdbcType=VARCHAR},
+      </if>
+      <if test="leaguename != null">
+        #{leaguename,jdbcType=VARCHAR},
+      </if>
+      <if test="awayid != null">
+        #{awayid,jdbcType=VARCHAR},
+      </if>
+      <if test="awayidname != null">
+        #{awayidname,jdbcType=VARCHAR},
+      </if>
+      <if test="homeid != null">
+        #{homeid,jdbcType=VARCHAR},
+      </if>
+      <if test="homeidname != null">
+        #{homeidname,jdbcType=VARCHAR},
+      </if>
+      <if test="matchdatetime != null">
+        #{matchdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="bettype != null">
+        #{bettype,jdbcType=VARCHAR},
+      </if>
+      <if test="parlayrefno != null">
+        #{parlayrefno,jdbcType=VARCHAR},
+      </if>
+      <if test="betteam != null">
+        #{betteam,jdbcType=VARCHAR},
+      </if>
+      <if test="hdp != null">
+        #{hdp,jdbcType=NUMERIC},
+      </if>
+      <if test="awayhdp != null">
+        #{awayhdp,jdbcType=NUMERIC},
+      </if>
+      <if test="homehdp != null">
+        #{homehdp,jdbcType=NUMERIC},
+      </if>
+      <if test="odds != null">
+        #{odds,jdbcType=NUMERIC},
+      </if>
+      <if test="oddstype != null">
+        #{oddstype,jdbcType=SMALLINT},
+      </if>
+      <if test="awayscore != null">
+        #{awayscore,jdbcType=VARCHAR},
+      </if>
+      <if test="homescore != null">
+        #{homescore,jdbcType=VARCHAR},
+      </if>
+      <if test="islive != null">
+        #{islive,jdbcType=VARCHAR},
+      </if>
+      <if test="islucky != null">
+        #{islucky,jdbcType=VARCHAR},
+      </if>
+      <if test="betTag != null">
+        #{betTag,jdbcType=VARCHAR},
+      </if>
+      <if test="lastballno != null">
+        #{lastballno,jdbcType=VARCHAR},
+      </if>
+      <if test="afteramount != null">
+        #{afteramount,jdbcType=NUMERIC},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetOwsport">
+    update FONTANA_BET_OWSPORT
+    <set>
+      <if test="betnum != null">
+        betNum = #{betnum,jdbcType=NUMERIC},
+      </if>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=NUMERIC},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="bettime != null">
+        betTime = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="betamount != null">
+        betAmount = #{betamount,jdbcType=NUMERIC},
+      </if>
+      <if test="validamount != null">
+        validAmount = #{validamount,jdbcType=NUMERIC},
+      </if>
+      <if test="result != null">
+        `result` = #{result,jdbcType=NUMERIC},
+      </if>
+      <if test="ticketstatus != null">
+        ticketStatus = #{ticketstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="groupfor != null">
+        groupfor = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sporttype != null">
+        sportType = #{sporttype,jdbcType=VARCHAR},
+      </if>
+      <if test="versionkey != null">
+        versionKey = #{versionkey,jdbcType=NUMERIC},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=NUMERIC},
+      </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=NUMERIC},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=NUMERIC},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=NUMERIC},
+      </if>
+      <if test="source != null">
+        `source` = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="matchid != null">
+        matchId = #{matchid,jdbcType=VARCHAR},
+      </if>
+      <if test="leagueid != null">
+        leagueId = #{leagueid,jdbcType=VARCHAR},
+      </if>
+      <if test="leaguename != null">
+        leagueName = #{leaguename,jdbcType=VARCHAR},
+      </if>
+      <if test="awayid != null">
+        awayId = #{awayid,jdbcType=VARCHAR},
+      </if>
+      <if test="awayidname != null">
+        awayIDName = #{awayidname,jdbcType=VARCHAR},
+      </if>
+      <if test="homeid != null">
+        homeId = #{homeid,jdbcType=VARCHAR},
+      </if>
+      <if test="homeidname != null">
+        homeIDName = #{homeidname,jdbcType=VARCHAR},
+      </if>
+      <if test="matchdatetime != null">
+        matchDatetime = #{matchdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="bettype != null">
+        betType = #{bettype,jdbcType=VARCHAR},
+      </if>
+      <if test="parlayrefno != null">
+        parlayRefNo = #{parlayrefno,jdbcType=VARCHAR},
+      </if>
+      <if test="betteam != null">
+        betTeam = #{betteam,jdbcType=VARCHAR},
+      </if>
+      <if test="hdp != null">
+        HDP = #{hdp,jdbcType=NUMERIC},
+      </if>
+      <if test="awayhdp != null">
+        awayHDP = #{awayhdp,jdbcType=NUMERIC},
+      </if>
+      <if test="homehdp != null">
+        homeHDP = #{homehdp,jdbcType=NUMERIC},
+      </if>
+      <if test="odds != null">
+        odds = #{odds,jdbcType=NUMERIC},
+      </if>
+      <if test="oddstype != null">
+        oddsType = #{oddstype,jdbcType=SMALLINT},
+      </if>
+      <if test="awayscore != null">
+        awayScore = #{awayscore,jdbcType=VARCHAR},
+      </if>
+      <if test="homescore != null">
+        homeScore = #{homescore,jdbcType=VARCHAR},
+      </if>
+      <if test="islive != null">
+        isLive = #{islive,jdbcType=VARCHAR},
+      </if>
+      <if test="islucky != null">
+        isLucky = #{islucky,jdbcType=VARCHAR},
+      </if>
+      <if test="betTag != null">
+        bet_Tag = #{betTag,jdbcType=VARCHAR},
+      </if>
+      <if test="lastballno != null">
+        lastBallNo = #{lastballno,jdbcType=VARCHAR},
+      </if>
+      <if test="afteramount != null">
+        afterAmount = #{afteramount,jdbcType=NUMERIC},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetOwsport">
+    update FONTANA_BET_OWSPORT
+    set betNum = #{betnum,jdbcType=NUMERIC},
+      `uid` = #{uid,jdbcType=NUMERIC},
+      username = #{username,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=NUMERIC},
+      betTime = #{bettime,jdbcType=TIMESTAMP},
+      betAmount = #{betamount,jdbcType=NUMERIC},
+      validAmount = #{validamount,jdbcType=NUMERIC},
+      `result` = #{result,jdbcType=NUMERIC},
+      ticketStatus = #{ticketstatus,jdbcType=VARCHAR},
+      groupfor = #{groupfor,jdbcType=TIMESTAMP},
+      sportType = #{sporttype,jdbcType=VARCHAR},
+      versionKey = #{versionkey,jdbcType=NUMERIC},
+      pid = #{pid,jdbcType=NUMERIC},
+      gid = #{gid,jdbcType=NUMERIC},
+      aid = #{aid,jdbcType=NUMERIC},
+      sid = #{sid,jdbcType=NUMERIC},
+      `source` = #{source,jdbcType=VARCHAR},
+      matchId = #{matchid,jdbcType=VARCHAR},
+      leagueId = #{leagueid,jdbcType=VARCHAR},
+      leagueName = #{leaguename,jdbcType=VARCHAR},
+      awayId = #{awayid,jdbcType=VARCHAR},
+      awayIDName = #{awayidname,jdbcType=VARCHAR},
+      homeId = #{homeid,jdbcType=VARCHAR},
+      homeIDName = #{homeidname,jdbcType=VARCHAR},
+      matchDatetime = #{matchdatetime,jdbcType=VARCHAR},
+      betType = #{bettype,jdbcType=VARCHAR},
+      parlayRefNo = #{parlayrefno,jdbcType=VARCHAR},
+      betTeam = #{betteam,jdbcType=VARCHAR},
+      HDP = #{hdp,jdbcType=NUMERIC},
+      awayHDP = #{awayhdp,jdbcType=NUMERIC},
+      homeHDP = #{homehdp,jdbcType=NUMERIC},
+      odds = #{odds,jdbcType=NUMERIC},
+      oddsType = #{oddstype,jdbcType=SMALLINT},
+      awayScore = #{awayscore,jdbcType=VARCHAR},
+      homeScore = #{homescore,jdbcType=VARCHAR},
+      isLive = #{islive,jdbcType=VARCHAR},
+      isLucky = #{islucky,jdbcType=VARCHAR},
+      bet_Tag = #{betTag,jdbcType=VARCHAR},
+      lastBallNo = #{lastballno,jdbcType=VARCHAR},
+      afterAmount = #{afteramount,jdbcType=NUMERIC},
+      currency = #{currency,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

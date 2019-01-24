@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBasecodeMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBasecode">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="BCTYPE" jdbcType="VARCHAR" property="bctype" />
+    <result column="BCKEY" jdbcType="VARCHAR" property="bckey" />
+    <result column="BCVALUE" jdbcType="VARCHAR" property="bcvalue" />
+    <result column="SORT" jdbcType="NUMERIC" property="sort" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, BCTYPE, BCKEY, BCVALUE, SORT, REMARK, UPDATETIME, CREATETIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BASECODE
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <select id="selectByPrimarybc" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_BASECODE
+    where BCTYPE = #{bctype,jdbcType=VARCHAR} and BCKEY = #{bckey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from FONTANA_BASECODE
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBasecode">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BASECODE (PARENTID, BCTYPE, BCKEY, 
+      BCVALUE, SORT, REMARK, 
+      UPDATETIME, CREATETIME)
+    values (#{parentid,jdbcType=NUMERIC}, #{bctype,jdbcType=VARCHAR}, #{bckey,jdbcType=VARCHAR}, 
+      #{bcvalue,jdbcType=VARCHAR}, #{sort,jdbcType=NUMERIC}, #{remark,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBasecode">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BASECODE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="bctype != null">
+        BCTYPE,
+      </if>
+      <if test="bckey != null">
+        BCKEY,
+      </if>
+      <if test="bcvalue != null">
+        BCVALUE,
+      </if>
+      <if test="sort != null">
+        SORT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="bctype != null">
+        #{bctype,jdbcType=VARCHAR},
+      </if>
+      <if test="bckey != null">
+        #{bckey,jdbcType=VARCHAR},
+      </if>
+      <if test="bcvalue != null">
+        #{bcvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=NUMERIC},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBasecode">
+    update FONTANA_BASECODE
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="bctype != null">
+        BCTYPE = #{bctype,jdbcType=VARCHAR},
+      </if>
+      <if test="bckey != null">
+        BCKEY = #{bckey,jdbcType=VARCHAR},
+      </if>
+      <if test="bcvalue != null">
+        BCVALUE = #{bcvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT = #{sort,jdbcType=NUMERIC},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBasecode">
+    update FONTANA_BASECODE
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      BCTYPE = #{bctype,jdbcType=VARCHAR},
+      BCKEY = #{bckey,jdbcType=VARCHAR},
+      BCVALUE = #{bcvalue,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=NUMERIC},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

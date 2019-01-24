@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaBetLotteryMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaBetLottery">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <id column="SERIALNUMBER" jdbcType="VARCHAR" property="serialnumber" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="PLAYERID" jdbcType="NUMERIC" property="playerid" />
+    <result column="PLAYERNAME" jdbcType="VARCHAR" property="playername" />
+    <result column="MERCHANTPRIZE" jdbcType="NUMERIC" property="merchantprize" />
+    <result column="PLAYERPRIZE" jdbcType="NUMERIC" property="playerprize" />
+    <result column="LOSSPRIZE" jdbcType="NUMERIC" property="lossprize" />
+    <result column="STATE" jdbcType="NUMERIC" property="state" />
+    <result column="SUBSTATE" jdbcType="NUMERIC" property="substate" />
+    <result column="UNIT" jdbcType="VARCHAR" property="unit" />
+    <result column="MULTIPLE" jdbcType="NUMERIC" property="multiple" />
+    <result column="COUNT" jdbcType="NUMERIC" property="count" />
+    <result column="COST" jdbcType="NUMERIC" property="cost" />
+    <result column="ODDS" jdbcType="VARCHAR" property="odds" />
+    <result column="NUMBER" jdbcType="VARCHAR" property="number" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="CHANNELID" jdbcType="NUMERIC" property="channelid" />
+    <result column="CHANNELNAME" jdbcType="VARCHAR" property="channelname" />
+    <result column="BETTYPENAME" jdbcType="VARCHAR" property="bettypename" />
+    <result column="ISSUENUMBER" jdbcType="VARCHAR" property="issuenumber" />
+    <result column="WINNINGNUMBER" jdbcType="VARCHAR" property="winningnumber" />
+    <result column="BETTIME" jdbcType="TIMESTAMP" property="bettime" />
+    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="GROUPFOR" jdbcType="TIMESTAMP" property="groupfor" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ly.game.model.FontanaBetLottery">
+    <result column="NOTE" jdbcType="LONGVARCHAR" property="note" />
+    <result column="PRIZEDETAIL" jdbcType="LONGVARCHAR" property="prizedetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SERIALNUMBER, PARENTID, CID, PLAYERID, PLAYERNAME, MERCHANTPRIZE, PLAYERPRIZE, 
+    LOSSPRIZE, `STATE`, SUBSTATE, UNIT, MULTIPLE, `COUNT`, COST, ODDS, `NUMBER`, `POSITION`, 
+    CHANNELID, CHANNELNAME, BETTYPENAME, ISSUENUMBER, WINNINGNUMBER, BETTIME, UPDATETIME, 
+    CREATETIME, GROUPFOR
+  </sql>
+  <sql id="Blob_Column_List">
+    NOTE, PRIZEDETAIL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from FONTANA_BET_LOTTERY
+    where ID = #{id,jdbcType=NUMERIC}
+      and SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from FONTANA_BET_LOTTERY
+    where ID = #{id,jdbcType=NUMERIC}
+      and SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaBetLottery">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_LOTTERY (SERIALNUMBER, PARENTID, CID, 
+      PLAYERID, PLAYERNAME, MERCHANTPRIZE, 
+      PLAYERPRIZE, LOSSPRIZE, `STATE`, 
+      SUBSTATE, UNIT, MULTIPLE, 
+      `COUNT`, COST, ODDS, `NUMBER`, 
+      `POSITION`, CHANNELID, CHANNELNAME, 
+      BETTYPENAME, ISSUENUMBER, WINNINGNUMBER, 
+      BETTIME, UPDATETIME, CREATETIME, 
+      GROUPFOR, NOTE, PRIZEDETAIL
+      )
+    values (#{serialnumber,jdbcType=VARCHAR}, #{parentid,jdbcType=NUMERIC}, #{cid,jdbcType=NUMERIC}, 
+      #{playerid,jdbcType=NUMERIC}, #{playername,jdbcType=VARCHAR}, #{merchantprize,jdbcType=NUMERIC}, 
+      #{playerprize,jdbcType=NUMERIC}, #{lossprize,jdbcType=NUMERIC}, #{state,jdbcType=NUMERIC}, 
+      #{substate,jdbcType=NUMERIC}, #{unit,jdbcType=VARCHAR}, #{multiple,jdbcType=NUMERIC}, 
+      #{count,jdbcType=NUMERIC}, #{cost,jdbcType=NUMERIC}, #{odds,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{channelid,jdbcType=NUMERIC}, #{channelname,jdbcType=VARCHAR}, 
+      #{bettypename,jdbcType=VARCHAR}, #{issuenumber,jdbcType=VARCHAR}, #{winningnumber,jdbcType=VARCHAR}, 
+      #{bettime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{groupfor,jdbcType=TIMESTAMP}, #{note,jdbcType=LONGVARCHAR}, #{prizedetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertReplaceRecordBatch" useGeneratedKeys="true">
+   	   REPLACE into FONTANA_BET_LOTTERY (SERIALNUMBER, PARENTID, CID, 
+	      PLAYERID, PLAYERNAME, MERCHANTPRIZE, 
+	      PLAYERPRIZE, LOSSPRIZE, `STATE`, 
+	      SUBSTATE, UNIT, MULTIPLE, 
+	      `COUNT`, COST, ODDS, `NUMBER`, 
+	      `POSITION`, CHANNELID, CHANNELNAME, 
+	      BETTYPENAME, ISSUENUMBER, WINNINGNUMBER, 
+	      BETTIME, UPDATETIME, CREATETIME, 
+	      GROUPFOR, NOTE, PRIZEDETAIL
+	      )
+	    values 
+         <foreach collection="list" item="item" index="index" separator="," > 
+	         (
+	          #{item.serialnumber,jdbcType=VARCHAR}, #{item.parentid,jdbcType=NUMERIC}, #{item.cid,jdbcType=NUMERIC}, 
+		      #{item.playerid,jdbcType=NUMERIC}, #{item.playername,jdbcType=VARCHAR}, #{item.merchantprize,jdbcType=NUMERIC}, 
+		      #{item.playerprize,jdbcType=NUMERIC}, #{item.lossprize,jdbcType=NUMERIC}, #{item.state,jdbcType=NUMERIC}, 
+		      #{item.substate,jdbcType=NUMERIC}, #{item.unit,jdbcType=VARCHAR}, #{item.multiple,jdbcType=NUMERIC}, 
+		      #{item.count,jdbcType=NUMERIC}, #{item.cost,jdbcType=NUMERIC}, #{item.odds,jdbcType=VARCHAR}, #{item.number,jdbcType=VARCHAR}, 
+		      #{item.position,jdbcType=VARCHAR}, #{item.channelid,jdbcType=NUMERIC}, #{item.channelname,jdbcType=VARCHAR}, 
+		      #{item.bettypename,jdbcType=VARCHAR}, #{item.issuenumber,jdbcType=VARCHAR}, #{item.winningnumber,jdbcType=VARCHAR}, 
+		      #{item.bettime,jdbcType=TIMESTAMP}, #{item.updatetime,jdbcType=TIMESTAMP}, #{item.createtime,jdbcType=TIMESTAMP}, 
+		      #{item.groupfor,jdbcType=TIMESTAMP}, #{item.note,jdbcType=LONGVARCHAR}, #{item.prizedetail,jdbcType=LONGVARCHAR}
+		     )
+	     </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaBetLottery">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_BET_LOTTERY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serialnumber != null">
+        SERIALNUMBER,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="cid != null">
+        CID,
+      </if>
+      <if test="playerid != null">
+        PLAYERID,
+      </if>
+      <if test="playername != null">
+        PLAYERNAME,
+      </if>
+      <if test="merchantprize != null">
+        MERCHANTPRIZE,
+      </if>
+      <if test="playerprize != null">
+        PLAYERPRIZE,
+      </if>
+      <if test="lossprize != null">
+        LOSSPRIZE,
+      </if>
+      <if test="state != null">
+        `STATE`,
+      </if>
+      <if test="substate != null">
+        SUBSTATE,
+      </if>
+      <if test="unit != null">
+        UNIT,
+      </if>
+      <if test="multiple != null">
+        MULTIPLE,
+      </if>
+      <if test="count != null">
+        `COUNT`,
+      </if>
+      <if test="cost != null">
+        COST,
+      </if>
+      <if test="odds != null">
+        ODDS,
+      </if>
+      <if test="number != null">
+        `NUMBER`,
+      </if>
+      <if test="position != null">
+        `POSITION`,
+      </if>
+      <if test="channelid != null">
+        CHANNELID,
+      </if>
+      <if test="channelname != null">
+        CHANNELNAME,
+      </if>
+      <if test="bettypename != null">
+        BETTYPENAME,
+      </if>
+      <if test="issuenumber != null">
+        ISSUENUMBER,
+      </if>
+      <if test="winningnumber != null">
+        WINNINGNUMBER,
+      </if>
+      <if test="bettime != null">
+        BETTIME,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="prizedetail != null">
+        PRIZEDETAIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="playerid != null">
+        #{playerid,jdbcType=NUMERIC},
+      </if>
+      <if test="playername != null">
+        #{playername,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantprize != null">
+        #{merchantprize,jdbcType=NUMERIC},
+      </if>
+      <if test="playerprize != null">
+        #{playerprize,jdbcType=NUMERIC},
+      </if>
+      <if test="lossprize != null">
+        #{lossprize,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=NUMERIC},
+      </if>
+      <if test="substate != null">
+        #{substate,jdbcType=NUMERIC},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="multiple != null">
+        #{multiple,jdbcType=NUMERIC},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=NUMERIC},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=NUMERIC},
+      </if>
+      <if test="odds != null">
+        #{odds,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="channelid != null">
+        #{channelid,jdbcType=NUMERIC},
+      </if>
+      <if test="channelname != null">
+        #{channelname,jdbcType=VARCHAR},
+      </if>
+      <if test="bettypename != null">
+        #{bettypename,jdbcType=VARCHAR},
+      </if>
+      <if test="issuenumber != null">
+        #{issuenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="winningnumber != null">
+        #{winningnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bettime != null">
+        #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prizedetail != null">
+        #{prizedetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaBetLottery">
+    update FONTANA_BET_LOTTERY
+    <set>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=NUMERIC},
+      </if>
+      <if test="cid != null">
+        CID = #{cid,jdbcType=NUMERIC},
+      </if>
+      <if test="playerid != null">
+        PLAYERID = #{playerid,jdbcType=NUMERIC},
+      </if>
+      <if test="playername != null">
+        PLAYERNAME = #{playername,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantprize != null">
+        MERCHANTPRIZE = #{merchantprize,jdbcType=NUMERIC},
+      </if>
+      <if test="playerprize != null">
+        PLAYERPRIZE = #{playerprize,jdbcType=NUMERIC},
+      </if>
+      <if test="lossprize != null">
+        LOSSPRIZE = #{lossprize,jdbcType=NUMERIC},
+      </if>
+      <if test="state != null">
+        `STATE` = #{state,jdbcType=NUMERIC},
+      </if>
+      <if test="substate != null">
+        SUBSTATE = #{substate,jdbcType=NUMERIC},
+      </if>
+      <if test="unit != null">
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="multiple != null">
+        MULTIPLE = #{multiple,jdbcType=NUMERIC},
+      </if>
+      <if test="count != null">
+        `COUNT` = #{count,jdbcType=NUMERIC},
+      </if>
+      <if test="cost != null">
+        COST = #{cost,jdbcType=NUMERIC},
+      </if>
+      <if test="odds != null">
+        ODDS = #{odds,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `NUMBER` = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        `POSITION` = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="channelid != null">
+        CHANNELID = #{channelid,jdbcType=NUMERIC},
+      </if>
+      <if test="channelname != null">
+        CHANNELNAME = #{channelname,jdbcType=VARCHAR},
+      </if>
+      <if test="bettypename != null">
+        BETTYPENAME = #{bettypename,jdbcType=VARCHAR},
+      </if>
+      <if test="issuenumber != null">
+        ISSUENUMBER = #{issuenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="winningnumber != null">
+        WINNINGNUMBER = #{winningnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bettime != null">
+        BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupfor != null">
+        GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prizedetail != null">
+        PRIZEDETAIL = #{prizedetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+      and SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ly.game.model.FontanaBetLottery">
+    update FONTANA_BET_LOTTERY
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      PLAYERID = #{playerid,jdbcType=NUMERIC},
+      PLAYERNAME = #{playername,jdbcType=VARCHAR},
+      MERCHANTPRIZE = #{merchantprize,jdbcType=NUMERIC},
+      PLAYERPRIZE = #{playerprize,jdbcType=NUMERIC},
+      LOSSPRIZE = #{lossprize,jdbcType=NUMERIC},
+      `STATE` = #{state,jdbcType=NUMERIC},
+      SUBSTATE = #{substate,jdbcType=NUMERIC},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      MULTIPLE = #{multiple,jdbcType=NUMERIC},
+      `COUNT` = #{count,jdbcType=NUMERIC},
+      COST = #{cost,jdbcType=NUMERIC},
+      ODDS = #{odds,jdbcType=VARCHAR},
+      `NUMBER` = #{number,jdbcType=VARCHAR},
+      `POSITION` = #{position,jdbcType=VARCHAR},
+      CHANNELID = #{channelid,jdbcType=NUMERIC},
+      CHANNELNAME = #{channelname,jdbcType=VARCHAR},
+      BETTYPENAME = #{bettypename,jdbcType=VARCHAR},
+      ISSUENUMBER = #{issuenumber,jdbcType=VARCHAR},
+      WINNINGNUMBER = #{winningnumber,jdbcType=VARCHAR},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP},
+      NOTE = #{note,jdbcType=LONGVARCHAR},
+      PRIZEDETAIL = #{prizedetail,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+      and SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaBetLottery">
+    update FONTANA_BET_LOTTERY
+    set PARENTID = #{parentid,jdbcType=NUMERIC},
+      CID = #{cid,jdbcType=NUMERIC},
+      PLAYERID = #{playerid,jdbcType=NUMERIC},
+      PLAYERNAME = #{playername,jdbcType=VARCHAR},
+      MERCHANTPRIZE = #{merchantprize,jdbcType=NUMERIC},
+      PLAYERPRIZE = #{playerprize,jdbcType=NUMERIC},
+      LOSSPRIZE = #{lossprize,jdbcType=NUMERIC},
+      `STATE` = #{state,jdbcType=NUMERIC},
+      SUBSTATE = #{substate,jdbcType=NUMERIC},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      MULTIPLE = #{multiple,jdbcType=NUMERIC},
+      `COUNT` = #{count,jdbcType=NUMERIC},
+      COST = #{cost,jdbcType=NUMERIC},
+      ODDS = #{odds,jdbcType=VARCHAR},
+      `NUMBER` = #{number,jdbcType=VARCHAR},
+      `POSITION` = #{position,jdbcType=VARCHAR},
+      CHANNELID = #{channelid,jdbcType=NUMERIC},
+      CHANNELNAME = #{channelname,jdbcType=VARCHAR},
+      BETTYPENAME = #{bettypename,jdbcType=VARCHAR},
+      ISSUENUMBER = #{issuenumber,jdbcType=VARCHAR},
+      WINNINGNUMBER = #{winningnumber,jdbcType=VARCHAR},
+      BETTIME = #{bettime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      GROUPFOR = #{groupfor,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=NUMERIC}
+      and SERIALNUMBER = #{serialnumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaFetchdateMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaFetchdate">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="GAMETYPE" jdbcType="VARCHAR" property="gametype" />
+    <result column="FETCHSTARTTIME" jdbcType="TIMESTAMP" property="etchstarttime" />
+    <result column="VERSIONKEY" jdbcType="VARCHAR" property="versionkey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, GAMETYPE, FETCHSTARTTIME, VERSIONKEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_FETCHDATE
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <select id="selectByPrimaryGametype" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_FETCHDATE
+    where gametype = #{gametype,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="long">
+    delete from FONTANA_FETCHDATE
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.ly.game.model.FontanaFetchdate">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_FETCHDATE (GAMETYPE, FETCHSTARTTIME, VERSIONKEY
+      )
+    values (#{gametype,jdbcType=VARCHAR}, #{etchstarttime,jdbcType=TIMESTAMP}, #{versionkey,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ly.game.model.FontanaFetchdate">
+    <selectKey keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into FONTANA_FETCHDATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gametype != null">
+        GAMETYPE,
+      </if>
+      <if test="etchstarttime != null">
+        FETCHSTARTTIME,
+      </if>
+      <if test="versionkey != null">
+        VERSIONKEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gametype != null">
+        #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="etchstarttime != null">
+        #{etchstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionkey != null">
+        #{versionkey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ly.game.model.FontanaFetchdate">
+    update FONTANA_FETCHDATE
+    <set>
+      <if test="gametype != null">
+        GAMETYPE = #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="etchstarttime != null">
+        FETCHSTARTTIME = #{etchstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionkey != null">
+        VERSIONKEY = #{versionkey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ly.game.model.FontanaFetchdate">
+    update FONTANA_FETCHDATE
+    set GAMETYPE = #{gametype,jdbcType=VARCHAR},
+      FETCHSTARTTIME = #{etchstarttime,jdbcType=TIMESTAMP},
+      VERSIONKEY = #{versionkey,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

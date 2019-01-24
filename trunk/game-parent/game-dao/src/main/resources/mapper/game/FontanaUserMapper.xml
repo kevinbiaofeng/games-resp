@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.game.mapper.FontanaUserMapper">
+  <resultMap id="BaseResultMap" type="com.ly.game.model.FontanaUser">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="CID" jdbcType="NUMERIC" property="cid" />
+    <result column="LOGINNAME" jdbcType="VARCHAR" property="loginname" />
+    <result column="PID" jdbcType="NUMERIC" property="pid" />
+    <result column="GID" jdbcType="NUMERIC" property="gid" />
+    <result column="AID" jdbcType="NUMERIC" property="aid" />
+    <result column="SID" jdbcType="NUMERIC" property="sid" />
+    <result column="PARENTID" jdbcType="NUMERIC" property="parentid" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CID, LOGINNAME, PID, GID, AID, SID, PARENTID, SOURCE
+  </sql>
+  
+  <select id="selectListByLoginNames" resultMap="BaseResultMap">
+   	   select <include refid="Base_Column_List" /> from FONTANA_USER where LOGINNAME in (
+         <foreach collection="list" item="item" index="index" separator="," > 
+	          #{item,jdbcType=VARCHAR}
+	     </foreach>
+	     )
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FONTANA_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>
